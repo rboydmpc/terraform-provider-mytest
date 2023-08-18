@@ -3,9 +3,9 @@
 package provider
 
 import (
+	"MyTest/internal/sdk"
+	"MyTest/internal/sdk/pkg/models/shared"
 	"context"
-	"newtest/internal/sdk"
-	"newtest/internal/sdk/pkg/models/shared"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/provider"
@@ -14,27 +14,27 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-var _ provider.Provider = &NewtestProvider{}
+var _ provider.Provider = &MyTestProvider{}
 
-type NewtestProvider struct {
+type MyTestProvider struct {
 	// version is set to the provider version on release, "dev" when the
 	// provider is built and ran locally, and "test" when running acceptance
 	// testing.
 	version string
 }
 
-// NewtestProviderModel describes the provider data model.
-type NewtestProviderModel struct {
+// MyTestProviderModel describes the provider data model.
+type MyTestProviderModel struct {
 	ServerURL  types.String `tfsdk:"server_url"`
 	BearerAuth types.String `tfsdk:"bearer_auth"`
 }
 
-func (p *NewtestProvider) Metadata(ctx context.Context, req provider.MetadataRequest, resp *provider.MetadataResponse) {
-	resp.TypeName = "newtest"
+func (p *MyTestProvider) Metadata(ctx context.Context, req provider.MetadataRequest, resp *provider.MetadataResponse) {
+	resp.TypeName = "MyTest"
 	resp.Version = p.version
 }
 
-func (p *NewtestProvider) Schema(ctx context.Context, req provider.SchemaRequest, resp *provider.SchemaResponse) {
+func (p *MyTestProvider) Schema(ctx context.Context, req provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: `Morpheus API: Morpheus is a powerful cloud management tool that provides provisioning, monitoring, logging, backups, and application deployment strategies.` + "\n" +
 			`` + "\n" +
@@ -53,8 +53,8 @@ func (p *NewtestProvider) Schema(ctx context.Context, req provider.SchemaRequest
 	}
 }
 
-func (p *NewtestProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
-	var data NewtestProviderModel
+func (p *MyTestProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
+	var data MyTestProviderModel
 
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
 
@@ -83,19 +83,19 @@ func (p *NewtestProvider) Configure(ctx context.Context, req provider.ConfigureR
 	resp.ResourceData = client
 }
 
-func (p *NewtestProvider) Resources(ctx context.Context) []func() resource.Resource {
+func (p *MyTestProvider) Resources(ctx context.Context) []func() resource.Resource {
 	return []func() resource.Resource{
 		NewZoneResource,
 	}
 }
 
-func (p *NewtestProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
+func (p *MyTestProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{}
 }
 
 func New(version string) func() provider.Provider {
 	return func() provider.Provider {
-		return &NewtestProvider{
+		return &MyTestProvider{
 			version: version,
 		}
 	}

@@ -1,12 +1,12 @@
 terraform {
   required_providers {
-    newtest = {
-      source  = "testing/newtest"
+    MyTest = {
+      source  = "testing/MyTest"
       version = "0.1.0"
     }
   }
 }
 
-provider "newtest" {
+provider "MyTest" {
   # Configuration options
 }

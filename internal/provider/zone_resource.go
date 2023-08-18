@@ -3,11 +3,12 @@
 package provider
 
 import (
+	"MyTest/internal/sdk"
+	"MyTest/internal/sdk/pkg/models/operations"
 	"context"
 	"fmt"
-	"newtest/internal/sdk"
-	"newtest/internal/sdk/pkg/models/operations"
 
+	"MyTest/internal/validators"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/boolplanmodifier"
@@ -19,7 +20,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
-	"newtest/internal/validators"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -32,7 +32,7 @@ func NewZoneResource() resource.Resource {
 
 // ZoneResource defines the resource implementation.
 type ZoneResource struct {
-	client *sdk.Newtest
+	client *sdk.MyTest
 }
 
 // ZoneResourceModel describes the resource data model.
@@ -2155,12 +2155,12 @@ func (r *ZoneResource) Configure(ctx context.Context, req resource.ConfigureRequ
 		return
 	}
 
-	client, ok := req.ProviderData.(*sdk.Newtest)
+	client, ok := req.ProviderData.(*sdk.MyTest)
 
 	if !ok {
 		resp.Diagnostics.AddError(
 			"Unexpected Resource Configure Type",
-			fmt.Sprintf("Expected *sdk.Newtest, got: %T. Please report this issue to the provider developers.", req.ProviderData),
+			fmt.Sprintf("Expected *sdk.MyTest, got: %T. Please report this issue to the provider developers.", req.ProviderData),
 		)
 
 		return

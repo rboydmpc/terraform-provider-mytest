@@ -9,7 +9,7 @@ generation:
     disableComments: false
     omitDescriptionIfSummaryPresent: false
   baseServerURL: ""
-  sdkClassName: newtest
+  sdkClassName: MyTest
   singleTagPerOp: false
   tagNamespacingDisabled: false
 features:
@@ -21,4 +21,4 @@ features:
 terraform:
   version: 0.1.0
   author: testing
-  packageName: newtest
+  packageName: MyTest

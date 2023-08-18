@@ -3,9 +3,9 @@
 package provider
 
 import (
+	"MyTest/internal/sdk/pkg/models/operations"
+	"MyTest/internal/sdk/pkg/models/shared"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"newtest/internal/sdk/pkg/models/operations"
-	"newtest/internal/sdk/pkg/models/shared"
 	"time"
 )
 

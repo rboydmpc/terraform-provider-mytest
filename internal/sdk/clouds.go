@@ -3,14 +3,14 @@
 package sdk
 
 import (
+	"MyTest/internal/sdk/pkg/models/operations"
+	"MyTest/internal/sdk/pkg/models/shared"
+	"MyTest/internal/sdk/pkg/utils"
 	"bytes"
 	"context"
 	"fmt"
 	"io"
 	"net/http"
-	"newtest/internal/sdk/pkg/models/operations"
-	"newtest/internal/sdk/pkg/models/shared"
-	"newtest/internal/sdk/pkg/utils"
 	"strings"
 )
 

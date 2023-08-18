@@ -3,8 +3,8 @@
 package operations
 
 import (
+	"MyTest/internal/sdk/pkg/models/shared"
 	"net/http"
-	"newtest/internal/sdk/pkg/models/shared"
 )
 
 type SetApplianceSettingsMaintenanceModeRequest struct {

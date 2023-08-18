@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"newtest/internal/sdk/pkg/types"
+	"MyTest/internal/sdk/pkg/types"
 )
 
 func populateForm(paramName string, explode bool, objType reflect.Type, objValue reflect.Value, delimiter string, getFieldName func(reflect.StructField) string) url.Values {

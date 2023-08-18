@@ -1,4 +1,4 @@
-# newtest
+# MyTest
 
 <!-- Start SDK Installation -->
 ## SDK Installation
@@ -8,14 +8,14 @@ To install this provider, copy and paste this code into your Terraform configura
 ```hcl
 terraform {
   required_providers {
-    newtest = {
-      source  = "testing/newtest"
+    MyTest = {
+      source  = "testing/MyTest"
       version = "0.1.0"
     }
   }
 }
 
-provider "newtest" {
+provider "MyTest" {
   # Configuration options
 }
 ```
@@ -50,7 +50,7 @@ Terraform searches for the `.terraformrc` file in your home directory and applie
 provider_installation {
 
   dev_overrides {
-      "registry.terraform.io/newtest/scaffolding" = "<PATH>"
+      "registry.terraform.io/MyTest/scaffolding" = "<PATH>"
   }
 
   # For all other providers, install them directly from their origin provider

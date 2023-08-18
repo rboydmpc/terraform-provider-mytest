@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"newtest/internal/sdk/pkg/types"
+	"MyTest/internal/sdk/pkg/types"
 )
 
 const (

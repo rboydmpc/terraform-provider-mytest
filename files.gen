@@ -79,4 +79,4 @@ internal/provider/provider.go
 examples/provider/provider.tf
 internal/provider/zone_resource.go
 internal/provider/zone_resource_sdk.go
-examples/resources/newtest_zone/resource.tf
+examples/resources/MyTest_zone/resource.tf

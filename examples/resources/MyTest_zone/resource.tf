@@ -1,4 +1,4 @@
-resource "newtest_zone" "my_zone" {
+resource "MyTest_zone" "my_zone" {
     account = {
         id = 6
         name = "Kelvin Sporer"
