@@ -3,8 +3,8 @@
 package operations
 
 import (
-	"MyTest/internal/sdk/pkg/models/shared"
 	"net/http"
+	"newtest/internal/sdk/pkg/models/shared"
 )
 
 type SetApplianceSettingsMaintenanceModeRequest struct {
@@ -18,4 +18,6 @@ type SetApplianceSettingsMaintenanceModeResponse struct {
 	ContentType       string
 	StatusCode        int
 	RawResponse       *http.Response
+	// Error Codes
+	DefaultError *shared.DefaultError
 }

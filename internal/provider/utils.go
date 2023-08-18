@@ -3,7 +3,6 @@
 package provider
 
 import (
-	tfReflect "MyTest/internal/provider/reflect"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -14,6 +13,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 	"net/http"
 	"net/http/httputil"
+	tfReflect "newtest/internal/provider/reflect"
 	"reflect"
 )
 

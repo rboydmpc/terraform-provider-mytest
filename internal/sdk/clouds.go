@@ -14,33 +14,39 @@ import (
 	"strings"
 )
 
-// applianceSettings - Manage Appliance Settings
-type applianceSettings struct {
+// clouds - Manage Clouds
+type clouds struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newApplianceSettings(sdkConfig sdkConfiguration) *applianceSettings {
-	return &applianceSettings{
+func newClouds(sdkConfig sdkConfiguration) *clouds {
+	return &clouds{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-// SetApplianceSettingsMaintenanceMode - Toggle Maintenance Mode
-// This endpoint allows toggling the appliance maintenance mode.
-func (s *applianceSettings) SetApplianceSettingsMaintenanceMode(ctx context.Context, request operations.SetApplianceSettingsMaintenanceModeRequest) (*operations.SetApplianceSettingsMaintenanceModeResponse, error) {
+// AddClouds - Creates a Cloud
+// Creates a cloud.
+func (s *clouds) AddClouds(ctx context.Context, request operations.AddCloudsRequestBody) (*operations.AddCloudsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url := strings.TrimSuffix(baseURL, "/") + "/api/appliance-settings/maintenance"
+	url := strings.TrimSuffix(baseURL, "/") + "/api/zones"
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
+	if err != nil {
+		return nil, fmt.Errorf("error serializing request body: %w", err)
+	}
+
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
+	req.Header.Set("Content-Type", reqContentType)
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -56,12 +62,13 @@ func (s *applianceSettings) SetApplianceSettingsMaintenanceMode(ctx context.Cont
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.SetApplianceSettingsMaintenanceModeResponse{
+	res := &operations.AddCloudsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -70,12 +77,12 @@ func (s *applianceSettings) SetApplianceSettingsMaintenanceMode(ctx context.Cont
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.TwoHundredSuccess
+			var out *operations.AddClouds200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return res, err
 			}
 
-			res.TwoHundredSuccess = out
+			res.AddClouds200ApplicationJSONObject = out
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough

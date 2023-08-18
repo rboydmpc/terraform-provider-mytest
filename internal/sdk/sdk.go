@@ -3,10 +3,10 @@
 package sdk
 
 import (
-	"MyTest/internal/sdk/pkg/models/shared"
-	"MyTest/internal/sdk/pkg/utils"
 	"fmt"
 	"net/http"
+	"newtest/internal/sdk/pkg/models/shared"
+	"newtest/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -60,29 +60,31 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], c.ServerDefaults[c.ServerIndex]
 }
 
-// MyTest - Morpheus API: Morpheus is a powerful cloud management tool that provides provisioning, monitoring, logging, backups, and application deployment strategies.
+// Newtest - Morpheus API: Morpheus is a powerful cloud management tool that provides provisioning, monitoring, logging, backups, and application deployment strategies.
 //
 // This document describes the Morpheus API protocol and the available endpoints. Sections are organized in the same manner as they appear in the Morpheus UI.
 // https://docs.morpheusdata.com
-type MyTest struct {
+type Newtest struct {
 	// ApplianceSettings - Manage Appliance Settings
 	ApplianceSettings *applianceSettings
+	// Clouds - Manage Clouds
+	Clouds *clouds
 
 	sdkConfiguration sdkConfiguration
 }
 
-type SDKOption func(*MyTest)
+type SDKOption func(*Newtest)
 
 // WithServerURL allows the overriding of the default server URL
 func WithServerURL(serverURL string) SDKOption {
-	return func(sdk *MyTest) {
+	return func(sdk *Newtest) {
 		sdk.sdkConfiguration.ServerURL = serverURL
 	}
 }
 
 // WithTemplatedServerURL allows the overriding of the default server URL with a templated URL populated with the provided parameters
 func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOption {
-	return func(sdk *MyTest) {
+	return func(sdk *Newtest) {
 		if params != nil {
 			serverURL = utils.ReplaceParameters(serverURL, params)
 		}
@@ -93,7 +95,7 @@ func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOptio
 
 // WithServerIndex allows the overriding of the default server by index
 func WithServerIndex(serverIndex int) SDKOption {
-	return func(sdk *MyTest) {
+	return func(sdk *Newtest) {
 		if serverIndex < 0 || serverIndex >= len(ServerList) {
 			panic(fmt.Errorf("server index %d out of range", serverIndex))
 		}
@@ -104,7 +106,7 @@ func WithServerIndex(serverIndex int) SDKOption {
 
 // WithGlobalServerURL allows setting the $name variable for url substitution
 func WithGlobalServerURL(serverURL string) SDKOption {
-	return func(sdk *MyTest) {
+	return func(sdk *Newtest) {
 		for idx := range sdk.sdkConfiguration.ServerDefaults {
 			if _, ok := sdk.sdkConfiguration.ServerDefaults[idx]["serverURL"]; !ok {
 				continue
@@ -117,26 +119,26 @@ func WithGlobalServerURL(serverURL string) SDKOption {
 
 // WithClient allows the overriding of the default HTTP client used by the SDK
 func WithClient(client HTTPClient) SDKOption {
-	return func(sdk *MyTest) {
+	return func(sdk *Newtest) {
 		sdk.sdkConfiguration.DefaultClient = client
 	}
 }
 
 // WithSecurity configures the SDK to use the provided security details
 func WithSecurity(security shared.Security) SDKOption {
-	return func(sdk *MyTest) {
+	return func(sdk *Newtest) {
 		sdk.sdkConfiguration.Security = &security
 	}
 }
 
 // New creates a new instance of the SDK with the provided options
-func New(opts ...SDKOption) *MyTest {
-	sdk := &MyTest{
+func New(opts ...SDKOption) *Newtest {
+	sdk := &Newtest{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "terraform",
 			OpenAPIDocVersion: "6.1.1",
 			SDKVersion:        "0.1.0",
-			GenVersion:        "2.84.3",
+			GenVersion:        "2.86.4",
 			ServerDefaults: []map[string]string{
 				{
 					"serverURL": "CHANGEME",
@@ -161,6 +163,8 @@ func New(opts ...SDKOption) *MyTest {
 	}
 
 	sdk.ApplianceSettings = newApplianceSettings(sdk.sdkConfiguration)
+
+	sdk.Clouds = newClouds(sdk.sdkConfiguration)
 
 	return sdk
 }

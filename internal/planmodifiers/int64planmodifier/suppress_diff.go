@@ -3,8 +3,8 @@
 package int64planmodifier
 
 import (
-	"MyTest/internal/planmodifiers/utils"
 	"context"
+	"newtest/internal/planmodifiers/utils"
 
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 )
