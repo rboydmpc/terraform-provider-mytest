@@ -420,6 +420,7 @@ components:
         msg:
           type: string
     zoneVcenterConfig:
+      x-speakeasy-entity: zone
       type: object
       properties:
         apiUrl:
@@ -513,6 +514,7 @@ components:
           type: string
           nullable: true
     zoneAwsConfig:
+      x-speakeasy-entity: zone
       type: object
       properties:
         endpoint:
@@ -584,6 +586,7 @@ components:
           type: string
           nullable: true
     zoneAzureConfig:
+      x-speakeasy-entity: zone
       type: object
       properties:
         subscriberId:
@@ -660,6 +663,7 @@ components:
           type: string
           nullable: true
     zoneGcpConfig:
+      x-speakeasy-entity: zone
       type: object
       properties:
         privateKey:
@@ -801,15 +805,6 @@ components:
         config:
           type: object
           description: Map containing zone configuration settings. See the section on specific zone types for details.
-          properties:
-            apiUrl:
-              type: string
-            username:
-              type: string
-            password:
-              type: string
-            datacenter:
-              type: string
         securityMode:
           type: string
           description: host firewall. `off` or `internal`. a.k.a. "local firewall"
@@ -960,7 +955,7 @@ components:
           type: integer
           format: int64
         config:
-          anyOf:
+          allOf:
           - $ref: '#/components/schemas/zoneVcenterConfig'
           - $ref: '#/components/schemas/zoneAwsConfig'
           - $ref: '#/components/schemas/zoneAzureConfig'

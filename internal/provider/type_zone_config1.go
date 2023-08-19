@@ -4,7 +4,7 @@ package provider
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type ZoneConfig struct {
+type ZoneConfig1 struct {
 	EnableNetworkTypeSelection types.String             `tfsdk:"enable_network_type_selection"`
 	UseHostCredentials         types.String             `tfsdk:"use_host_credentials"`
 	AccessKey                  types.String             `tfsdk:"access_key"`
@@ -21,9 +21,9 @@ type ZoneConfig struct {
 	ClientSecretHash           types.String             `tfsdk:"client_secret_hash"`
 	CloudType                  types.String             `tfsdk:"cloud_type"`
 	Cluster                    types.String             `tfsdk:"cluster"`
+	ConfigCmID                 types.String             `tfsdk:"config_cm_id"`
 	ConfigCmdbDiscovery        types.Bool               `tfsdk:"config_cmdb_discovery"`
 	ConfigCmdbID               types.String             `tfsdk:"config_cmdb_id"`
-	ConfigCmID                 types.String             `tfsdk:"config_cm_id"`
 	ConfigManagementID         types.String             `tfsdk:"config_management_id"`
 	CostingAccessKey           types.String             `tfsdk:"costing_access_key"`
 	CostingBucket              types.String             `tfsdk:"costing_bucket"`

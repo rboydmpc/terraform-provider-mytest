@@ -11,7 +11,7 @@ type Zone struct {
 	APIProxy              types.String    `tfsdk:"api_proxy"`
 	AutoRecoverPowerState types.Bool      `tfsdk:"auto_recover_power_state"`
 	Code                  types.String    `tfsdk:"code"`
-	Config                *ZoneConfig     `tfsdk:"config"`
+	Config                *ZoneConfig1    `tfsdk:"config"`
 	ConsoleKeymap         types.String    `tfsdk:"console_keymap"`
 	ContainerMode         types.String    `tfsdk:"container_mode"`
 	CostLastSync          types.String    `tfsdk:"cost_last_sync"`
