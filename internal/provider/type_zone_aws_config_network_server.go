@@ -4,6 +4,6 @@ package provider
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type ZoneCreateConfigNetworkServer struct {
+type ZoneAwsConfigNetworkServer struct {
 	ID types.String `tfsdk:"id"`
 }

@@ -92,331 +92,201 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				},
 				Optional: true,
 				Attributes: map[string]schema.Attribute{
-					"enable_network_type_selection": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"use_host_credentials": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"access_key": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"account_type": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"api_url": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"api_version": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"appliance_url": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"azure_costing_mode": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"backup_mode": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"certificate_provider": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"client_email": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"client_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"client_secret": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"client_secret_hash": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"cloud_type": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"cluster": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"config_cmdb_discovery": schema.BoolAttribute{
-						PlanModifiers: []planmodifier.Bool{
-							boolplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"config_cmdb_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"config_cm_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"config_management_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"costing_access_key": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"costing_bucket": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"costing_bucket_name": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"costing_folder": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"costing_region": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"costing_report": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"costing_report_name": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"costing_secret_key": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"costing_secret_key_hash": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"csp_client_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"csp_client_secret": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"csp_client_secret_hash": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"csp_customer": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"csp_tenant_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"datacenter": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"datacenter_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"datacenter_name": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"disk_encryption": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"disk_storage_type": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"distributed_worker_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"dns_integration_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"ebs_encryption": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"enable_disk_type_selection": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"enable_vnc": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"encryption_set": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"endpoint": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"google_region_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"hide_host_selection": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"image_store_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"import_existing": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"inventory_level": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"is_vpc": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"kube_url": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"network_server": schema.SingleNestedAttribute{
+					"zone_aws_config": schema.SingleNestedAttribute{
 						PlanModifiers: []planmodifier.Object{
 							objectplanmodifier.RequiresReplace(),
 						},
 						Optional: true,
 						Attributes: map[string]schema.Attribute{
-							"id": schema.StringAttribute{
+							"use_host_credentials": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"access_key": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"appliance_url": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"backup_mode": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"certificate_provider": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"config_cmdb_discovery": schema.BoolAttribute{
+								PlanModifiers: []planmodifier.Bool{
+									boolplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"config_management_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"costing_access_key": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"costing_bucket": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"costing_bucket_name": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"costing_folder": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"costing_region": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"costing_report": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"costing_report_name": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"costing_secret_key": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"costing_secret_key_hash": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"datacenter_name": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"dns_integration_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"ebs_encryption": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"endpoint": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"image_store_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"is_vpc": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"network_server": schema.SingleNestedAttribute{
+								PlanModifiers: []planmodifier.Object{
+									objectplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+								Attributes: map[string]schema.Attribute{
+									"id": schema.StringAttribute{
+										PlanModifiers: []planmodifier.String{
+											stringplanmodifier.RequiresReplace(),
+										},
+										Optional: true,
+									},
+								},
+							},
+							"network_server_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"replication_mode": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"secret_key": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"secret_key_hash": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"security_server": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"service_registry_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"sts_assume_role": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"vpc": schema.StringAttribute{
 								PlanModifiers: []planmodifier.String{
 									stringplanmodifier.RequiresReplace(),
 								},
@@ -424,132 +294,561 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 							},
 						},
 					},
-					"network_server_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
+					"zone_azure_config": schema.SingleNestedAttribute{
+						PlanModifiers: []planmodifier.Object{
+							objectplanmodifier.RequiresReplace(),
 						},
 						Optional: true,
+						Attributes: map[string]schema.Attribute{
+							"account_type": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"appliance_url": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"azure_costing_mode": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"backup_mode": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"certificate_provider": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"client_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"client_secret": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"client_secret_hash": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"cloud_type": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"config_cmdb_discovery": schema.BoolAttribute{
+								PlanModifiers: []planmodifier.Bool{
+									boolplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"config_cmdb_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"config_management_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"csp_client_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"csp_client_secret": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"csp_client_secret_hash": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"csp_customer": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"csp_tenant_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"datacenter_name": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"disk_encryption": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"dns_integration_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"encryption_set": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"import_existing": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"inventory_level": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"network_server": schema.SingleNestedAttribute{
+								PlanModifiers: []planmodifier.Object{
+									objectplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+								Attributes: map[string]schema.Attribute{
+									"id": schema.StringAttribute{
+										PlanModifiers: []planmodifier.String{
+											stringplanmodifier.RequiresReplace(),
+										},
+										Optional: true,
+									},
+								},
+							},
+							"network_server_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"replication_mode": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"resource_group": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"rpc_mode": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"security_mode": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"security_server": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"service_registry_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"subscriber_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"tenant_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+						},
 					},
-					"password": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
+					"zone_gcp_config": schema.SingleNestedAttribute{
+						PlanModifiers: []planmodifier.Object{
+							objectplanmodifier.RequiresReplace(),
 						},
 						Optional: true,
+						Attributes: map[string]schema.Attribute{
+							"appliance_url": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"backup_mode": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"certificate_provider": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"client_email": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"config_management_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"datacenter_name": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"dns_integration_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"google_region_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"import_existing": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"network_server": schema.SingleNestedAttribute{
+								PlanModifiers: []planmodifier.Object{
+									objectplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+								Attributes: map[string]schema.Attribute{
+									"id": schema.StringAttribute{
+										PlanModifiers: []planmodifier.String{
+											stringplanmodifier.RequiresReplace(),
+										},
+										Optional: true,
+									},
+								},
+							},
+							"network_server_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"private_key": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"private_key_hash": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"project_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"replication_mode": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"security_server": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"service_registry_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+						},
 					},
-					"password_hash": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
+					"zone_vcenter_config": schema.SingleNestedAttribute{
+						PlanModifiers: []planmodifier.Object{
+							objectplanmodifier.RequiresReplace(),
 						},
 						Optional: true,
-					},
-					"private_key": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
+						Attributes: map[string]schema.Attribute{
+							"enable_network_type_selection": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"api_url": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"api_version": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"appliance_url": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"backup_mode": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"certificate_provider": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"cluster": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"config_cmdb_discovery": schema.BoolAttribute{
+								PlanModifiers: []planmodifier.Bool{
+									boolplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"config_cmdb_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"config_cm_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"config_management_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"datacenter": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"datacenter_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"datacenter_name": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"disk_storage_type": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"distributed_worker_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"dns_integration_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"enable_disk_type_selection": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"enable_vnc": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"hide_host_selection": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"import_existing": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"kube_url": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"network_server": schema.SingleNestedAttribute{
+								PlanModifiers: []planmodifier.Object{
+									objectplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+								Attributes: map[string]schema.Attribute{
+									"id": schema.StringAttribute{
+										PlanModifiers: []planmodifier.String{
+											stringplanmodifier.RequiresReplace(),
+										},
+										Optional: true,
+									},
+								},
+							},
+							"network_server_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"password": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"password_hash": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"replication_mode": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"resource_pool": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"resource_pool_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"rpc_mode": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"security_mode": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"security_server": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"service_registry_id": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
+							"username": schema.StringAttribute{
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+								Optional: true,
+							},
 						},
-						Optional: true,
 					},
-					"private_key_hash": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"project_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"replication_mode": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"resource_group": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"resource_pool": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"resource_pool_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"rpc_mode": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"secret_key": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"secret_key_hash": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"security_mode": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"security_server": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"service_registry_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"sts_assume_role": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"subscriber_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"tenant_id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"username": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-					"vpc": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
+				},
+				Validators: []validator.Object{
+					validators.ExactlyOneChild(),
 				},
 			},
 			"credential": schema.SingleNestedAttribute{

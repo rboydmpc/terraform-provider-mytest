@@ -798,7 +798,7 @@ components:
           format: int64
           description: Linked Account ID (enter commercial ID to get costing for AWS Govcloud)
         config:
-          allOf:
+          anyOf:
           - $ref: '#/components/schemas/zoneVcenterConfig'
           - $ref: '#/components/schemas/zoneAwsConfig'
           - $ref: '#/components/schemas/zoneAzureConfig'
