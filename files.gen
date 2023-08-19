@@ -66,10 +66,6 @@ internal/sdk/pkg/models/shared/twohundredsuccess.go
 internal/sdk/pkg/models/shared/zone.go
 internal/sdk/pkg/models/shared/zonecreate.go
 internal/sdk/pkg/models/shared/security.go
-internal/sdk/pkg/models/shared/zoneawsconfig.go
-internal/sdk/pkg/models/shared/zoneazureconfig.go
-internal/sdk/pkg/models/shared/zonegcpconfig.go
-internal/sdk/pkg/models/shared/zonevcenterconfig.go
 USAGE.md
 internal/provider/provider.go
 examples/provider/provider.tf

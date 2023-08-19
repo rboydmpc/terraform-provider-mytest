@@ -409,7 +409,6 @@ components:
       example: example-%
   schemas:
     200-success:
-      x-speakeasy-entity: zone
       type: object
       properties:
         success:
@@ -420,7 +419,6 @@ components:
         msg:
           type: string
     zoneVcenterConfig:
-      x-speakeasy-entity: zone
       type: object
       properties:
         apiUrl:
@@ -514,7 +512,6 @@ components:
           type: string
           nullable: true
     zoneAwsConfig:
-      x-speakeasy-entity: zone
       type: object
       properties:
         endpoint:
@@ -586,7 +583,6 @@ components:
           type: string
           nullable: true
     zoneAzureConfig:
-      x-speakeasy-entity: zone
       type: object
       properties:
         subscriberId:
@@ -663,7 +659,6 @@ components:
           type: string
           nullable: true
     zoneGcpConfig:
-      x-speakeasy-entity: zone
       type: object
       properties:
         privateKey:

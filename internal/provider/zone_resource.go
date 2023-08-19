@@ -37,97 +37,23 @@ type ZoneResource struct {
 
 // ZoneResourceModel describes the resource data model.
 type ZoneResourceModel struct {
-	EnableNetworkTypeSelection types.String                   `tfsdk:"enable_network_type_selection"`
-	UseHostCredentials         types.String                   `tfsdk:"use_host_credentials"`
-	AccessKey                  types.String                   `tfsdk:"access_key"`
-	AccountID                  types.Int64                    `tfsdk:"account_id"`
-	AccountType                types.String                   `tfsdk:"account_type"`
-	APIURL                     types.String                   `tfsdk:"api_url"`
-	APIVersion                 types.String                   `tfsdk:"api_version"`
-	ApplianceURL               types.String                   `tfsdk:"appliance_url"`
-	AutoRecoverPowerState      types.Bool                     `tfsdk:"auto_recover_power_state"`
-	AzureCostingMode           types.String                   `tfsdk:"azure_costing_mode"`
-	BackupMode                 types.String                   `tfsdk:"backup_mode"`
-	CertificateProvider        types.String                   `tfsdk:"certificate_provider"`
-	ClientEmail                types.String                   `tfsdk:"client_email"`
-	ClientID                   types.String                   `tfsdk:"client_id"`
-	ClientSecret               types.String                   `tfsdk:"client_secret"`
-	ClientSecretHash           types.String                   `tfsdk:"client_secret_hash"`
-	CloudType                  types.String                   `tfsdk:"cloud_type"`
-	Cluster                    types.String                   `tfsdk:"cluster"`
-	Code                       types.String                   `tfsdk:"code"`
-	Config                     *ZoneCreateConfig              `tfsdk:"config"`
-	ConfigCmdbDiscovery        types.Bool                     `tfsdk:"config_cmdb_discovery"`
-	ConfigCmdbID               types.String                   `tfsdk:"config_cmdb_id"`
-	ConfigCmID                 types.String                   `tfsdk:"config_cm_id"`
-	ConfigManagementID         types.String                   `tfsdk:"config_management_id"`
-	CostingAccessKey           types.String                   `tfsdk:"costing_access_key"`
-	CostingBucket              types.String                   `tfsdk:"costing_bucket"`
-	CostingBucketName          types.String                   `tfsdk:"costing_bucket_name"`
-	CostingFolder              types.String                   `tfsdk:"costing_folder"`
-	CostingRegion              types.String                   `tfsdk:"costing_region"`
-	CostingReport              types.String                   `tfsdk:"costing_report"`
-	CostingReportName          types.String                   `tfsdk:"costing_report_name"`
-	CostingSecretKey           types.String                   `tfsdk:"costing_secret_key"`
-	CostingSecretKeyHash       types.String                   `tfsdk:"costing_secret_key_hash"`
-	Credential                 *ZoneCreateCredential          `tfsdk:"credential"`
-	CspClientID                types.String                   `tfsdk:"csp_client_id"`
-	CspClientSecret            types.String                   `tfsdk:"csp_client_secret"`
-	CspClientSecretHash        types.String                   `tfsdk:"csp_client_secret_hash"`
-	CspCustomer                types.String                   `tfsdk:"csp_customer"`
-	CspTenantID                types.String                   `tfsdk:"csp_tenant_id"`
-	Datacenter                 types.String                   `tfsdk:"datacenter"`
-	DatacenterID               types.String                   `tfsdk:"datacenter_id"`
-	DatacenterName             types.String                   `tfsdk:"datacenter_name"`
-	Description                types.String                   `tfsdk:"description"`
-	DiskEncryption             types.String                   `tfsdk:"disk_encryption"`
-	DiskStorageType            types.String                   `tfsdk:"disk_storage_type"`
-	DistributedWorkerID        types.String                   `tfsdk:"distributed_worker_id"`
-	DNSIntegrationID           types.String                   `tfsdk:"dns_integration_id"`
-	EbsEncryption              types.String                   `tfsdk:"ebs_encryption"`
-	Enabled                    types.Bool                     `tfsdk:"enabled"`
-	EnableDiskTypeSelection    types.String                   `tfsdk:"enable_disk_type_selection"`
-	EnableVnc                  types.String                   `tfsdk:"enable_vnc"`
-	EncryptionSet              types.String                   `tfsdk:"encryption_set"`
-	Endpoint                   types.String                   `tfsdk:"endpoint"`
-	GoogleRegionID             types.String                   `tfsdk:"google_region_id"`
-	GroupID                    types.Int64                    `tfsdk:"group_id"`
-	HideHostSelection          types.String                   `tfsdk:"hide_host_selection"`
-	ImageStoreID               types.String                   `tfsdk:"image_store_id"`
-	ImportExisting             types.String                   `tfsdk:"import_existing"`
-	InventoryLevel             types.String                   `tfsdk:"inventory_level"`
-	IsVpc                      types.String                   `tfsdk:"is_vpc"`
-	KubeURL                    types.String                   `tfsdk:"kube_url"`
-	LinkedAccountID            types.Int64                    `tfsdk:"linked_account_id"`
-	Location                   types.String                   `tfsdk:"location"`
-	Name                       types.String                   `tfsdk:"name"`
-	NetworkServer              *ZoneCreateConfigNetworkServer `tfsdk:"network_server"`
-	NetworkServerID            types.String                   `tfsdk:"network_server_id"`
-	Password                   types.String                   `tfsdk:"password"`
-	PasswordHash               types.String                   `tfsdk:"password_hash"`
-	PrivateKey                 types.String                   `tfsdk:"private_key"`
-	PrivateKeyHash             types.String                   `tfsdk:"private_key_hash"`
-	ProjectID                  types.String                   `tfsdk:"project_id"`
-	ReplicationMode            types.String                   `tfsdk:"replication_mode"`
-	ResourceGroup              types.String                   `tfsdk:"resource_group"`
-	ResourcePool               types.String                   `tfsdk:"resource_pool"`
-	ResourcePoolID             types.String                   `tfsdk:"resource_pool_id"`
-	RPCMode                    types.String                   `tfsdk:"rpc_mode"`
-	ScalePriority              types.Int64                    `tfsdk:"scale_priority"`
-	SecretKey                  types.String                   `tfsdk:"secret_key"`
-	SecretKeyHash              types.String                   `tfsdk:"secret_key_hash"`
-	SecurityMode               types.String                   `tfsdk:"security_mode"`
-	SecurityServer             types.String                   `tfsdk:"security_server"`
-	ServiceRegistryID          types.String                   `tfsdk:"service_registry_id"`
-	StsAssumeRole              types.String                   `tfsdk:"sts_assume_role"`
-	SubscriberID               types.String                   `tfsdk:"subscriber_id"`
-	Success                    types.Bool                     `tfsdk:"success"`
-	TenantID                   types.String                   `tfsdk:"tenant_id"`
-	Username                   types.String                   `tfsdk:"username"`
-	Visibility                 types.String                   `tfsdk:"visibility"`
-	Vpc                        types.String                   `tfsdk:"vpc"`
-	Zone                       *Zone                          `tfsdk:"zone"`
-	ZoneType                   ZoneCreateZoneType             `tfsdk:"zone_type"`
+	AccountID             types.Int64           `tfsdk:"account_id"`
+	AutoRecoverPowerState types.Bool            `tfsdk:"auto_recover_power_state"`
+	Code                  types.String          `tfsdk:"code"`
+	Config                *ZoneCreateConfig     `tfsdk:"config"`
+	Credential            *ZoneCreateCredential `tfsdk:"credential"`
+	Description           types.String          `tfsdk:"description"`
+	Enabled               types.Bool            `tfsdk:"enabled"`
+	GroupID               types.Int64           `tfsdk:"group_id"`
+	LinkedAccountID       types.Int64           `tfsdk:"linked_account_id"`
+	Location              types.String          `tfsdk:"location"`
+	Name                  types.String          `tfsdk:"name"`
+	ScalePriority         types.Int64           `tfsdk:"scale_priority"`
+	SecurityMode          types.String          `tfsdk:"security_mode"`
+	Success               types.Bool            `tfsdk:"success"`
+	Visibility            types.String          `tfsdk:"visibility"`
+	Zone                  *Zone                 `tfsdk:"zone"`
+	ZoneType              ZoneCreateZoneType    `tfsdk:"zone_type"`
 }
 
 func (r *ZoneResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
@@ -139,24 +65,6 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 		MarkdownDescription: "Zone Resource",
 
 		Attributes: map[string]schema.Attribute{
-			"enable_network_type_selection": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"use_host_credentials": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"access_key": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
 			"account_id": schema.Int64Attribute{
 				PlanModifiers: []planmodifier.Int64{
 					int64planmodifier.RequiresReplace(),
@@ -164,90 +72,12 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				Optional:    true,
 				Description: `Specifies which Tenant this cloud should be assigned to`,
 			},
-			"account_type": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"api_url": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"api_version": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"appliance_url": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
 			"auto_recover_power_state": schema.BoolAttribute{
 				PlanModifiers: []planmodifier.Bool{
 					boolplanmodifier.RequiresReplace(),
 				},
 				Optional:    true,
 				Description: `Automatically Power on VMs`,
-			},
-			"azure_costing_mode": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"backup_mode": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"certificate_provider": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"client_email": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"client_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"client_secret": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"client_secret_hash": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"cloud_type": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"cluster": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
 			},
 			"code": schema.StringAttribute{
 				PlanModifiers: []planmodifier.String{
@@ -722,84 +552,6 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 					},
 				},
 			},
-			"config_cmdb_discovery": schema.BoolAttribute{
-				PlanModifiers: []planmodifier.Bool{
-					boolplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"config_cmdb_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"config_cm_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"config_management_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"costing_access_key": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"costing_bucket": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"costing_bucket_name": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"costing_folder": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"costing_region": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"costing_report": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"costing_report_name": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"costing_secret_key": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"costing_secret_key_hash": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
 			"credential": schema.SingleNestedAttribute{
 				PlanModifiers: []planmodifier.Object{
 					objectplanmodifier.RequiresReplace(),
@@ -815,90 +567,12 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				},
 				Description: `Map containing Credential ID. Setting ` + "`" + `type` + "`" + ` to ` + "`" + `local` + "`" + ` means use the values set in the local cloud config instead of associating a credential.`,
 			},
-			"csp_client_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"csp_client_secret": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"csp_client_secret_hash": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"csp_customer": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"csp_tenant_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"datacenter": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"datacenter_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"datacenter_name": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
 			"description": schema.StringAttribute{
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(),
 				},
 				Optional:    true,
 				Description: `Optional description field if you want to put more info there`,
-			},
-			"disk_encryption": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"disk_storage_type": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"distributed_worker_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"dns_integration_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"ebs_encryption": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
 			},
 			"enabled": schema.BoolAttribute{
 				PlanModifiers: []planmodifier.Bool{
@@ -907,78 +581,12 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				Optional:    true,
 				Description: `Can be used to disable the cloud`,
 			},
-			"enable_disk_type_selection": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"enable_vnc": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"encryption_set": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"endpoint": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"google_region_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
 			"group_id": schema.Int64Attribute{
 				PlanModifiers: []planmodifier.Int64{
 					int64planmodifier.RequiresReplace(),
 				},
 				Required:    true,
 				Description: `Specifies which Server group this cloud should be assigned to`,
-			},
-			"hide_host_selection": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"image_store_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"import_existing": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"inventory_level": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"is_vpc": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"kube_url": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
 			},
 			"linked_account_id": schema.Int64Attribute{
 				PlanModifiers: []planmodifier.Int64{
@@ -1001,86 +609,6 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				Required:    true,
 				Description: `A unique name scoped to your account for the cloud`,
 			},
-			"network_server": schema.SingleNestedAttribute{
-				PlanModifiers: []planmodifier.Object{
-					objectplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-				Attributes: map[string]schema.Attribute{
-					"id": schema.StringAttribute{
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
-				},
-			},
-			"network_server_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"password": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"password_hash": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"private_key": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"private_key_hash": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"project_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"replication_mode": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"resource_group": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"resource_pool": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"resource_pool_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"rpc_mode": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
 			"scale_priority": schema.Int64Attribute{
 				PlanModifiers: []planmodifier.Int64{
 					int64planmodifier.RequiresReplace(),
@@ -1088,62 +616,15 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				Optional:    true,
 				Description: `Scale Priority`,
 			},
-			"secret_key": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"secret_key_hash": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
 			"security_mode": schema.StringAttribute{
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(),
 				},
-				Optional: true,
-			},
-			"security_server": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"service_registry_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"sts_assume_role": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"subscriber_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
+				Optional:    true,
+				Description: `host firewall. ` + "`" + `off` + "`" + ` or ` + "`" + `internal` + "`" + `. a.k.a. "local firewall"`,
 			},
 			"success": schema.BoolAttribute{
 				Computed: true,
-			},
-			"tenant_id": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
-			},
-			"username": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
 			},
 			"visibility": schema.StringAttribute{
 				PlanModifiers: []planmodifier.String{
@@ -1158,12 +639,6 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				},
 				MarkdownDescription: `must be one of ["private", "public"]` + "\n" +
 					`private or public`,
-			},
-			"vpc": schema.StringAttribute{
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-				Optional: true,
 			},
 			"zone": schema.SingleNestedAttribute{
 				Computed: true,
