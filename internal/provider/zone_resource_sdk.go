@@ -30,48 +30,11 @@ func (r *ZoneResourceModel) ToCreateSDKType() *shared.ZoneCreate {
 	}
 	var config *shared.ZoneCreateConfig
 	if r.Config != nil {
-		apiURL := new(string)
-		if !r.Config.APIURL.IsUnknown() && !r.Config.APIURL.IsNull() {
-			*apiURL = r.Config.APIURL.ValueString()
-		} else {
-			apiURL = nil
-		}
-		datacenter := new(string)
-		if !r.Config.Datacenter.IsUnknown() && !r.Config.Datacenter.IsNull() {
-			*datacenter = r.Config.Datacenter.ValueString()
-		} else {
-			datacenter = nil
-		}
-		password := new(string)
-		if !r.Config.Password.IsUnknown() && !r.Config.Password.IsNull() {
-			*password = r.Config.Password.ValueString()
-		} else {
-			password = nil
-		}
-		username := new(string)
-		if !r.Config.Username.IsUnknown() && !r.Config.Username.IsNull() {
-			*username = r.Config.Username.ValueString()
-		} else {
-			username = nil
-		}
-		config = &shared.ZoneCreateConfig{
-			APIURL:     apiURL,
-			Datacenter: datacenter,
-			Password:   password,
-			Username:   username,
-		}
+		config = &shared.ZoneCreateConfig{}
 	}
 	var credential *shared.ZoneCreateCredential
 	if r.Credential != nil {
-		typeVar := new(string)
-		if !r.Credential.Type.IsUnknown() && !r.Credential.Type.IsNull() {
-			*typeVar = r.Credential.Type.ValueString()
-		} else {
-			typeVar = nil
-		}
-		credential = &shared.ZoneCreateCredential{
-			Type: typeVar,
-		}
+		credential = &shared.ZoneCreateCredential{}
 	}
 	description := new(string)
 	if !r.Description.IsUnknown() && !r.Description.IsNull() {

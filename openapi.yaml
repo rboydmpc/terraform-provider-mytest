@@ -822,6 +822,7 @@ components:
               type: string
               default: local
     zone:
+      x-speakeasy-entity: zone
       type: object
       properties:
         id:
