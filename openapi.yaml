@@ -803,8 +803,11 @@ components:
           format: int64
           description: Linked Account ID (enter commercial ID to get costing for AWS Govcloud)
         config:
-          type: object
-          description: Map containing zone configuration settings. See the section on specific zone types for details.
+          allOf:
+          - $ref: '#/components/schemas/zoneVcenterConfig'
+          - $ref: '#/components/schemas/zoneAwsConfig'
+          - $ref: '#/components/schemas/zoneAzureConfig'
+          - $ref: '#/components/schemas/zoneGcpConfig'
         securityMode:
           type: string
           description: host firewall. `off` or `internal`. a.k.a. "local firewall"
@@ -817,7 +820,6 @@ components:
               type: string
               default: local
     zone:
-      x-speakeasy-entity: zone
       type: object
       properties:
         id:

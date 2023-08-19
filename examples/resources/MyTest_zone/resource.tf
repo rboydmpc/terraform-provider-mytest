@@ -2,18 +2,12 @@ resource "MyTest_zone" "my_zone" {
     enable_network_type_selection = "...my_enable_network_type_selection..."
             use_host_credentials = "...my_use_host_credentials..."
             access_key = "...my_access_key..."
-            account = {
-        id = 6
-        name = "Kelvin Sporer"
-    }
-            account_id = 5
+            account_id = 1
             account_type = "...my_account_type..."
-            agent_mode = "...my_agent_mode..."
-            api_proxy = "...my_api_proxy..."
             api_url = "...my_api_url..."
             api_version = "...my_api_version..."
             appliance_url = "...my_appliance_url..."
-            auto_recover_power_state = true
+            auto_recover_power_state = false
             azure_costing_mode = "...my_azure_costing_mode..."
             backup_mode = "...my_backup_mode..."
             certificate_provider = "...my_certificate_provider..."
@@ -23,7 +17,7 @@ resource "MyTest_zone" "my_zone" {
             client_secret_hash = "...my_client_secret_hash..."
             cloud_type = "...my_cloud_type..."
             cluster = "...my_cluster..."
-            code = "...my_code..."
+            code = "mycloud"
             config = {
         enable_network_type_selection = "...my_enable_network_type_selection..."
         use_host_credentials = "...my_use_host_credentials..."
@@ -41,7 +35,7 @@ resource "MyTest_zone" "my_zone" {
         client_secret_hash = "...my_client_secret_hash..."
         cloud_type = "...my_cloud_type..."
         cluster = "...my_cluster..."
-        config_cmdb_discovery = false
+        config_cmdb_discovery = true
         config_cmdb_id = "...my_config_cmdb_id..."
         config_cm_id = "...my_config_cm_id..."
         config_management_id = "...my_config_management_id..."
@@ -79,7 +73,7 @@ resource "MyTest_zone" "my_zone" {
         is_vpc = "...my_is_vpc..."
         kube_url = "...my_kube_url..."
         network_server = {
-            id = "9a674e0f-467c-4c87-96ed-151a05dfc2dd"
+            id = "d9d8d69a-674e-40f4-a7cc-8796ed151a05"
         }
         network_server_id = "...my_network_server_id..."
         password = "...my_password..."
@@ -100,33 +94,23 @@ resource "MyTest_zone" "my_zone" {
         sts_assume_role = "...my_sts_assume_role..."
         subscriber_id = "...my_subscriber_id..."
         tenant_id = "...my_tenant_id..."
-        username = "Wilford_Krajcik46"
+        username = "Rita.Will87"
         vpc = "...my_vpc..."
     }
             config_cmdb_discovery = true
             config_cmdb_id = "...my_config_cmdb_id..."
             config_cm_id = "...my_config_cm_id..."
             config_management_id = "...my_config_management_id..."
-            console_keymap = "...my_console_keymap..."
-            container_mode = "...my_container_mode..."
             costing_access_key = "...my_costing_access_key..."
             costing_bucket = "...my_costing_bucket..."
             costing_bucket_name = "...my_costing_bucket_name..."
             costing_folder = "...my_costing_folder..."
-            costing_mode = "...my_costing_mode..."
             costing_region = "...my_costing_region..."
             costing_report = "...my_costing_report..."
             costing_report_name = "...my_costing_report_name..."
             costing_secret_key = "...my_costing_secret_key..."
             costing_secret_key_hash = "...my_costing_secret_key_hash..."
-            cost_last_sync = "2020-12-18T15:02:44.758Z"
-            cost_last_sync_duration = 1
-            cost_status = "...my_cost_status..."
-            cost_status_date = "2021-09-20T20:35:01.256Z"
-            cost_status_message = "...my_cost_status_message..."
             credential = {
-        id = 6
-        name = "Cassandra Welch"
         type = "...my_type..."
     }
             csp_client_id = "...my_csp_client_id..."
@@ -134,114 +118,58 @@ resource "MyTest_zone" "my_zone" {
             csp_client_secret_hash = "...my_csp_client_secret_hash..."
             csp_customer = "...my_csp_customer..."
             csp_tenant_id = "...my_csp_tenant_id..."
-            dark_image_path = "...my_dark_image_path..."
             datacenter = "...my_datacenter..."
             datacenter_id = "...my_datacenter_id..."
             datacenter_name = "...my_datacenter_name..."
-            date_created = "2022-08-02T15:33:40.440Z"
             description = "...my_description..."
             disk_encryption = "...my_disk_encryption..."
             disk_storage_type = "...my_disk_storage_type..."
             distributed_worker_id = "...my_distributed_worker_id..."
             dns_integration_id = "...my_dns_integration_id..."
-            domain_name = "...my_domain_name..."
             ebs_encryption = "...my_ebs_encryption..."
-            enabled = true
+            enabled = false
             enable_disk_type_selection = "...my_enable_disk_type_selection..."
             enable_vnc = "...my_enable_vnc..."
             encryption_set = "...my_encryption_set..."
             endpoint = "...my_endpoint..."
-            external_id = "...my_external_id..."
             google_region_id = "...my_google_region_id..."
             group_id = 3
-            groups = [
-        {
-            account_id = 2
-            id = 8
-            name = "Cory Emmerich"
-        },
-    ]
-            guidance_mode = "...my_guidance_mode..."
             hide_host_selection = "...my_hide_host_selection..."
-            id = 0
-            image_path = "...my_image_path..."
             image_store_id = "...my_image_store_id..."
             import_existing = "...my_import_existing..."
             inventory_level = "...my_inventory_level..."
             is_vpc = "...my_is_vpc..."
             kube_url = "...my_kube_url..."
-            last_sync = "2022-05-20T13:30:46.463Z"
-            last_sync_duration = 1
-            last_updated = "2022-07-22T16:55:44.795Z"
-            linked_account_id = 6
-            location = "...my_location..."
-            name = "May Turcotte"
-            network_domain = {
-        id = 3
-        name = "Brad Turcotte Jr."
-    }
+            linked_account_id = 8
+            location = "US East"
+            name = "My Cloud"
             network_server = {
-        id = 10
-        name = "Shaun Osinski"
+        id = "1ba928fc-8167-442c-b739-205929396fea"
     }
             network_server_id = "...my_network_server_id..."
-            next_run_date = "2022-11-14T22:36:19.385Z"
-            owner = {
-        id = 8
-        name = "Guadalupe Hickle"
-    }
             password = "...my_password..."
             password_hash = "...my_password_hash..."
             private_key = "...my_private_key..."
             private_key_hash = "...my_private_key_hash..."
             project_id = "...my_project_id..."
-            provisioning_proxy = "...my_provisioning_proxy..."
-            region_code = "...my_region_code..."
             replication_mode = "...my_replication_mode..."
             resource_group = "...my_resource_group..."
             resource_pool = "...my_resource_pool..."
             resource_pool_id = "...my_resource_pool_id..."
             rpc_mode = "...my_rpc_mode..."
-            scale_priority = 0
+            scale_priority = 4
             secret_key = "...my_secret_key..."
             secret_key_hash = "...my_secret_key_hash..."
             security_mode = "...my_security_mode..."
-            security_server = {
-        id = 4
-        name = "Miss Aubrey Williamson"
-    }
-            server_count = 6
+            security_server = "...my_security_server..."
             service_registry_id = "...my_service_registry_id..."
-            service_version = "...my_service_version..."
-            stats = {
-        server_counts = {
-            all = 1
-            baremetal = 10
-            container_host = 7
-            host = 6
-            hypervisor = 2
-            unmanaged = 4
-            vm = 5
-        }
-    }
-            status = "...my_status..."
-            status_date = "2022-10-03T18:49:53.900Z"
-            status_message = "...my_status_message..."
-            storage_mode = "...my_storage_mode..."
             sts_assume_role = "...my_sts_assume_role..."
             subscriber_id = "...my_subscriber_id..."
             tenant_id = "...my_tenant_id..."
-            timezone = "...my_timezone..."
-            user_data_linux = "...my_user_data_linux..."
-            user_data_windows = "...my_user_data_windows..."
-            username = "Linda.Cronin"
-            uuid = "aa52c3f5-ad01-49da-9ffe-78f097b0074f"
-            visibility = "...my_visibility..."
+            username = "Floy_Moore"
+            visibility = "public"
             vpc = "...my_vpc..."
             zone_type = {
-        code = "...my_code..."
-        id = 1
-        name = "Miss Valerie Kshlerin"
+        code = "vmware"
     }
-            zone_type_id = 9
         }

@@ -7,8 +7,86 @@ import (
 	"fmt"
 )
 
-// ZoneCreateConfig - Map containing zone configuration settings. See the section on specific zone types for details.
+type ZoneCreateConfigNetworkServer struct {
+	ID *string `json:"id,omitempty"`
+}
+
 type ZoneCreateConfig struct {
+	EnableNetworkTypeSelection *string                        `json:"_enableNetworkTypeSelection,omitempty"`
+	UseHostCredentials         *string                        `json:"_useHostCredentials,omitempty"`
+	AccessKey                  *string                        `json:"accessKey,omitempty"`
+	AccountType                *string                        `json:"accountType,omitempty"`
+	APIURL                     *string                        `json:"apiUrl,omitempty"`
+	APIVersion                 *string                        `json:"apiVersion,omitempty"`
+	ApplianceURL               *string                        `json:"applianceUrl,omitempty"`
+	AzureCostingMode           *string                        `json:"azureCostingMode,omitempty"`
+	BackupMode                 *string                        `json:"backupMode,omitempty"`
+	CertificateProvider        *string                        `json:"certificateProvider,omitempty"`
+	ClientEmail                *string                        `json:"clientEmail,omitempty"`
+	ClientID                   *string                        `json:"clientId,omitempty"`
+	ClientSecret               *string                        `json:"clientSecret,omitempty"`
+	ClientSecretHash           *string                        `json:"clientSecretHash,omitempty"`
+	CloudType                  *string                        `json:"cloudType,omitempty"`
+	Cluster                    *string                        `json:"cluster,omitempty"`
+	ConfigCmID                 *string                        `json:"configCmId,omitempty"`
+	ConfigCmdbDiscovery        *bool                          `json:"configCmdbDiscovery,omitempty"`
+	ConfigCmdbID               *string                        `json:"configCmdbId,omitempty"`
+	ConfigManagementID         *string                        `json:"configManagementId,omitempty"`
+	CostingAccessKey           *string                        `json:"costingAccessKey,omitempty"`
+	CostingBucket              *string                        `json:"costingBucket,omitempty"`
+	CostingBucketName          *string                        `json:"costingBucketName,omitempty"`
+	CostingFolder              *string                        `json:"costingFolder,omitempty"`
+	CostingRegion              *string                        `json:"costingRegion,omitempty"`
+	CostingReport              *string                        `json:"costingReport,omitempty"`
+	CostingReportName          *string                        `json:"costingReportName,omitempty"`
+	CostingSecretKey           *string                        `json:"costingSecretKey,omitempty"`
+	CostingSecretKeyHash       *string                        `json:"costingSecretKeyHash,omitempty"`
+	CspClientID                *string                        `json:"cspClientId,omitempty"`
+	CspClientSecret            *string                        `json:"cspClientSecret,omitempty"`
+	CspClientSecretHash        *string                        `json:"cspClientSecretHash,omitempty"`
+	CspCustomer                *string                        `json:"cspCustomer,omitempty"`
+	CspTenantID                *string                        `json:"cspTenantId,omitempty"`
+	Datacenter                 *string                        `json:"datacenter,omitempty"`
+	DatacenterID               *string                        `json:"datacenterId,omitempty"`
+	DatacenterName             *string                        `json:"datacenterName,omitempty"`
+	DiskEncryption             *string                        `json:"diskEncryption,omitempty"`
+	DiskStorageType            *string                        `json:"diskStorageType,omitempty"`
+	DistributedWorkerID        *string                        `json:"distributedWorkerId,omitempty"`
+	DNSIntegrationID           *string                        `json:"dnsIntegrationId,omitempty"`
+	EbsEncryption              *string                        `json:"ebsEncryption,omitempty"`
+	EnableDiskTypeSelection    *string                        `json:"enableDiskTypeSelection,omitempty"`
+	EnableVnc                  *string                        `json:"enableVnc,omitempty"`
+	EncryptionSet              *string                        `json:"encryptionSet,omitempty"`
+	Endpoint                   *string                        `json:"endpoint,omitempty"`
+	GoogleRegionID             *string                        `json:"googleRegionId,omitempty"`
+	HideHostSelection          *string                        `json:"hideHostSelection,omitempty"`
+	ImageStoreID               *string                        `json:"imageStoreId,omitempty"`
+	ImportExisting             *string                        `json:"importExisting,omitempty"`
+	InventoryLevel             *string                        `json:"inventoryLevel,omitempty"`
+	IsVpc                      *string                        `json:"isVpc,omitempty"`
+	KubeURL                    *string                        `json:"kubeUrl,omitempty"`
+	NetworkServer              *ZoneCreateConfigNetworkServer `json:"networkServer,omitempty"`
+	NetworkServerID            *string                        `json:"networkServer.id,omitempty"`
+	Password                   *string                        `json:"password,omitempty"`
+	PasswordHash               *string                        `json:"passwordHash,omitempty"`
+	PrivateKey                 *string                        `json:"privateKey,omitempty"`
+	PrivateKeyHash             *string                        `json:"privateKeyHash,omitempty"`
+	ProjectID                  *string                        `json:"projectId,omitempty"`
+	ReplicationMode            *string                        `json:"replicationMode,omitempty"`
+	ResourceGroup              *string                        `json:"resourceGroup,omitempty"`
+	ResourcePool               *string                        `json:"resourcePool,omitempty"`
+	ResourcePoolID             *string                        `json:"resourcePoolId,omitempty"`
+	RPCMode                    *string                        `json:"rpcMode,omitempty"`
+	SecretKey                  *string                        `json:"secretKey,omitempty"`
+	SecretKeyHash              *string                        `json:"secretKeyHash,omitempty"`
+	SecurityMode               *string                        `json:"securityMode,omitempty"`
+	SecurityServer             *string                        `json:"securityServer,omitempty"`
+	ServiceRegistryID          *string                        `json:"serviceRegistryId,omitempty"`
+	StsAssumeRole              *string                        `json:"stsAssumeRole,omitempty"`
+	SubscriberID               *string                        `json:"subscriberId,omitempty"`
+	TenantID                   *string                        `json:"tenantId,omitempty"`
+	Username                   *string                        `json:"username,omitempty"`
+	Vpc                        *string                        `json:"vpc,omitempty"`
 }
 
 // ZoneCreateCredential - Map containing Credential ID. Setting `type` to `local` means use the values set in the local cloud config instead of associating a credential.
@@ -55,8 +133,7 @@ type ZoneCreate struct {
 	// Automatically Power on VMs
 	AutoRecoverPowerState *bool `json:"autoRecoverPowerState,omitempty"`
 	// Optional code for use with policies
-	Code *string `json:"code,omitempty"`
-	// Map containing zone configuration settings. See the section on specific zone types for details.
+	Code   *string           `json:"code,omitempty"`
 	Config *ZoneCreateConfig `json:"config,omitempty"`
 	// Map containing Credential ID. Setting `type` to `local` means use the values set in the local cloud config instead of associating a credential.
 	Credential *ZoneCreateCredential `json:"credential,omitempty"`
