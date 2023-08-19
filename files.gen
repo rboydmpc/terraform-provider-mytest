@@ -4,13 +4,12 @@ internal/sdk/sdk.go
 internal/provider/type_zone_account.go
 internal/provider/type_zone_config_network_server.go
 internal/provider/type_zone_config.go
-internal/provider/type_zone_credential1.go
-internal/provider/type_zone_credential2.go
 internal/provider/type_zone_credential.go
 internal/provider/type_zone_groups.go
 internal/provider/type_zone_stats_server_counts.go
 internal/provider/type_zone_stats.go
 internal/provider/type_zone_config1.go
+internal/provider/type_zone_credential1.go
 internal/provider/type_zone_zone_type.go
 internal/provider/type_zone.go
 internal/provider/type_zone_zone_type1.go
@@ -69,8 +68,8 @@ internal/sdk/pkg/models/shared/zone.go
 internal/sdk/pkg/models/shared/zonecreate.go
 internal/sdk/pkg/models/shared/security.go
 internal/sdk/pkg/models/shared/zonegcpconfig.go
-internal/sdk/pkg/models/shared/zoneawsconfig.go
 internal/sdk/pkg/models/shared/zoneazureconfig.go
+internal/sdk/pkg/models/shared/zoneawsconfig.go
 internal/sdk/pkg/models/shared/zonevcenterconfig.go
 USAGE.md
 internal/provider/provider.go

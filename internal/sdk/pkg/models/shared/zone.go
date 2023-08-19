@@ -3,9 +3,6 @@
 package shared
 
 import (
-	"bytes"
-	"encoding/json"
-	"errors"
 	"time"
 )
 
@@ -96,82 +93,10 @@ type ZoneConfig struct {
 	Vpc                        *string                  `json:"vpc,omitempty"`
 }
 
-type ZoneCredential2 struct {
+type ZoneCredential struct {
 	ID   *int64  `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Type *string `json:"type,omitempty"`
-}
-
-type ZoneCredential1 struct {
-	Type *string `json:"type,omitempty"`
-}
-
-type ZoneCredentialType string
-
-const (
-	ZoneCredentialTypeZoneCredential1 ZoneCredentialType = "zone_credential_1"
-	ZoneCredentialTypeZoneCredential2 ZoneCredentialType = "zone_credential_2"
-)
-
-type ZoneCredential struct {
-	ZoneCredential1 *ZoneCredential1
-	ZoneCredential2 *ZoneCredential2
-
-	Type ZoneCredentialType
-}
-
-func CreateZoneCredentialZoneCredential1(zoneCredential1 ZoneCredential1) ZoneCredential {
-	typ := ZoneCredentialTypeZoneCredential1
-
-	return ZoneCredential{
-		ZoneCredential1: &zoneCredential1,
-		Type:            typ,
-	}
-}
-
-func CreateZoneCredentialZoneCredential2(zoneCredential2 ZoneCredential2) ZoneCredential {
-	typ := ZoneCredentialTypeZoneCredential2
-
-	return ZoneCredential{
-		ZoneCredential2: &zoneCredential2,
-		Type:            typ,
-	}
-}
-
-func (u *ZoneCredential) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
-
-	zoneCredential1 := new(ZoneCredential1)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&zoneCredential1); err == nil {
-		u.ZoneCredential1 = zoneCredential1
-		u.Type = ZoneCredentialTypeZoneCredential1
-		return nil
-	}
-
-	zoneCredential2 := new(ZoneCredential2)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&zoneCredential2); err == nil {
-		u.ZoneCredential2 = zoneCredential2
-		u.Type = ZoneCredentialTypeZoneCredential2
-		return nil
-	}
-
-	return errors.New("could not unmarshal into supported union types")
-}
-
-func (u ZoneCredential) MarshalJSON() ([]byte, error) {
-	if u.ZoneCredential1 != nil {
-		return json.Marshal(u.ZoneCredential1)
-	}
-
-	if u.ZoneCredential2 != nil {
-		return json.Marshal(u.ZoneCredential2)
-	}
-
-	return nil, nil
 }
 
 type ZoneGroups struct {

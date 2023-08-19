@@ -125,9 +125,9 @@ resource "MyTest_zone" "my_zone" {
             cost_status_date = "2021-09-20T20:35:01.256Z"
             cost_status_message = "...my_cost_status_message..."
             credential = {
-        zone_credential_1 =     {
-                type = "...my_type..."
-            }
+        id = 6
+        name = "Cassandra Welch"
+        type = "...my_type..."
     }
             csp_client_id = "...my_csp_client_id..."
             csp_client_secret = "...my_csp_client_secret..."
@@ -138,7 +138,7 @@ resource "MyTest_zone" "my_zone" {
             datacenter = "...my_datacenter..."
             datacenter_id = "...my_datacenter_id..."
             datacenter_name = "...my_datacenter_name..."
-            date_created = "2022-09-18T08:27:00.721Z"
+            date_created = "2022-08-02T15:33:40.440Z"
             description = "...my_description..."
             disk_encryption = "...my_disk_encryption..."
             disk_storage_type = "...my_disk_storage_type..."
@@ -146,7 +146,7 @@ resource "MyTest_zone" "my_zone" {
             dns_integration_id = "...my_dns_integration_id..."
             domain_name = "...my_domain_name..."
             ebs_encryption = "...my_ebs_encryption..."
-            enabled = false
+            enabled = true
             enable_disk_type_selection = "...my_enable_disk_type_selection..."
             enable_vnc = "...my_enable_vnc..."
             encryption_set = "...my_encryption_set..."
@@ -156,39 +156,39 @@ resource "MyTest_zone" "my_zone" {
             group_id = 3
             groups = [
         {
-            account_id = 8
-            id = 5
-            name = "Lucy Krajcik"
+            account_id = 2
+            id = 8
+            name = "Cory Emmerich"
         },
     ]
             guidance_mode = "...my_guidance_mode..."
             hide_host_selection = "...my_hide_host_selection..."
-            id = 8
+            id = 0
             image_path = "...my_image_path..."
             image_store_id = "...my_image_store_id..."
             import_existing = "...my_import_existing..."
             inventory_level = "...my_inventory_level..."
             is_vpc = "...my_is_vpc..."
             kube_url = "...my_kube_url..."
-            last_sync = "2022-02-02T00:14:45.467Z"
-            last_sync_duration = 2
-            last_updated = "2022-09-24T06:58:38.511Z"
-            linked_account_id = 0
+            last_sync = "2022-05-20T13:30:46.463Z"
+            last_sync_duration = 1
+            last_updated = "2022-07-22T16:55:44.795Z"
+            linked_account_id = 6
             location = "...my_location..."
-            name = "Faye Cormier"
+            name = "May Turcotte"
             network_domain = {
-        id = 6
-        name = "May Turcotte"
-    }
-            network_server = {
         id = 3
         name = "Brad Turcotte Jr."
     }
+            network_server = {
+        id = 10
+        name = "Shaun Osinski"
+    }
             network_server_id = "...my_network_server_id..."
-            next_run_date = "2020-12-31T21:22:14.646Z"
+            next_run_date = "2022-11-14T22:36:19.385Z"
             owner = {
-        id = 7
-        name = "Ernest Ebert"
+        id = 8
+        name = "Guadalupe Hickle"
     }
             password = "...my_password..."
             password_hash = "...my_password_hash..."
@@ -202,30 +202,30 @@ resource "MyTest_zone" "my_zone" {
             resource_pool = "...my_resource_pool..."
             resource_pool_id = "...my_resource_pool_id..."
             rpc_mode = "...my_rpc_mode..."
-            scale_priority = 8
+            scale_priority = 0
             secret_key = "...my_secret_key..."
             secret_key_hash = "...my_secret_key_hash..."
             security_mode = "...my_security_mode..."
             security_server = {
-        id = 3
-        name = "Corey Hane III"
+        id = 4
+        name = "Miss Aubrey Williamson"
     }
             server_count = 6
             service_registry_id = "...my_service_registry_id..."
             service_version = "...my_service_version..."
             stats = {
         server_counts = {
-            all = 10
+            all = 1
             baremetal = 10
-            container_host = 1
-            host = 7
+            container_host = 7
+            host = 6
             hypervisor = 2
-            unmanaged = 6
-            vm = 1
+            unmanaged = 4
+            vm = 5
         }
     }
             status = "...my_status..."
-            status_date = "2021-01-15T20:18:47.519Z"
+            status_date = "2022-10-03T18:49:53.900Z"
             status_message = "...my_status_message..."
             storage_mode = "...my_storage_mode..."
             sts_assume_role = "...my_sts_assume_role..."
@@ -234,14 +234,14 @@ resource "MyTest_zone" "my_zone" {
             timezone = "...my_timezone..."
             user_data_linux = "...my_user_data_linux..."
             user_data_windows = "...my_user_data_windows..."
-            username = "Kristina.Fritsch"
-            uuid = "739251aa-52c3-4f5a-9019-da1ffe78f097"
+            username = "Linda.Cronin"
+            uuid = "aa52c3f5-ad01-49da-9ffe-78f097b0074f"
             visibility = "...my_visibility..."
             vpc = "...my_vpc..."
             zone_type = {
         code = "...my_code..."
-        id = 8
-        name = "Sharon Kiehn"
+        id = 1
+        name = "Miss Valerie Kshlerin"
     }
-            zone_type_id = 1
+            zone_type_id = 9
         }

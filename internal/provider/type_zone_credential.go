@@ -2,7 +2,10 @@
 
 package provider
 
+import "github.com/hashicorp/terraform-plugin-framework/types"
+
 type ZoneCredential struct {
-	ZoneCredential1 *ZoneCredential1 `tfsdk:"zone_credential_1"`
-	ZoneCredential2 *ZoneCredential2 `tfsdk:"zone_credential_2"`
+	ID   types.Int64  `tfsdk:"id"`
+	Name types.String `tfsdk:"name"`
+	Type types.String `tfsdk:"type"`
 }

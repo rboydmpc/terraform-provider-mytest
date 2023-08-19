@@ -929,50 +929,26 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				},
 				Optional: true,
 				Attributes: map[string]schema.Attribute{
-					"zone_credential_1": schema.SingleNestedAttribute{
-						PlanModifiers: []planmodifier.Object{
-							objectplanmodifier.RequiresReplace(),
+					"id": schema.Int64Attribute{
+						PlanModifiers: []planmodifier.Int64{
+							int64planmodifier.RequiresReplace(),
 						},
 						Optional: true,
-						Attributes: map[string]schema.Attribute{
-							"type": schema.StringAttribute{
-								PlanModifiers: []planmodifier.String{
-									stringplanmodifier.RequiresReplace(),
-								},
-								Optional: true,
-							},
-						},
 					},
-					"zone_credential_2": schema.SingleNestedAttribute{
-						PlanModifiers: []planmodifier.Object{
-							objectplanmodifier.RequiresReplace(),
+					"name": schema.StringAttribute{
+						PlanModifiers: []planmodifier.String{
+							stringplanmodifier.RequiresReplace(),
 						},
 						Optional: true,
-						Attributes: map[string]schema.Attribute{
-							"id": schema.Int64Attribute{
-								PlanModifiers: []planmodifier.Int64{
-									int64planmodifier.RequiresReplace(),
-								},
-								Optional: true,
-							},
-							"name": schema.StringAttribute{
-								PlanModifiers: []planmodifier.String{
-									stringplanmodifier.RequiresReplace(),
-								},
-								Optional: true,
-							},
-							"type": schema.StringAttribute{
-								PlanModifiers: []planmodifier.String{
-									stringplanmodifier.RequiresReplace(),
-								},
-								Optional: true,
-							},
+					},
+					"type": schema.StringAttribute{
+						PlanModifiers: []planmodifier.String{
+							stringplanmodifier.RequiresReplace(),
 						},
+						Optional: true,
 					},
 				},
-				Validators: []validator.Object{
-					validators.ExactlyOneChild(),
-				},
+				Description: `Map containing Credential ID. Setting ` + "`" + `type` + "`" + ` to ` + "`" + `local` + "`" + ` means use the values set in the local cloud config instead of associating a credential.`,
 			},
 			"csp_client_id": schema.StringAttribute{
 				PlanModifiers: []planmodifier.String{
@@ -1910,31 +1886,15 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 					"credential": schema.SingleNestedAttribute{
 						Computed: true,
 						Attributes: map[string]schema.Attribute{
-							"zone_credential_1": schema.SingleNestedAttribute{
+							"id": schema.Int64Attribute{
 								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"type": schema.StringAttribute{
-										Computed: true,
-									},
-								},
 							},
-							"zone_credential_2": schema.SingleNestedAttribute{
+							"name": schema.StringAttribute{
 								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"id": schema.Int64Attribute{
-										Computed: true,
-									},
-									"name": schema.StringAttribute{
-										Computed: true,
-									},
-									"type": schema.StringAttribute{
-										Computed: true,
-									},
-								},
 							},
-						},
-						Validators: []validator.Object{
-							validators.ExactlyOneChild(),
+							"type": schema.StringAttribute{
+								Computed: true,
+							},
 						},
 					},
 					"dark_image_path": schema.StringAttribute{

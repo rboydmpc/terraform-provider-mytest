@@ -34,7 +34,15 @@ func (r *ZoneResourceModel) ToCreateSDKType() *shared.ZoneCreate {
 	}
 	var credential *shared.ZoneCreateCredential
 	if r.Credential != nil {
-		credential = &shared.ZoneCreateCredential{}
+		typeVar := new(string)
+		if !r.Credential.Type.IsUnknown() && !r.Credential.Type.IsNull() {
+			*typeVar = r.Credential.Type.ValueString()
+		} else {
+			typeVar = nil
+		}
+		credential = &shared.ZoneCreateCredential{
+			Type: typeVar,
+		}
 	}
 	description := new(string)
 	if !r.Description.IsUnknown() && !r.Description.IsNull() {
@@ -596,35 +604,27 @@ func (r *ZoneResourceModel) RefreshFromCreateResponse(resp *operations.AddClouds
 		} else {
 			r.Zone.CostingMode = types.StringNull()
 		}
+		if r.Zone.Credential == nil {
+			r.Zone.Credential = &ZoneCredential1{}
+		}
 		if resp.Zone.Credential == nil {
 			r.Zone.Credential = nil
 		} else {
-			r.Zone.Credential = &ZoneCredential{}
-			if resp.Zone.Credential.ZoneCredential1 != nil {
-				r.Zone.Credential.ZoneCredential1 = &ZoneCredential1{}
-				if resp.Zone.Credential.ZoneCredential1.Type != nil {
-					r.Zone.Credential.ZoneCredential1.Type = types.StringValue(*resp.Zone.Credential.ZoneCredential1.Type)
-				} else {
-					r.Zone.Credential.ZoneCredential1.Type = types.StringNull()
-				}
+			r.Zone.Credential = &ZoneCredential1{}
+			if resp.Zone.Credential.ID != nil {
+				r.Zone.Credential.ID = types.Int64Value(*resp.Zone.Credential.ID)
+			} else {
+				r.Zone.Credential.ID = types.Int64Null()
 			}
-			if resp.Zone.Credential.ZoneCredential2 != nil {
-				r.Zone.Credential.ZoneCredential2 = &ZoneCredential2{}
-				if resp.Zone.Credential.ZoneCredential2.ID != nil {
-					r.Zone.Credential.ZoneCredential2.ID = types.Int64Value(*resp.Zone.Credential.ZoneCredential2.ID)
-				} else {
-					r.Zone.Credential.ZoneCredential2.ID = types.Int64Null()
-				}
-				if resp.Zone.Credential.ZoneCredential2.Name != nil {
-					r.Zone.Credential.ZoneCredential2.Name = types.StringValue(*resp.Zone.Credential.ZoneCredential2.Name)
-				} else {
-					r.Zone.Credential.ZoneCredential2.Name = types.StringNull()
-				}
-				if resp.Zone.Credential.ZoneCredential2.Type != nil {
-					r.Zone.Credential.ZoneCredential2.Type = types.StringValue(*resp.Zone.Credential.ZoneCredential2.Type)
-				} else {
-					r.Zone.Credential.ZoneCredential2.Type = types.StringNull()
-				}
+			if resp.Zone.Credential.Name != nil {
+				r.Zone.Credential.Name = types.StringValue(*resp.Zone.Credential.Name)
+			} else {
+				r.Zone.Credential.Name = types.StringNull()
+			}
+			if resp.Zone.Credential.Type != nil {
+				r.Zone.Credential.Type = types.StringValue(*resp.Zone.Credential.Type)
+			} else {
+				r.Zone.Credential.Type = types.StringNull()
 			}
 		}
 		if resp.Zone.DarkImagePath != nil {

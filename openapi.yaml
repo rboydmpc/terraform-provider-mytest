@@ -961,7 +961,7 @@ components:
           - $ref: '#/components/schemas/zoneAzureConfig'
           - $ref: '#/components/schemas/zoneGcpConfig'
         credential:
-          anyOf:
+          allOf:
           - type: object
             properties:
               type:
