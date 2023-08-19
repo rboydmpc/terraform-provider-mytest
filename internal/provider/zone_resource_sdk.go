@@ -34,7 +34,22 @@ func (r *ZoneResourceModel) ToCreateSDKType() *shared.ZoneCreate {
 	}
 	var credential *shared.ZoneCreateCredential
 	if r.Credential != nil {
-		credential = &shared.ZoneCreateCredential{}
+		id := new(int64)
+		if !r.Credential.ID.IsUnknown() && !r.Credential.ID.IsNull() {
+			*id = r.Credential.ID.ValueInt64()
+		} else {
+			id = nil
+		}
+		typeVar := new(string)
+		if !r.Credential.Type.IsUnknown() && !r.Credential.Type.IsNull() {
+			*typeVar = r.Credential.Type.ValueString()
+		} else {
+			typeVar = nil
+		}
+		credential = &shared.ZoneCreateCredential{
+			ID:   id,
+			Type: typeVar,
+		}
 	}
 	description := new(string)
 	if !r.Description.IsUnknown() && !r.Description.IsNull() {
@@ -81,7 +96,39 @@ func (r *ZoneResourceModel) ToCreateSDKType() *shared.ZoneCreate {
 		visibility = nil
 	}
 	var zoneType shared.ZoneCreateZoneType
-	if r.ZoneType != nil {
+	var zoneCreateZoneType1 *shared.ZoneCreateZoneType1
+	if r.ZoneType.ZoneCreateZoneType1 != nil {
+		id1 := new(int64)
+		if !r.ZoneType.ZoneCreateZoneType1.ID.IsUnknown() && !r.ZoneType.ZoneCreateZoneType1.ID.IsNull() {
+			*id1 = r.ZoneType.ZoneCreateZoneType1.ID.ValueInt64()
+		} else {
+			id1 = nil
+		}
+		zoneCreateZoneType1 = &shared.ZoneCreateZoneType1{
+			ID: id1,
+		}
+	}
+	if zoneCreateZoneType1 != nil {
+		zoneType = shared.ZoneCreateZoneType{
+			ZoneCreateZoneType1: zoneCreateZoneType1,
+		}
+	}
+	var zoneCreateZoneType2 *shared.ZoneCreateZoneType2
+	if r.ZoneType.ZoneCreateZoneType2 != nil {
+		code1 := new(string)
+		if !r.ZoneType.ZoneCreateZoneType2.Code.IsUnknown() && !r.ZoneType.ZoneCreateZoneType2.Code.IsNull() {
+			*code1 = r.ZoneType.ZoneCreateZoneType2.Code.ValueString()
+		} else {
+			code1 = nil
+		}
+		zoneCreateZoneType2 = &shared.ZoneCreateZoneType2{
+			Code: code1,
+		}
+	}
+	if zoneCreateZoneType2 != nil {
+		zoneType = shared.ZoneCreateZoneType{
+			ZoneCreateZoneType2: zoneCreateZoneType2,
+		}
 	}
 	out := shared.ZoneCreate{
 		AccountID:             accountID,

@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: ab96939a530bd3f5fae0f5b4d7390b5a
+  docChecksum: 85089aa889d4a6ede324678d33ca2c15
   docVersion: 6.1.1
-  speakeasyVersion: 1.74.0
-  generationVersion: 2.86.4
+  speakeasyVersion: 1.74.3
+  generationVersion: 2.86.6
 generation:
   comments:
     disableComments: false

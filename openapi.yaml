@@ -823,7 +823,6 @@ components:
             id:
               type: integer
     zone:
-      x-speakeasy-entity: zone
       type: object
       properties:
         id:
