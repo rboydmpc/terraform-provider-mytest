@@ -952,7 +952,7 @@ components:
           type: integer
           format: int64
         config:
-          allOf:
+          anyOf:
           - $ref: '#/components/schemas/zoneVcenterConfig'
           - $ref: '#/components/schemas/zoneAwsConfig'
           - $ref: '#/components/schemas/zoneAzureConfig'
