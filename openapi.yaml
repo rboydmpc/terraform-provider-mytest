@@ -765,20 +765,12 @@ components:
           - public
           default: private
         zoneType:
-          anyOf:
-          - type: object
-            description: Map containing the Cloud (zone) type ID. See the zone-types API to fetch a list of all available Cloud (zone) types and their IDs.
-            properties:
-              id:
-                type: integer
-                format: int64
-                example: 12
-          - type: object
-            description: Map containing the Cloud (zone) code name. See the zone-types API to fetch a list of all available Cloud (zone) types and their codes.
-            properties:
-              code:
-                type: string
-                example: vmware
+          type: object
+          description: Map containing the Cloud (zone) code name. See the zone-types API to fetch a list of all available Cloud (zone) types and their codes.
+          properties:
+            code:
+              type: string
+              example: vmware
         groupId:
           type: integer
           format: int64
@@ -809,6 +801,15 @@ components:
         config:
           type: object
           description: Map containing zone configuration settings. See the section on specific zone types for details.
+          properties:
+            apiUrl:
+              type: string
+            username:
+              type: string
+            password:
+              type: string
+            datacenter:
+              type: string
         securityMode:
           type: string
           description: host firewall. `off` or `internal`. a.k.a. "local firewall"
@@ -820,8 +821,6 @@ components:
             type:
               type: string
               default: local
-            id:
-              type: integer
     zone:
       type: object
       properties:

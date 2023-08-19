@@ -90,8 +90,33 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				PlanModifiers: []planmodifier.Object{
 					objectplanmodifier.RequiresReplace(),
 				},
-				Optional:    true,
-				Attributes:  map[string]schema.Attribute{},
+				Optional: true,
+				Attributes: map[string]schema.Attribute{
+					"api_url": schema.StringAttribute{
+						PlanModifiers: []planmodifier.String{
+							stringplanmodifier.RequiresReplace(),
+						},
+						Optional: true,
+					},
+					"datacenter": schema.StringAttribute{
+						PlanModifiers: []planmodifier.String{
+							stringplanmodifier.RequiresReplace(),
+						},
+						Optional: true,
+					},
+					"password": schema.StringAttribute{
+						PlanModifiers: []planmodifier.String{
+							stringplanmodifier.RequiresReplace(),
+						},
+						Optional: true,
+					},
+					"username": schema.StringAttribute{
+						PlanModifiers: []planmodifier.String{
+							stringplanmodifier.RequiresReplace(),
+						},
+						Optional: true,
+					},
+				},
 				Description: `Map containing zone configuration settings. See the section on specific zone types for details.`,
 			},
 			"credential": schema.SingleNestedAttribute{
@@ -100,12 +125,6 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				},
 				Optional: true,
 				Attributes: map[string]schema.Attribute{
-					"id": schema.Int64Attribute{
-						PlanModifiers: []planmodifier.Int64{
-							int64planmodifier.RequiresReplace(),
-						},
-						Optional: true,
-					},
 					"type": schema.StringAttribute{
 						PlanModifiers: []planmodifier.String{
 							stringplanmodifier.RequiresReplace(),
@@ -893,40 +912,14 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				},
 				Required: true,
 				Attributes: map[string]schema.Attribute{
-					"zone_create_zone_type_1": schema.SingleNestedAttribute{
-						PlanModifiers: []planmodifier.Object{
-							objectplanmodifier.RequiresReplace(),
+					"code": schema.StringAttribute{
+						PlanModifiers: []planmodifier.String{
+							stringplanmodifier.RequiresReplace(),
 						},
 						Optional: true,
-						Attributes: map[string]schema.Attribute{
-							"id": schema.Int64Attribute{
-								PlanModifiers: []planmodifier.Int64{
-									int64planmodifier.RequiresReplace(),
-								},
-								Optional: true,
-							},
-						},
-						Description: `Map containing the Cloud (zone) type ID. See the zone-types API to fetch a list of all available Cloud (zone) types and their IDs.`,
-					},
-					"zone_create_zone_type_2": schema.SingleNestedAttribute{
-						PlanModifiers: []planmodifier.Object{
-							objectplanmodifier.RequiresReplace(),
-						},
-						Optional: true,
-						Attributes: map[string]schema.Attribute{
-							"code": schema.StringAttribute{
-								PlanModifiers: []planmodifier.String{
-									stringplanmodifier.RequiresReplace(),
-								},
-								Optional: true,
-							},
-						},
-						Description: `Map containing the Cloud (zone) code name. See the zone-types API to fetch a list of all available Cloud (zone) types and their codes.`,
 					},
 				},
-				Validators: []validator.Object{
-					validators.ExactlyOneChild(),
-				},
+				Description: `Map containing the Cloud (zone) code name. See the zone-types API to fetch a list of all available Cloud (zone) types and their codes.`,
 			},
 		},
 	}

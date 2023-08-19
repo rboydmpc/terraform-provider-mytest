@@ -2,5 +2,11 @@
 
 package provider
 
+import "github.com/hashicorp/terraform-plugin-framework/types"
+
 type ZoneCreateConfig struct {
+	APIURL     types.String `tfsdk:"api_url"`
+	Datacenter types.String `tfsdk:"datacenter"`
+	Password   types.String `tfsdk:"password"`
+	Username   types.String `tfsdk:"username"`
 }

@@ -3,19 +3,20 @@
 package shared
 
 import (
-	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
 )
 
 // ZoneCreateConfig - Map containing zone configuration settings. See the section on specific zone types for details.
 type ZoneCreateConfig struct {
+	APIURL     *string `json:"apiUrl,omitempty"`
+	Datacenter *string `json:"datacenter,omitempty"`
+	Password   *string `json:"password,omitempty"`
+	Username   *string `json:"username,omitempty"`
 }
 
 // ZoneCreateCredential - Map containing Credential ID. Setting `type` to `local` means use the values set in the local cloud config instead of associating a credential.
 type ZoneCreateCredential struct {
-	ID   *int64  `json:"id,omitempty"`
 	Type *string `json:"type,omitempty"`
 }
 
@@ -47,82 +48,9 @@ func (e *ZoneCreateVisibility) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// ZoneCreateZoneType2 - Map containing the Cloud (zone) code name. See the zone-types API to fetch a list of all available Cloud (zone) types and their codes.
-type ZoneCreateZoneType2 struct {
-	Code *string `json:"code,omitempty"`
-}
-
-// ZoneCreateZoneType1 - Map containing the Cloud (zone) type ID. See the zone-types API to fetch a list of all available Cloud (zone) types and their IDs.
-type ZoneCreateZoneType1 struct {
-	ID *int64 `json:"id,omitempty"`
-}
-
-type ZoneCreateZoneTypeType string
-
-const (
-	ZoneCreateZoneTypeTypeZoneCreateZoneType1 ZoneCreateZoneTypeType = "zoneCreate_zoneType_1"
-	ZoneCreateZoneTypeTypeZoneCreateZoneType2 ZoneCreateZoneTypeType = "zoneCreate_zoneType_2"
-)
-
+// ZoneCreateZoneType - Map containing the Cloud (zone) code name. See the zone-types API to fetch a list of all available Cloud (zone) types and their codes.
 type ZoneCreateZoneType struct {
-	ZoneCreateZoneType1 *ZoneCreateZoneType1
-	ZoneCreateZoneType2 *ZoneCreateZoneType2
-
-	Type ZoneCreateZoneTypeType
-}
-
-func CreateZoneCreateZoneTypeZoneCreateZoneType1(zoneCreateZoneType1 ZoneCreateZoneType1) ZoneCreateZoneType {
-	typ := ZoneCreateZoneTypeTypeZoneCreateZoneType1
-
-	return ZoneCreateZoneType{
-		ZoneCreateZoneType1: &zoneCreateZoneType1,
-		Type:                typ,
-	}
-}
-
-func CreateZoneCreateZoneTypeZoneCreateZoneType2(zoneCreateZoneType2 ZoneCreateZoneType2) ZoneCreateZoneType {
-	typ := ZoneCreateZoneTypeTypeZoneCreateZoneType2
-
-	return ZoneCreateZoneType{
-		ZoneCreateZoneType2: &zoneCreateZoneType2,
-		Type:                typ,
-	}
-}
-
-func (u *ZoneCreateZoneType) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
-
-	zoneCreateZoneType1 := new(ZoneCreateZoneType1)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&zoneCreateZoneType1); err == nil {
-		u.ZoneCreateZoneType1 = zoneCreateZoneType1
-		u.Type = ZoneCreateZoneTypeTypeZoneCreateZoneType1
-		return nil
-	}
-
-	zoneCreateZoneType2 := new(ZoneCreateZoneType2)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&zoneCreateZoneType2); err == nil {
-		u.ZoneCreateZoneType2 = zoneCreateZoneType2
-		u.Type = ZoneCreateZoneTypeTypeZoneCreateZoneType2
-		return nil
-	}
-
-	return errors.New("could not unmarshal into supported union types")
-}
-
-func (u ZoneCreateZoneType) MarshalJSON() ([]byte, error) {
-	if u.ZoneCreateZoneType1 != nil {
-		return json.Marshal(u.ZoneCreateZoneType1)
-	}
-
-	if u.ZoneCreateZoneType2 != nil {
-		return json.Marshal(u.ZoneCreateZoneType2)
-	}
-
-	return nil, nil
+	Code *string `json:"code,omitempty"`
 }
 
 type ZoneCreate struct {
@@ -154,5 +82,6 @@ type ZoneCreate struct {
 	SecurityMode *string `json:"securityMode,omitempty"`
 	// private or public
 	Visibility *ZoneCreateVisibility `json:"visibility,omitempty"`
-	ZoneType   ZoneCreateZoneType    `json:"zoneType"`
+	// Map containing the Cloud (zone) code name. See the zone-types API to fetch a list of all available Cloud (zone) types and their codes.
+	ZoneType ZoneCreateZoneType `json:"zoneType"`
 }

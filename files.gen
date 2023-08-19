@@ -18,8 +18,6 @@ internal/provider/type_zone_stats_server_counts.go
 internal/provider/type_zone_stats.go
 internal/provider/type_zone_zone_type.go
 internal/provider/type_zone.go
-internal/provider/type_zone_create_zone_type1.go
-internal/provider/type_zone_create_zone_type2.go
 internal/provider/type_zone_create_zone_type.go
 examples/README.md
 go.mod

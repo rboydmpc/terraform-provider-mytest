@@ -1,6 +1,6 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 85089aa889d4a6ede324678d33ca2c15
+  docChecksum: 67a85bf90cd8d7a307539f0ac6f795ff
   docVersion: 6.1.1
   speakeasyVersion: 1.74.3
   generationVersion: 2.86.6

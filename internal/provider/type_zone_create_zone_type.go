@@ -2,7 +2,8 @@
 
 package provider
 
+import "github.com/hashicorp/terraform-plugin-framework/types"
+
 type ZoneCreateZoneType struct {
-	ZoneCreateZoneType1 *ZoneCreateZoneType1 `tfsdk:"zone_create_zone_type_1"`
-	ZoneCreateZoneType2 *ZoneCreateZoneType2 `tfsdk:"zone_create_zone_type_2"`
+	Code types.String `tfsdk:"code"`
 }
