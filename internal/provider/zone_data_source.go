@@ -31,63 +31,63 @@ type ZoneDataSource struct {
 
 // ZoneDataSourceModel describes the data model.
 type ZoneDataSourceModel struct {
-	Account               *ZoneAccount    `tfsdk:"account"`
-	AccountID             types.Int64     `tfsdk:"account_id"`
-	AgentMode             types.String    `tfsdk:"agent_mode"`
-	APIProxy              types.String    `tfsdk:"api_proxy"`
-	AutoRecoverPowerState types.Bool      `tfsdk:"auto_recover_power_state"`
-	Code                  types.String    `tfsdk:"code"`
-	Config                *ZoneConfig     `tfsdk:"config"`
-	ConsoleKeymap         types.String    `tfsdk:"console_keymap"`
-	ContainerMode         types.String    `tfsdk:"container_mode"`
-	CostingMode           types.String    `tfsdk:"costing_mode"`
-	CostLastSync          types.String    `tfsdk:"cost_last_sync"`
-	CostLastSyncDuration  types.Int64     `tfsdk:"cost_last_sync_duration"`
-	CostStatus            types.String    `tfsdk:"cost_status"`
-	CostStatusDate        types.String    `tfsdk:"cost_status_date"`
-	CostStatusMessage     types.String    `tfsdk:"cost_status_message"`
-	Credential            *ZoneCredential `tfsdk:"credential"`
-	DarkImagePath         types.String    `tfsdk:"dark_image_path"`
-	DateCreated           types.String    `tfsdk:"date_created"`
-	Description           types.String    `tfsdk:"description"`
-	DomainName            types.String    `tfsdk:"domain_name"`
-	Enabled               types.Bool      `tfsdk:"enabled"`
-	ExternalID            types.String    `tfsdk:"external_id"`
-	GroupID               types.Int64     `tfsdk:"group_id"`
-	Groups                []ZoneGroups    `tfsdk:"groups"`
-	GuidanceMode          types.String    `tfsdk:"guidance_mode"`
-	ID                    types.Int64     `tfsdk:"id"`
-	ImagePath             types.String    `tfsdk:"image_path"`
-	InventoryLevel        types.String    `tfsdk:"inventory_level"`
-	LastSync              types.String    `tfsdk:"last_sync"`
-	LastSyncDuration      types.Int64     `tfsdk:"last_sync_duration"`
-	LastUpdated           types.String    `tfsdk:"last_updated"`
-	LinkedAccountID       types.Int64     `tfsdk:"linked_account_id"`
-	Location              types.String    `tfsdk:"location"`
-	Name                  types.String    `tfsdk:"name"`
-	NetworkDomain         *ZoneAccount    `tfsdk:"network_domain"`
-	NetworkServer         *ZoneAccount    `tfsdk:"network_server"`
-	NextRunDate           types.String    `tfsdk:"next_run_date"`
-	Owner                 *ZoneAccount    `tfsdk:"owner"`
-	ProvisioningProxy     types.String    `tfsdk:"provisioning_proxy"`
-	RegionCode            types.String    `tfsdk:"region_code"`
-	ScalePriority         types.Int64     `tfsdk:"scale_priority"`
-	SecurityMode          types.String    `tfsdk:"security_mode"`
-	SecurityServer        *ZoneAccount    `tfsdk:"security_server"`
-	ServerCount           types.Int64     `tfsdk:"server_count"`
-	ServiceVersion        types.String    `tfsdk:"service_version"`
-	Stats                 *ZoneStats      `tfsdk:"stats"`
-	Status                types.String    `tfsdk:"status"`
-	StatusDate            types.String    `tfsdk:"status_date"`
-	StatusMessage         types.String    `tfsdk:"status_message"`
-	StorageMode           types.String    `tfsdk:"storage_mode"`
-	Timezone              types.String    `tfsdk:"timezone"`
-	UserDataLinux         types.String    `tfsdk:"user_data_linux"`
-	UserDataWindows       types.String    `tfsdk:"user_data_windows"`
-	UUID                  types.String    `tfsdk:"uuid"`
-	Visibility            types.String    `tfsdk:"visibility"`
-	ZoneType              *ZoneZoneType   `tfsdk:"zone_type"`
-	ZoneTypeID            types.Int64     `tfsdk:"zone_type_id"`
+	Account               *ZoneAccount       `tfsdk:"account"`
+	AccountID             types.Int64        `tfsdk:"account_id"`
+	AgentMode             types.String       `tfsdk:"agent_mode"`
+	APIProxy              types.String       `tfsdk:"api_proxy"`
+	AutoRecoverPowerState types.Bool         `tfsdk:"auto_recover_power_state"`
+	Code                  types.String       `tfsdk:"code"`
+	Config                *ZoneVcenterConfig `tfsdk:"config"`
+	ConsoleKeymap         types.String       `tfsdk:"console_keymap"`
+	ContainerMode         types.String       `tfsdk:"container_mode"`
+	CostingMode           types.String       `tfsdk:"costing_mode"`
+	CostLastSync          types.String       `tfsdk:"cost_last_sync"`
+	CostLastSyncDuration  types.Int64        `tfsdk:"cost_last_sync_duration"`
+	CostStatus            types.String       `tfsdk:"cost_status"`
+	CostStatusDate        types.String       `tfsdk:"cost_status_date"`
+	CostStatusMessage     types.String       `tfsdk:"cost_status_message"`
+	Credential            *ZoneCredential    `tfsdk:"credential"`
+	DarkImagePath         types.String       `tfsdk:"dark_image_path"`
+	DateCreated           types.String       `tfsdk:"date_created"`
+	Description           types.String       `tfsdk:"description"`
+	DomainName            types.String       `tfsdk:"domain_name"`
+	Enabled               types.Bool         `tfsdk:"enabled"`
+	ExternalID            types.String       `tfsdk:"external_id"`
+	GroupID               types.Int64        `tfsdk:"group_id"`
+	Groups                []ZoneGroups       `tfsdk:"groups"`
+	GuidanceMode          types.String       `tfsdk:"guidance_mode"`
+	ID                    types.Int64        `tfsdk:"id"`
+	ImagePath             types.String       `tfsdk:"image_path"`
+	InventoryLevel        types.String       `tfsdk:"inventory_level"`
+	LastSync              types.String       `tfsdk:"last_sync"`
+	LastSyncDuration      types.Int64        `tfsdk:"last_sync_duration"`
+	LastUpdated           types.String       `tfsdk:"last_updated"`
+	LinkedAccountID       types.Int64        `tfsdk:"linked_account_id"`
+	Location              types.String       `tfsdk:"location"`
+	Name                  types.String       `tfsdk:"name"`
+	NetworkDomain         *ZoneAccount       `tfsdk:"network_domain"`
+	NetworkServer         *ZoneAccount       `tfsdk:"network_server"`
+	NextRunDate           types.String       `tfsdk:"next_run_date"`
+	Owner                 *ZoneAccount       `tfsdk:"owner"`
+	ProvisioningProxy     types.String       `tfsdk:"provisioning_proxy"`
+	RegionCode            types.String       `tfsdk:"region_code"`
+	ScalePriority         types.Int64        `tfsdk:"scale_priority"`
+	SecurityMode          types.String       `tfsdk:"security_mode"`
+	SecurityServer        *ZoneAccount       `tfsdk:"security_server"`
+	ServerCount           types.Int64        `tfsdk:"server_count"`
+	ServiceVersion        types.String       `tfsdk:"service_version"`
+	Stats                 *ZoneStats         `tfsdk:"stats"`
+	Status                types.String       `tfsdk:"status"`
+	StatusDate            types.String       `tfsdk:"status_date"`
+	StatusMessage         types.String       `tfsdk:"status_message"`
+	StorageMode           types.String       `tfsdk:"storage_mode"`
+	Timezone              types.String       `tfsdk:"timezone"`
+	UserDataLinux         types.String       `tfsdk:"user_data_linux"`
+	UserDataWindows       types.String       `tfsdk:"user_data_windows"`
+	UUID                  types.String       `tfsdk:"uuid"`
+	Visibility            types.String       `tfsdk:"visibility"`
+	ZoneType              *ZoneZoneType      `tfsdk:"zone_type"`
+	ZoneTypeID            types.Int64        `tfsdk:"zone_type_id"`
 }
 
 // Metadata returns the data source type name.
@@ -130,394 +130,113 @@ func (r *ZoneDataSource) Schema(ctx context.Context, req datasource.SchemaReques
 			"config": schema.SingleNestedAttribute{
 				Computed: true,
 				Attributes: map[string]schema.Attribute{
-					"zone_aws_config": schema.SingleNestedAttribute{
+					"enable_network_type_selection": schema.StringAttribute{
+						Computed: true,
+					},
+					"api_url": schema.StringAttribute{
+						Computed: true,
+					},
+					"api_version": schema.StringAttribute{
+						Computed: true,
+					},
+					"appliance_url": schema.StringAttribute{
+						Computed: true,
+					},
+					"backup_mode": schema.StringAttribute{
+						Computed: true,
+					},
+					"certificate_provider": schema.StringAttribute{
+						Computed: true,
+					},
+					"cluster": schema.StringAttribute{
+						Computed: true,
+					},
+					"config_cmdb_discovery": schema.BoolAttribute{
+						Computed: true,
+					},
+					"config_cmdb_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"config_cm_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"config_management_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"datacenter": schema.StringAttribute{
+						Computed: true,
+					},
+					"datacenter_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"datacenter_name": schema.StringAttribute{
+						Computed: true,
+					},
+					"disk_storage_type": schema.StringAttribute{
+						Computed: true,
+					},
+					"distributed_worker_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"dns_integration_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"enable_disk_type_selection": schema.StringAttribute{
+						Computed: true,
+					},
+					"enable_vnc": schema.StringAttribute{
+						Computed: true,
+					},
+					"hide_host_selection": schema.StringAttribute{
+						Computed: true,
+					},
+					"import_existing": schema.StringAttribute{
+						Computed: true,
+					},
+					"kube_url": schema.StringAttribute{
+						Computed: true,
+					},
+					"network_server": schema.SingleNestedAttribute{
 						Computed: true,
 						Attributes: map[string]schema.Attribute{
-							"use_host_credentials": schema.StringAttribute{
-								Computed: true,
-							},
-							"access_key": schema.StringAttribute{
-								Computed: true,
-							},
-							"appliance_url": schema.StringAttribute{
-								Computed: true,
-							},
-							"backup_mode": schema.StringAttribute{
-								Computed: true,
-							},
-							"certificate_provider": schema.StringAttribute{
-								Computed: true,
-							},
-							"config_cmdb_discovery": schema.BoolAttribute{
-								Computed: true,
-							},
-							"config_management_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"costing_access_key": schema.StringAttribute{
-								Computed: true,
-							},
-							"costing_bucket": schema.StringAttribute{
-								Computed: true,
-							},
-							"costing_bucket_name": schema.StringAttribute{
-								Computed: true,
-							},
-							"costing_folder": schema.StringAttribute{
-								Computed: true,
-							},
-							"costing_region": schema.StringAttribute{
-								Computed: true,
-							},
-							"costing_report": schema.StringAttribute{
-								Computed: true,
-							},
-							"costing_report_name": schema.StringAttribute{
-								Computed: true,
-							},
-							"costing_secret_key": schema.StringAttribute{
-								Computed: true,
-							},
-							"costing_secret_key_hash": schema.StringAttribute{
-								Computed: true,
-							},
-							"datacenter_name": schema.StringAttribute{
-								Computed: true,
-							},
-							"dns_integration_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"ebs_encryption": schema.StringAttribute{
-								Computed: true,
-							},
-							"endpoint": schema.StringAttribute{
-								Computed: true,
-							},
-							"image_store_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"is_vpc": schema.StringAttribute{
-								Computed: true,
-							},
-							"network_server": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"id": schema.StringAttribute{
-										Computed: true,
-									},
-								},
-							},
-							"network_server_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"replication_mode": schema.StringAttribute{
-								Computed: true,
-							},
-							"secret_key": schema.StringAttribute{
-								Computed: true,
-							},
-							"secret_key_hash": schema.StringAttribute{
-								Computed: true,
-							},
-							"security_server": schema.StringAttribute{
-								Computed: true,
-							},
-							"service_registry_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"sts_assume_role": schema.StringAttribute{
-								Computed: true,
-							},
-							"vpc": schema.StringAttribute{
+							"id": schema.StringAttribute{
 								Computed: true,
 							},
 						},
 					},
-					"zone_azure_config": schema.SingleNestedAttribute{
+					"network_server_id": schema.StringAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"account_type": schema.StringAttribute{
-								Computed: true,
-							},
-							"appliance_url": schema.StringAttribute{
-								Computed: true,
-							},
-							"azure_costing_mode": schema.StringAttribute{
-								Computed: true,
-							},
-							"backup_mode": schema.StringAttribute{
-								Computed: true,
-							},
-							"certificate_provider": schema.StringAttribute{
-								Computed: true,
-							},
-							"client_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"client_secret": schema.StringAttribute{
-								Computed: true,
-							},
-							"client_secret_hash": schema.StringAttribute{
-								Computed: true,
-							},
-							"cloud_type": schema.StringAttribute{
-								Computed: true,
-							},
-							"config_cmdb_discovery": schema.BoolAttribute{
-								Computed: true,
-							},
-							"config_cmdb_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"config_management_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"csp_client_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"csp_client_secret": schema.StringAttribute{
-								Computed: true,
-							},
-							"csp_client_secret_hash": schema.StringAttribute{
-								Computed: true,
-							},
-							"csp_customer": schema.StringAttribute{
-								Computed: true,
-							},
-							"csp_tenant_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"datacenter_name": schema.StringAttribute{
-								Computed: true,
-							},
-							"disk_encryption": schema.StringAttribute{
-								Computed: true,
-							},
-							"dns_integration_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"encryption_set": schema.StringAttribute{
-								Computed: true,
-							},
-							"import_existing": schema.StringAttribute{
-								Computed: true,
-							},
-							"inventory_level": schema.StringAttribute{
-								Computed: true,
-							},
-							"network_server": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"id": schema.StringAttribute{
-										Computed: true,
-									},
-								},
-							},
-							"network_server_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"replication_mode": schema.StringAttribute{
-								Computed: true,
-							},
-							"resource_group": schema.StringAttribute{
-								Computed: true,
-							},
-							"rpc_mode": schema.StringAttribute{
-								Computed: true,
-							},
-							"security_mode": schema.StringAttribute{
-								Computed: true,
-							},
-							"security_server": schema.StringAttribute{
-								Computed: true,
-							},
-							"service_registry_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"subscriber_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"tenant_id": schema.StringAttribute{
-								Computed: true,
-							},
-						},
 					},
-					"zone_gcp_config": schema.SingleNestedAttribute{
+					"password": schema.StringAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"appliance_url": schema.StringAttribute{
-								Computed: true,
-							},
-							"backup_mode": schema.StringAttribute{
-								Computed: true,
-							},
-							"certificate_provider": schema.StringAttribute{
-								Computed: true,
-							},
-							"client_email": schema.StringAttribute{
-								Computed: true,
-							},
-							"config_management_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"datacenter_name": schema.StringAttribute{
-								Computed: true,
-							},
-							"dns_integration_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"google_region_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"import_existing": schema.StringAttribute{
-								Computed: true,
-							},
-							"network_server": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"id": schema.StringAttribute{
-										Computed: true,
-									},
-								},
-							},
-							"network_server_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"private_key": schema.StringAttribute{
-								Computed: true,
-							},
-							"private_key_hash": schema.StringAttribute{
-								Computed: true,
-							},
-							"project_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"replication_mode": schema.StringAttribute{
-								Computed: true,
-							},
-							"security_server": schema.StringAttribute{
-								Computed: true,
-							},
-							"service_registry_id": schema.StringAttribute{
-								Computed: true,
-							},
-						},
 					},
-					"zone_vcenter_config": schema.SingleNestedAttribute{
+					"password_hash": schema.StringAttribute{
 						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"enable_network_type_selection": schema.StringAttribute{
-								Computed: true,
-							},
-							"api_url": schema.StringAttribute{
-								Computed: true,
-							},
-							"api_version": schema.StringAttribute{
-								Computed: true,
-							},
-							"appliance_url": schema.StringAttribute{
-								Computed: true,
-							},
-							"backup_mode": schema.StringAttribute{
-								Computed: true,
-							},
-							"certificate_provider": schema.StringAttribute{
-								Computed: true,
-							},
-							"cluster": schema.StringAttribute{
-								Computed: true,
-							},
-							"config_cmdb_discovery": schema.BoolAttribute{
-								Computed: true,
-							},
-							"config_cmdb_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"config_cm_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"config_management_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"datacenter": schema.StringAttribute{
-								Computed: true,
-							},
-							"datacenter_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"datacenter_name": schema.StringAttribute{
-								Computed: true,
-							},
-							"disk_storage_type": schema.StringAttribute{
-								Computed: true,
-							},
-							"distributed_worker_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"dns_integration_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"enable_disk_type_selection": schema.StringAttribute{
-								Computed: true,
-							},
-							"enable_vnc": schema.StringAttribute{
-								Computed: true,
-							},
-							"hide_host_selection": schema.StringAttribute{
-								Computed: true,
-							},
-							"import_existing": schema.StringAttribute{
-								Computed: true,
-							},
-							"kube_url": schema.StringAttribute{
-								Computed: true,
-							},
-							"network_server": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"id": schema.StringAttribute{
-										Computed: true,
-									},
-								},
-							},
-							"network_server_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"password": schema.StringAttribute{
-								Computed: true,
-							},
-							"password_hash": schema.StringAttribute{
-								Computed: true,
-							},
-							"replication_mode": schema.StringAttribute{
-								Computed: true,
-							},
-							"resource_pool": schema.StringAttribute{
-								Computed: true,
-							},
-							"resource_pool_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"rpc_mode": schema.StringAttribute{
-								Computed: true,
-							},
-							"security_mode": schema.StringAttribute{
-								Computed: true,
-							},
-							"security_server": schema.StringAttribute{
-								Computed: true,
-							},
-							"service_registry_id": schema.StringAttribute{
-								Computed: true,
-							},
-							"username": schema.StringAttribute{
-								Computed: true,
-							},
-						},
 					},
-				},
-				Validators: []validator.Object{
-					validators.ExactlyOneChild(),
+					"replication_mode": schema.StringAttribute{
+						Computed: true,
+					},
+					"resource_pool": schema.StringAttribute{
+						Computed: true,
+					},
+					"resource_pool_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"rpc_mode": schema.StringAttribute{
+						Computed: true,
+					},
+					"security_mode": schema.StringAttribute{
+						Computed: true,
+					},
+					"security_server": schema.StringAttribute{
+						Computed: true,
+					},
+					"service_registry_id": schema.StringAttribute{
+						Computed: true,
+					},
+					"username": schema.StringAttribute{
+						Computed: true,
+					},
 				},
 			},
 			"console_keymap": schema.StringAttribute{

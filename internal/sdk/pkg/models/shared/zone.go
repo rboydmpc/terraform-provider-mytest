@@ -3,131 +3,12 @@
 package shared
 
 import (
-	"bytes"
-	"encoding/json"
-	"errors"
 	"time"
 )
 
 type ZoneAccount struct {
 	ID   *int64  `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
-}
-
-type ZoneConfigType string
-
-const (
-	ZoneConfigTypeZoneVcenterConfig ZoneConfigType = "zoneVcenterConfig"
-	ZoneConfigTypeZoneAwsConfig     ZoneConfigType = "zoneAwsConfig"
-	ZoneConfigTypeZoneAzureConfig   ZoneConfigType = "zoneAzureConfig"
-	ZoneConfigTypeZoneGcpConfig     ZoneConfigType = "zoneGcpConfig"
-)
-
-type ZoneConfig struct {
-	ZoneVcenterConfig *ZoneVcenterConfig
-	ZoneAwsConfig     *ZoneAwsConfig
-	ZoneAzureConfig   *ZoneAzureConfig
-	ZoneGcpConfig     *ZoneGcpConfig
-
-	Type ZoneConfigType
-}
-
-func CreateZoneConfigZoneVcenterConfig(zoneVcenterConfig ZoneVcenterConfig) ZoneConfig {
-	typ := ZoneConfigTypeZoneVcenterConfig
-
-	return ZoneConfig{
-		ZoneVcenterConfig: &zoneVcenterConfig,
-		Type:              typ,
-	}
-}
-
-func CreateZoneConfigZoneAwsConfig(zoneAwsConfig ZoneAwsConfig) ZoneConfig {
-	typ := ZoneConfigTypeZoneAwsConfig
-
-	return ZoneConfig{
-		ZoneAwsConfig: &zoneAwsConfig,
-		Type:          typ,
-	}
-}
-
-func CreateZoneConfigZoneAzureConfig(zoneAzureConfig ZoneAzureConfig) ZoneConfig {
-	typ := ZoneConfigTypeZoneAzureConfig
-
-	return ZoneConfig{
-		ZoneAzureConfig: &zoneAzureConfig,
-		Type:            typ,
-	}
-}
-
-func CreateZoneConfigZoneGcpConfig(zoneGcpConfig ZoneGcpConfig) ZoneConfig {
-	typ := ZoneConfigTypeZoneGcpConfig
-
-	return ZoneConfig{
-		ZoneGcpConfig: &zoneGcpConfig,
-		Type:          typ,
-	}
-}
-
-func (u *ZoneConfig) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
-
-	zoneVcenterConfig := new(ZoneVcenterConfig)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&zoneVcenterConfig); err == nil {
-		u.ZoneVcenterConfig = zoneVcenterConfig
-		u.Type = ZoneConfigTypeZoneVcenterConfig
-		return nil
-	}
-
-	zoneAwsConfig := new(ZoneAwsConfig)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&zoneAwsConfig); err == nil {
-		u.ZoneAwsConfig = zoneAwsConfig
-		u.Type = ZoneConfigTypeZoneAwsConfig
-		return nil
-	}
-
-	zoneAzureConfig := new(ZoneAzureConfig)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&zoneAzureConfig); err == nil {
-		u.ZoneAzureConfig = zoneAzureConfig
-		u.Type = ZoneConfigTypeZoneAzureConfig
-		return nil
-	}
-
-	zoneGcpConfig := new(ZoneGcpConfig)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&zoneGcpConfig); err == nil {
-		u.ZoneGcpConfig = zoneGcpConfig
-		u.Type = ZoneConfigTypeZoneGcpConfig
-		return nil
-	}
-
-	return errors.New("could not unmarshal into supported union types")
-}
-
-func (u ZoneConfig) MarshalJSON() ([]byte, error) {
-	if u.ZoneVcenterConfig != nil {
-		return json.Marshal(u.ZoneVcenterConfig)
-	}
-
-	if u.ZoneAwsConfig != nil {
-		return json.Marshal(u.ZoneAwsConfig)
-	}
-
-	if u.ZoneAzureConfig != nil {
-		return json.Marshal(u.ZoneAzureConfig)
-	}
-
-	if u.ZoneGcpConfig != nil {
-		return json.Marshal(u.ZoneGcpConfig)
-	}
-
-	return nil, nil
 }
 
 type ZoneCredential struct {
@@ -183,22 +64,22 @@ type ZoneZoneType struct {
 }
 
 type Zone struct {
-	Account               *ZoneAccount    `json:"account,omitempty"`
-	AccountID             *int64          `json:"accountId,omitempty"`
-	AgentMode             *string         `json:"agentMode,omitempty"`
-	APIProxy              *string         `json:"apiProxy,omitempty"`
-	AutoRecoverPowerState *bool           `json:"autoRecoverPowerState,omitempty"`
-	Code                  *string         `json:"code,omitempty"`
-	Config                *ZoneConfig     `json:"config,omitempty"`
-	ConsoleKeymap         *string         `json:"consoleKeymap,omitempty"`
-	ContainerMode         *string         `json:"containerMode,omitempty"`
-	CostLastSync          *time.Time      `json:"costLastSync,omitempty"`
-	CostLastSyncDuration  *int64          `json:"costLastSyncDuration,omitempty"`
-	CostStatus            *string         `json:"costStatus,omitempty"`
-	CostStatusDate        *time.Time      `json:"costStatusDate,omitempty"`
-	CostStatusMessage     *string         `json:"costStatusMessage,omitempty"`
-	CostingMode           *string         `json:"costingMode,omitempty"`
-	Credential            *ZoneCredential `json:"credential,omitempty"`
+	Account               *ZoneAccount       `json:"account,omitempty"`
+	AccountID             *int64             `json:"accountId,omitempty"`
+	AgentMode             *string            `json:"agentMode,omitempty"`
+	APIProxy              *string            `json:"apiProxy,omitempty"`
+	AutoRecoverPowerState *bool              `json:"autoRecoverPowerState,omitempty"`
+	Code                  *string            `json:"code,omitempty"`
+	Config                *ZoneVcenterConfig `json:"config,omitempty"`
+	ConsoleKeymap         *string            `json:"consoleKeymap,omitempty"`
+	ContainerMode         *string            `json:"containerMode,omitempty"`
+	CostLastSync          *time.Time         `json:"costLastSync,omitempty"`
+	CostLastSyncDuration  *int64             `json:"costLastSyncDuration,omitempty"`
+	CostStatus            *string            `json:"costStatus,omitempty"`
+	CostStatusDate        *time.Time         `json:"costStatusDate,omitempty"`
+	CostStatusMessage     *string            `json:"costStatusMessage,omitempty"`
+	CostingMode           *string            `json:"costingMode,omitempty"`
+	Credential            *ZoneCredential    `json:"credential,omitempty"`
 	// Dark logo image URL
 	DarkImagePath *string      `json:"darkImagePath,omitempty"`
 	DateCreated   *time.Time   `json:"dateCreated,omitempty"`

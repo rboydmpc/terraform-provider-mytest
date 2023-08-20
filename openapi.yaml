@@ -889,11 +889,7 @@ components:
           format: int64
           description: Linked Account ID (enter commercial ID to get costing for AWS Govcloud)
         config:
-          anyOf:
-          - $ref: '#/components/schemas/zoneVcenterConfig'
-          - $ref: '#/components/schemas/zoneAwsConfig'
-          - $ref: '#/components/schemas/zoneAzureConfig'
-          - $ref: '#/components/schemas/zoneGcpConfig'
+          $ref: '#/components/schemas/zoneVcenterConfig'
         securityMode:
           type: string
           description: host firewall. `off` or `internal`. a.k.a. "local firewall"
@@ -1044,11 +1040,7 @@ components:
           type: integer
           format: int64
         config:
-          anyOf:
-          - $ref: '#/components/schemas/zoneVcenterConfig'
-          - $ref: '#/components/schemas/zoneAwsConfig'
-          - $ref: '#/components/schemas/zoneAzureConfig'
-          - $ref: '#/components/schemas/zoneGcpConfig'
+          $ref: '#/components/schemas/zoneVcenterConfig'
         credential:
           allOf:
           - type: object

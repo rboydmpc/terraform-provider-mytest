@@ -52,628 +52,190 @@ func (r *ZoneDataSourceModel) RefreshFromGetResponse(resp *shared.Zone) {
 	} else {
 		r.Code = types.StringNull()
 	}
+	if r.Config == nil {
+		r.Config = &ZoneVcenterConfig{}
+	}
 	if resp.Config == nil {
 		r.Config = nil
 	} else {
-		r.Config = &ZoneConfig{}
-		if resp.Config.ZoneAwsConfig != nil {
-			r.Config.ZoneAwsConfig = &ZoneAwsConfig{}
-			if resp.Config.ZoneAwsConfig.UseHostCredentials != nil {
-				r.Config.ZoneAwsConfig.UseHostCredentials = types.StringValue(*resp.Config.ZoneAwsConfig.UseHostCredentials)
+		r.Config = &ZoneVcenterConfig{}
+		if resp.Config.EnableNetworkTypeSelection != nil {
+			r.Config.EnableNetworkTypeSelection = types.StringValue(*resp.Config.EnableNetworkTypeSelection)
+		} else {
+			r.Config.EnableNetworkTypeSelection = types.StringNull()
+		}
+		if resp.Config.APIURL != nil {
+			r.Config.APIURL = types.StringValue(*resp.Config.APIURL)
+		} else {
+			r.Config.APIURL = types.StringNull()
+		}
+		if resp.Config.APIVersion != nil {
+			r.Config.APIVersion = types.StringValue(*resp.Config.APIVersion)
+		} else {
+			r.Config.APIVersion = types.StringNull()
+		}
+		if resp.Config.ApplianceURL != nil {
+			r.Config.ApplianceURL = types.StringValue(*resp.Config.ApplianceURL)
+		} else {
+			r.Config.ApplianceURL = types.StringNull()
+		}
+		if resp.Config.BackupMode != nil {
+			r.Config.BackupMode = types.StringValue(*resp.Config.BackupMode)
+		} else {
+			r.Config.BackupMode = types.StringNull()
+		}
+		if resp.Config.CertificateProvider != nil {
+			r.Config.CertificateProvider = types.StringValue(*resp.Config.CertificateProvider)
+		} else {
+			r.Config.CertificateProvider = types.StringNull()
+		}
+		if resp.Config.Cluster != nil {
+			r.Config.Cluster = types.StringValue(*resp.Config.Cluster)
+		} else {
+			r.Config.Cluster = types.StringNull()
+		}
+		if resp.Config.ConfigCmdbDiscovery != nil {
+			r.Config.ConfigCmdbDiscovery = types.BoolValue(*resp.Config.ConfigCmdbDiscovery)
+		} else {
+			r.Config.ConfigCmdbDiscovery = types.BoolNull()
+		}
+		if resp.Config.ConfigCmdbID != nil {
+			r.Config.ConfigCmdbID = types.StringValue(*resp.Config.ConfigCmdbID)
+		} else {
+			r.Config.ConfigCmdbID = types.StringNull()
+		}
+		if resp.Config.ConfigCmID != nil {
+			r.Config.ConfigCmID = types.StringValue(*resp.Config.ConfigCmID)
+		} else {
+			r.Config.ConfigCmID = types.StringNull()
+		}
+		if resp.Config.ConfigManagementID != nil {
+			r.Config.ConfigManagementID = types.StringValue(*resp.Config.ConfigManagementID)
+		} else {
+			r.Config.ConfigManagementID = types.StringNull()
+		}
+		if resp.Config.Datacenter != nil {
+			r.Config.Datacenter = types.StringValue(*resp.Config.Datacenter)
+		} else {
+			r.Config.Datacenter = types.StringNull()
+		}
+		if resp.Config.DatacenterID != nil {
+			r.Config.DatacenterID = types.StringValue(*resp.Config.DatacenterID)
+		} else {
+			r.Config.DatacenterID = types.StringNull()
+		}
+		if resp.Config.DatacenterName != nil {
+			r.Config.DatacenterName = types.StringValue(*resp.Config.DatacenterName)
+		} else {
+			r.Config.DatacenterName = types.StringNull()
+		}
+		if resp.Config.DiskStorageType != nil {
+			r.Config.DiskStorageType = types.StringValue(*resp.Config.DiskStorageType)
+		} else {
+			r.Config.DiskStorageType = types.StringNull()
+		}
+		if resp.Config.DistributedWorkerID != nil {
+			r.Config.DistributedWorkerID = types.StringValue(*resp.Config.DistributedWorkerID)
+		} else {
+			r.Config.DistributedWorkerID = types.StringNull()
+		}
+		if resp.Config.DNSIntegrationID != nil {
+			r.Config.DNSIntegrationID = types.StringValue(*resp.Config.DNSIntegrationID)
+		} else {
+			r.Config.DNSIntegrationID = types.StringNull()
+		}
+		if resp.Config.EnableDiskTypeSelection != nil {
+			r.Config.EnableDiskTypeSelection = types.StringValue(*resp.Config.EnableDiskTypeSelection)
+		} else {
+			r.Config.EnableDiskTypeSelection = types.StringNull()
+		}
+		if resp.Config.EnableVnc != nil {
+			r.Config.EnableVnc = types.StringValue(*resp.Config.EnableVnc)
+		} else {
+			r.Config.EnableVnc = types.StringNull()
+		}
+		if resp.Config.HideHostSelection != nil {
+			r.Config.HideHostSelection = types.StringValue(*resp.Config.HideHostSelection)
+		} else {
+			r.Config.HideHostSelection = types.StringNull()
+		}
+		if resp.Config.ImportExisting != nil {
+			r.Config.ImportExisting = types.StringValue(*resp.Config.ImportExisting)
+		} else {
+			r.Config.ImportExisting = types.StringNull()
+		}
+		if resp.Config.KubeURL != nil {
+			r.Config.KubeURL = types.StringValue(*resp.Config.KubeURL)
+		} else {
+			r.Config.KubeURL = types.StringNull()
+		}
+		if r.Config.NetworkServer == nil {
+			r.Config.NetworkServer = &ZoneVcenterConfigNetworkServer{}
+		}
+		if resp.Config.NetworkServer == nil {
+			r.Config.NetworkServer = nil
+		} else {
+			r.Config.NetworkServer = &ZoneVcenterConfigNetworkServer{}
+			if resp.Config.NetworkServer.ID != nil {
+				r.Config.NetworkServer.ID = types.StringValue(*resp.Config.NetworkServer.ID)
 			} else {
-				r.Config.ZoneAwsConfig.UseHostCredentials = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.AccessKey != nil {
-				r.Config.ZoneAwsConfig.AccessKey = types.StringValue(*resp.Config.ZoneAwsConfig.AccessKey)
-			} else {
-				r.Config.ZoneAwsConfig.AccessKey = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.ApplianceURL != nil {
-				r.Config.ZoneAwsConfig.ApplianceURL = types.StringValue(*resp.Config.ZoneAwsConfig.ApplianceURL)
-			} else {
-				r.Config.ZoneAwsConfig.ApplianceURL = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.BackupMode != nil {
-				r.Config.ZoneAwsConfig.BackupMode = types.StringValue(*resp.Config.ZoneAwsConfig.BackupMode)
-			} else {
-				r.Config.ZoneAwsConfig.BackupMode = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.CertificateProvider != nil {
-				r.Config.ZoneAwsConfig.CertificateProvider = types.StringValue(*resp.Config.ZoneAwsConfig.CertificateProvider)
-			} else {
-				r.Config.ZoneAwsConfig.CertificateProvider = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.ConfigCmdbDiscovery != nil {
-				r.Config.ZoneAwsConfig.ConfigCmdbDiscovery = types.BoolValue(*resp.Config.ZoneAwsConfig.ConfigCmdbDiscovery)
-			} else {
-				r.Config.ZoneAwsConfig.ConfigCmdbDiscovery = types.BoolNull()
-			}
-			if resp.Config.ZoneAwsConfig.ConfigManagementID != nil {
-				r.Config.ZoneAwsConfig.ConfigManagementID = types.StringValue(*resp.Config.ZoneAwsConfig.ConfigManagementID)
-			} else {
-				r.Config.ZoneAwsConfig.ConfigManagementID = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.CostingAccessKey != nil {
-				r.Config.ZoneAwsConfig.CostingAccessKey = types.StringValue(*resp.Config.ZoneAwsConfig.CostingAccessKey)
-			} else {
-				r.Config.ZoneAwsConfig.CostingAccessKey = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.CostingBucket != nil {
-				r.Config.ZoneAwsConfig.CostingBucket = types.StringValue(*resp.Config.ZoneAwsConfig.CostingBucket)
-			} else {
-				r.Config.ZoneAwsConfig.CostingBucket = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.CostingBucketName != nil {
-				r.Config.ZoneAwsConfig.CostingBucketName = types.StringValue(*resp.Config.ZoneAwsConfig.CostingBucketName)
-			} else {
-				r.Config.ZoneAwsConfig.CostingBucketName = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.CostingFolder != nil {
-				r.Config.ZoneAwsConfig.CostingFolder = types.StringValue(*resp.Config.ZoneAwsConfig.CostingFolder)
-			} else {
-				r.Config.ZoneAwsConfig.CostingFolder = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.CostingRegion != nil {
-				r.Config.ZoneAwsConfig.CostingRegion = types.StringValue(*resp.Config.ZoneAwsConfig.CostingRegion)
-			} else {
-				r.Config.ZoneAwsConfig.CostingRegion = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.CostingReport != nil {
-				r.Config.ZoneAwsConfig.CostingReport = types.StringValue(*resp.Config.ZoneAwsConfig.CostingReport)
-			} else {
-				r.Config.ZoneAwsConfig.CostingReport = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.CostingReportName != nil {
-				r.Config.ZoneAwsConfig.CostingReportName = types.StringValue(*resp.Config.ZoneAwsConfig.CostingReportName)
-			} else {
-				r.Config.ZoneAwsConfig.CostingReportName = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.CostingSecretKey != nil {
-				r.Config.ZoneAwsConfig.CostingSecretKey = types.StringValue(*resp.Config.ZoneAwsConfig.CostingSecretKey)
-			} else {
-				r.Config.ZoneAwsConfig.CostingSecretKey = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.CostingSecretKeyHash != nil {
-				r.Config.ZoneAwsConfig.CostingSecretKeyHash = types.StringValue(*resp.Config.ZoneAwsConfig.CostingSecretKeyHash)
-			} else {
-				r.Config.ZoneAwsConfig.CostingSecretKeyHash = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.DatacenterName != nil {
-				r.Config.ZoneAwsConfig.DatacenterName = types.StringValue(*resp.Config.ZoneAwsConfig.DatacenterName)
-			} else {
-				r.Config.ZoneAwsConfig.DatacenterName = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.DNSIntegrationID != nil {
-				r.Config.ZoneAwsConfig.DNSIntegrationID = types.StringValue(*resp.Config.ZoneAwsConfig.DNSIntegrationID)
-			} else {
-				r.Config.ZoneAwsConfig.DNSIntegrationID = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.EbsEncryption != nil {
-				r.Config.ZoneAwsConfig.EbsEncryption = types.StringValue(*resp.Config.ZoneAwsConfig.EbsEncryption)
-			} else {
-				r.Config.ZoneAwsConfig.EbsEncryption = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.Endpoint != nil {
-				r.Config.ZoneAwsConfig.Endpoint = types.StringValue(*resp.Config.ZoneAwsConfig.Endpoint)
-			} else {
-				r.Config.ZoneAwsConfig.Endpoint = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.ImageStoreID != nil {
-				r.Config.ZoneAwsConfig.ImageStoreID = types.StringValue(*resp.Config.ZoneAwsConfig.ImageStoreID)
-			} else {
-				r.Config.ZoneAwsConfig.ImageStoreID = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.IsVpc != nil {
-				r.Config.ZoneAwsConfig.IsVpc = types.StringValue(*resp.Config.ZoneAwsConfig.IsVpc)
-			} else {
-				r.Config.ZoneAwsConfig.IsVpc = types.StringNull()
-			}
-			if r.Config.ZoneAwsConfig.NetworkServer == nil {
-				r.Config.ZoneAwsConfig.NetworkServer = &ZoneAwsConfigNetworkServer{}
-			}
-			if resp.Config.ZoneAwsConfig.NetworkServer == nil {
-				r.Config.ZoneAwsConfig.NetworkServer = nil
-			} else {
-				r.Config.ZoneAwsConfig.NetworkServer = &ZoneAwsConfigNetworkServer{}
-				if resp.Config.ZoneAwsConfig.NetworkServer.ID != nil {
-					r.Config.ZoneAwsConfig.NetworkServer.ID = types.StringValue(*resp.Config.ZoneAwsConfig.NetworkServer.ID)
-				} else {
-					r.Config.ZoneAwsConfig.NetworkServer.ID = types.StringNull()
-				}
-			}
-			if resp.Config.ZoneAwsConfig.NetworkServerID != nil {
-				r.Config.ZoneAwsConfig.NetworkServerID = types.StringValue(*resp.Config.ZoneAwsConfig.NetworkServerID)
-			} else {
-				r.Config.ZoneAwsConfig.NetworkServerID = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.ReplicationMode != nil {
-				r.Config.ZoneAwsConfig.ReplicationMode = types.StringValue(*resp.Config.ZoneAwsConfig.ReplicationMode)
-			} else {
-				r.Config.ZoneAwsConfig.ReplicationMode = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.SecretKey != nil {
-				r.Config.ZoneAwsConfig.SecretKey = types.StringValue(*resp.Config.ZoneAwsConfig.SecretKey)
-			} else {
-				r.Config.ZoneAwsConfig.SecretKey = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.SecretKeyHash != nil {
-				r.Config.ZoneAwsConfig.SecretKeyHash = types.StringValue(*resp.Config.ZoneAwsConfig.SecretKeyHash)
-			} else {
-				r.Config.ZoneAwsConfig.SecretKeyHash = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.SecurityServer != nil {
-				r.Config.ZoneAwsConfig.SecurityServer = types.StringValue(*resp.Config.ZoneAwsConfig.SecurityServer)
-			} else {
-				r.Config.ZoneAwsConfig.SecurityServer = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.ServiceRegistryID != nil {
-				r.Config.ZoneAwsConfig.ServiceRegistryID = types.StringValue(*resp.Config.ZoneAwsConfig.ServiceRegistryID)
-			} else {
-				r.Config.ZoneAwsConfig.ServiceRegistryID = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.StsAssumeRole != nil {
-				r.Config.ZoneAwsConfig.StsAssumeRole = types.StringValue(*resp.Config.ZoneAwsConfig.StsAssumeRole)
-			} else {
-				r.Config.ZoneAwsConfig.StsAssumeRole = types.StringNull()
-			}
-			if resp.Config.ZoneAwsConfig.Vpc != nil {
-				r.Config.ZoneAwsConfig.Vpc = types.StringValue(*resp.Config.ZoneAwsConfig.Vpc)
-			} else {
-				r.Config.ZoneAwsConfig.Vpc = types.StringNull()
+				r.Config.NetworkServer.ID = types.StringNull()
 			}
 		}
-		if resp.Config.ZoneAzureConfig != nil {
-			r.Config.ZoneAzureConfig = &ZoneAzureConfig{}
-			if resp.Config.ZoneAzureConfig.AccountType != nil {
-				r.Config.ZoneAzureConfig.AccountType = types.StringValue(*resp.Config.ZoneAzureConfig.AccountType)
-			} else {
-				r.Config.ZoneAzureConfig.AccountType = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.ApplianceURL != nil {
-				r.Config.ZoneAzureConfig.ApplianceURL = types.StringValue(*resp.Config.ZoneAzureConfig.ApplianceURL)
-			} else {
-				r.Config.ZoneAzureConfig.ApplianceURL = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.AzureCostingMode != nil {
-				r.Config.ZoneAzureConfig.AzureCostingMode = types.StringValue(*resp.Config.ZoneAzureConfig.AzureCostingMode)
-			} else {
-				r.Config.ZoneAzureConfig.AzureCostingMode = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.BackupMode != nil {
-				r.Config.ZoneAzureConfig.BackupMode = types.StringValue(*resp.Config.ZoneAzureConfig.BackupMode)
-			} else {
-				r.Config.ZoneAzureConfig.BackupMode = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.CertificateProvider != nil {
-				r.Config.ZoneAzureConfig.CertificateProvider = types.StringValue(*resp.Config.ZoneAzureConfig.CertificateProvider)
-			} else {
-				r.Config.ZoneAzureConfig.CertificateProvider = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.ClientID != nil {
-				r.Config.ZoneAzureConfig.ClientID = types.StringValue(*resp.Config.ZoneAzureConfig.ClientID)
-			} else {
-				r.Config.ZoneAzureConfig.ClientID = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.ClientSecret != nil {
-				r.Config.ZoneAzureConfig.ClientSecret = types.StringValue(*resp.Config.ZoneAzureConfig.ClientSecret)
-			} else {
-				r.Config.ZoneAzureConfig.ClientSecret = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.ClientSecretHash != nil {
-				r.Config.ZoneAzureConfig.ClientSecretHash = types.StringValue(*resp.Config.ZoneAzureConfig.ClientSecretHash)
-			} else {
-				r.Config.ZoneAzureConfig.ClientSecretHash = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.CloudType != nil {
-				r.Config.ZoneAzureConfig.CloudType = types.StringValue(*resp.Config.ZoneAzureConfig.CloudType)
-			} else {
-				r.Config.ZoneAzureConfig.CloudType = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.ConfigCmdbDiscovery != nil {
-				r.Config.ZoneAzureConfig.ConfigCmdbDiscovery = types.BoolValue(*resp.Config.ZoneAzureConfig.ConfigCmdbDiscovery)
-			} else {
-				r.Config.ZoneAzureConfig.ConfigCmdbDiscovery = types.BoolNull()
-			}
-			if resp.Config.ZoneAzureConfig.ConfigCmdbID != nil {
-				r.Config.ZoneAzureConfig.ConfigCmdbID = types.StringValue(*resp.Config.ZoneAzureConfig.ConfigCmdbID)
-			} else {
-				r.Config.ZoneAzureConfig.ConfigCmdbID = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.ConfigManagementID != nil {
-				r.Config.ZoneAzureConfig.ConfigManagementID = types.StringValue(*resp.Config.ZoneAzureConfig.ConfigManagementID)
-			} else {
-				r.Config.ZoneAzureConfig.ConfigManagementID = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.CspClientID != nil {
-				r.Config.ZoneAzureConfig.CspClientID = types.StringValue(*resp.Config.ZoneAzureConfig.CspClientID)
-			} else {
-				r.Config.ZoneAzureConfig.CspClientID = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.CspClientSecret != nil {
-				r.Config.ZoneAzureConfig.CspClientSecret = types.StringValue(*resp.Config.ZoneAzureConfig.CspClientSecret)
-			} else {
-				r.Config.ZoneAzureConfig.CspClientSecret = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.CspClientSecretHash != nil {
-				r.Config.ZoneAzureConfig.CspClientSecretHash = types.StringValue(*resp.Config.ZoneAzureConfig.CspClientSecretHash)
-			} else {
-				r.Config.ZoneAzureConfig.CspClientSecretHash = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.CspCustomer != nil {
-				r.Config.ZoneAzureConfig.CspCustomer = types.StringValue(*resp.Config.ZoneAzureConfig.CspCustomer)
-			} else {
-				r.Config.ZoneAzureConfig.CspCustomer = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.CspTenantID != nil {
-				r.Config.ZoneAzureConfig.CspTenantID = types.StringValue(*resp.Config.ZoneAzureConfig.CspTenantID)
-			} else {
-				r.Config.ZoneAzureConfig.CspTenantID = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.DatacenterName != nil {
-				r.Config.ZoneAzureConfig.DatacenterName = types.StringValue(*resp.Config.ZoneAzureConfig.DatacenterName)
-			} else {
-				r.Config.ZoneAzureConfig.DatacenterName = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.DiskEncryption != nil {
-				r.Config.ZoneAzureConfig.DiskEncryption = types.StringValue(*resp.Config.ZoneAzureConfig.DiskEncryption)
-			} else {
-				r.Config.ZoneAzureConfig.DiskEncryption = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.DNSIntegrationID != nil {
-				r.Config.ZoneAzureConfig.DNSIntegrationID = types.StringValue(*resp.Config.ZoneAzureConfig.DNSIntegrationID)
-			} else {
-				r.Config.ZoneAzureConfig.DNSIntegrationID = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.EncryptionSet != nil {
-				r.Config.ZoneAzureConfig.EncryptionSet = types.StringValue(*resp.Config.ZoneAzureConfig.EncryptionSet)
-			} else {
-				r.Config.ZoneAzureConfig.EncryptionSet = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.ImportExisting != nil {
-				r.Config.ZoneAzureConfig.ImportExisting = types.StringValue(*resp.Config.ZoneAzureConfig.ImportExisting)
-			} else {
-				r.Config.ZoneAzureConfig.ImportExisting = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.InventoryLevel != nil {
-				r.Config.ZoneAzureConfig.InventoryLevel = types.StringValue(*resp.Config.ZoneAzureConfig.InventoryLevel)
-			} else {
-				r.Config.ZoneAzureConfig.InventoryLevel = types.StringNull()
-			}
-			if r.Config.ZoneAzureConfig.NetworkServer == nil {
-				r.Config.ZoneAzureConfig.NetworkServer = &ZoneAwsConfigNetworkServer{}
-			}
-			if resp.Config.ZoneAzureConfig.NetworkServer == nil {
-				r.Config.ZoneAzureConfig.NetworkServer = nil
-			} else {
-				r.Config.ZoneAzureConfig.NetworkServer = &ZoneAwsConfigNetworkServer{}
-				if resp.Config.ZoneAzureConfig.NetworkServer.ID != nil {
-					r.Config.ZoneAzureConfig.NetworkServer.ID = types.StringValue(*resp.Config.ZoneAzureConfig.NetworkServer.ID)
-				} else {
-					r.Config.ZoneAzureConfig.NetworkServer.ID = types.StringNull()
-				}
-			}
-			if resp.Config.ZoneAzureConfig.NetworkServerID != nil {
-				r.Config.ZoneAzureConfig.NetworkServerID = types.StringValue(*resp.Config.ZoneAzureConfig.NetworkServerID)
-			} else {
-				r.Config.ZoneAzureConfig.NetworkServerID = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.ReplicationMode != nil {
-				r.Config.ZoneAzureConfig.ReplicationMode = types.StringValue(*resp.Config.ZoneAzureConfig.ReplicationMode)
-			} else {
-				r.Config.ZoneAzureConfig.ReplicationMode = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.ResourceGroup != nil {
-				r.Config.ZoneAzureConfig.ResourceGroup = types.StringValue(*resp.Config.ZoneAzureConfig.ResourceGroup)
-			} else {
-				r.Config.ZoneAzureConfig.ResourceGroup = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.RPCMode != nil {
-				r.Config.ZoneAzureConfig.RPCMode = types.StringValue(*resp.Config.ZoneAzureConfig.RPCMode)
-			} else {
-				r.Config.ZoneAzureConfig.RPCMode = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.SecurityMode != nil {
-				r.Config.ZoneAzureConfig.SecurityMode = types.StringValue(*resp.Config.ZoneAzureConfig.SecurityMode)
-			} else {
-				r.Config.ZoneAzureConfig.SecurityMode = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.SecurityServer != nil {
-				r.Config.ZoneAzureConfig.SecurityServer = types.StringValue(*resp.Config.ZoneAzureConfig.SecurityServer)
-			} else {
-				r.Config.ZoneAzureConfig.SecurityServer = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.ServiceRegistryID != nil {
-				r.Config.ZoneAzureConfig.ServiceRegistryID = types.StringValue(*resp.Config.ZoneAzureConfig.ServiceRegistryID)
-			} else {
-				r.Config.ZoneAzureConfig.ServiceRegistryID = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.SubscriberID != nil {
-				r.Config.ZoneAzureConfig.SubscriberID = types.StringValue(*resp.Config.ZoneAzureConfig.SubscriberID)
-			} else {
-				r.Config.ZoneAzureConfig.SubscriberID = types.StringNull()
-			}
-			if resp.Config.ZoneAzureConfig.TenantID != nil {
-				r.Config.ZoneAzureConfig.TenantID = types.StringValue(*resp.Config.ZoneAzureConfig.TenantID)
-			} else {
-				r.Config.ZoneAzureConfig.TenantID = types.StringNull()
-			}
+		if resp.Config.NetworkServerID != nil {
+			r.Config.NetworkServerID = types.StringValue(*resp.Config.NetworkServerID)
+		} else {
+			r.Config.NetworkServerID = types.StringNull()
 		}
-		if resp.Config.ZoneGcpConfig != nil {
-			r.Config.ZoneGcpConfig = &ZoneGcpConfig{}
-			if resp.Config.ZoneGcpConfig.ApplianceURL != nil {
-				r.Config.ZoneGcpConfig.ApplianceURL = types.StringValue(*resp.Config.ZoneGcpConfig.ApplianceURL)
-			} else {
-				r.Config.ZoneGcpConfig.ApplianceURL = types.StringNull()
-			}
-			if resp.Config.ZoneGcpConfig.BackupMode != nil {
-				r.Config.ZoneGcpConfig.BackupMode = types.StringValue(*resp.Config.ZoneGcpConfig.BackupMode)
-			} else {
-				r.Config.ZoneGcpConfig.BackupMode = types.StringNull()
-			}
-			if resp.Config.ZoneGcpConfig.CertificateProvider != nil {
-				r.Config.ZoneGcpConfig.CertificateProvider = types.StringValue(*resp.Config.ZoneGcpConfig.CertificateProvider)
-			} else {
-				r.Config.ZoneGcpConfig.CertificateProvider = types.StringNull()
-			}
-			if resp.Config.ZoneGcpConfig.ClientEmail != nil {
-				r.Config.ZoneGcpConfig.ClientEmail = types.StringValue(*resp.Config.ZoneGcpConfig.ClientEmail)
-			} else {
-				r.Config.ZoneGcpConfig.ClientEmail = types.StringNull()
-			}
-			if resp.Config.ZoneGcpConfig.ConfigManagementID != nil {
-				r.Config.ZoneGcpConfig.ConfigManagementID = types.StringValue(*resp.Config.ZoneGcpConfig.ConfigManagementID)
-			} else {
-				r.Config.ZoneGcpConfig.ConfigManagementID = types.StringNull()
-			}
-			if resp.Config.ZoneGcpConfig.DatacenterName != nil {
-				r.Config.ZoneGcpConfig.DatacenterName = types.StringValue(*resp.Config.ZoneGcpConfig.DatacenterName)
-			} else {
-				r.Config.ZoneGcpConfig.DatacenterName = types.StringNull()
-			}
-			if resp.Config.ZoneGcpConfig.DNSIntegrationID != nil {
-				r.Config.ZoneGcpConfig.DNSIntegrationID = types.StringValue(*resp.Config.ZoneGcpConfig.DNSIntegrationID)
-			} else {
-				r.Config.ZoneGcpConfig.DNSIntegrationID = types.StringNull()
-			}
-			if resp.Config.ZoneGcpConfig.GoogleRegionID != nil {
-				r.Config.ZoneGcpConfig.GoogleRegionID = types.StringValue(*resp.Config.ZoneGcpConfig.GoogleRegionID)
-			} else {
-				r.Config.ZoneGcpConfig.GoogleRegionID = types.StringNull()
-			}
-			if resp.Config.ZoneGcpConfig.ImportExisting != nil {
-				r.Config.ZoneGcpConfig.ImportExisting = types.StringValue(*resp.Config.ZoneGcpConfig.ImportExisting)
-			} else {
-				r.Config.ZoneGcpConfig.ImportExisting = types.StringNull()
-			}
-			if r.Config.ZoneGcpConfig.NetworkServer == nil {
-				r.Config.ZoneGcpConfig.NetworkServer = &ZoneAwsConfigNetworkServer{}
-			}
-			if resp.Config.ZoneGcpConfig.NetworkServer == nil {
-				r.Config.ZoneGcpConfig.NetworkServer = nil
-			} else {
-				r.Config.ZoneGcpConfig.NetworkServer = &ZoneAwsConfigNetworkServer{}
-				if resp.Config.ZoneGcpConfig.NetworkServer.ID != nil {
-					r.Config.ZoneGcpConfig.NetworkServer.ID = types.StringValue(*resp.Config.ZoneGcpConfig.NetworkServer.ID)
-				} else {
-					r.Config.ZoneGcpConfig.NetworkServer.ID = types.StringNull()
-				}
-			}
-			if resp.Config.ZoneGcpConfig.NetworkServerID != nil {
-				r.Config.ZoneGcpConfig.NetworkServerID = types.StringValue(*resp.Config.ZoneGcpConfig.NetworkServerID)
-			} else {
-				r.Config.ZoneGcpConfig.NetworkServerID = types.StringNull()
-			}
-			if resp.Config.ZoneGcpConfig.PrivateKey != nil {
-				r.Config.ZoneGcpConfig.PrivateKey = types.StringValue(*resp.Config.ZoneGcpConfig.PrivateKey)
-			} else {
-				r.Config.ZoneGcpConfig.PrivateKey = types.StringNull()
-			}
-			if resp.Config.ZoneGcpConfig.PrivateKeyHash != nil {
-				r.Config.ZoneGcpConfig.PrivateKeyHash = types.StringValue(*resp.Config.ZoneGcpConfig.PrivateKeyHash)
-			} else {
-				r.Config.ZoneGcpConfig.PrivateKeyHash = types.StringNull()
-			}
-			if resp.Config.ZoneGcpConfig.ProjectID != nil {
-				r.Config.ZoneGcpConfig.ProjectID = types.StringValue(*resp.Config.ZoneGcpConfig.ProjectID)
-			} else {
-				r.Config.ZoneGcpConfig.ProjectID = types.StringNull()
-			}
-			if resp.Config.ZoneGcpConfig.ReplicationMode != nil {
-				r.Config.ZoneGcpConfig.ReplicationMode = types.StringValue(*resp.Config.ZoneGcpConfig.ReplicationMode)
-			} else {
-				r.Config.ZoneGcpConfig.ReplicationMode = types.StringNull()
-			}
-			if resp.Config.ZoneGcpConfig.SecurityServer != nil {
-				r.Config.ZoneGcpConfig.SecurityServer = types.StringValue(*resp.Config.ZoneGcpConfig.SecurityServer)
-			} else {
-				r.Config.ZoneGcpConfig.SecurityServer = types.StringNull()
-			}
-			if resp.Config.ZoneGcpConfig.ServiceRegistryID != nil {
-				r.Config.ZoneGcpConfig.ServiceRegistryID = types.StringValue(*resp.Config.ZoneGcpConfig.ServiceRegistryID)
-			} else {
-				r.Config.ZoneGcpConfig.ServiceRegistryID = types.StringNull()
-			}
+		if resp.Config.Password != nil {
+			r.Config.Password = types.StringValue(*resp.Config.Password)
+		} else {
+			r.Config.Password = types.StringNull()
 		}
-		if resp.Config.ZoneVcenterConfig != nil {
-			r.Config.ZoneVcenterConfig = &ZoneVcenterConfig{}
-			if resp.Config.ZoneVcenterConfig.EnableNetworkTypeSelection != nil {
-				r.Config.ZoneVcenterConfig.EnableNetworkTypeSelection = types.StringValue(*resp.Config.ZoneVcenterConfig.EnableNetworkTypeSelection)
-			} else {
-				r.Config.ZoneVcenterConfig.EnableNetworkTypeSelection = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.APIURL != nil {
-				r.Config.ZoneVcenterConfig.APIURL = types.StringValue(*resp.Config.ZoneVcenterConfig.APIURL)
-			} else {
-				r.Config.ZoneVcenterConfig.APIURL = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.APIVersion != nil {
-				r.Config.ZoneVcenterConfig.APIVersion = types.StringValue(*resp.Config.ZoneVcenterConfig.APIVersion)
-			} else {
-				r.Config.ZoneVcenterConfig.APIVersion = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.ApplianceURL != nil {
-				r.Config.ZoneVcenterConfig.ApplianceURL = types.StringValue(*resp.Config.ZoneVcenterConfig.ApplianceURL)
-			} else {
-				r.Config.ZoneVcenterConfig.ApplianceURL = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.BackupMode != nil {
-				r.Config.ZoneVcenterConfig.BackupMode = types.StringValue(*resp.Config.ZoneVcenterConfig.BackupMode)
-			} else {
-				r.Config.ZoneVcenterConfig.BackupMode = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.CertificateProvider != nil {
-				r.Config.ZoneVcenterConfig.CertificateProvider = types.StringValue(*resp.Config.ZoneVcenterConfig.CertificateProvider)
-			} else {
-				r.Config.ZoneVcenterConfig.CertificateProvider = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.Cluster != nil {
-				r.Config.ZoneVcenterConfig.Cluster = types.StringValue(*resp.Config.ZoneVcenterConfig.Cluster)
-			} else {
-				r.Config.ZoneVcenterConfig.Cluster = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.ConfigCmdbDiscovery != nil {
-				r.Config.ZoneVcenterConfig.ConfigCmdbDiscovery = types.BoolValue(*resp.Config.ZoneVcenterConfig.ConfigCmdbDiscovery)
-			} else {
-				r.Config.ZoneVcenterConfig.ConfigCmdbDiscovery = types.BoolNull()
-			}
-			if resp.Config.ZoneVcenterConfig.ConfigCmdbID != nil {
-				r.Config.ZoneVcenterConfig.ConfigCmdbID = types.StringValue(*resp.Config.ZoneVcenterConfig.ConfigCmdbID)
-			} else {
-				r.Config.ZoneVcenterConfig.ConfigCmdbID = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.ConfigCmID != nil {
-				r.Config.ZoneVcenterConfig.ConfigCmID = types.StringValue(*resp.Config.ZoneVcenterConfig.ConfigCmID)
-			} else {
-				r.Config.ZoneVcenterConfig.ConfigCmID = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.ConfigManagementID != nil {
-				r.Config.ZoneVcenterConfig.ConfigManagementID = types.StringValue(*resp.Config.ZoneVcenterConfig.ConfigManagementID)
-			} else {
-				r.Config.ZoneVcenterConfig.ConfigManagementID = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.Datacenter != nil {
-				r.Config.ZoneVcenterConfig.Datacenter = types.StringValue(*resp.Config.ZoneVcenterConfig.Datacenter)
-			} else {
-				r.Config.ZoneVcenterConfig.Datacenter = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.DatacenterID != nil {
-				r.Config.ZoneVcenterConfig.DatacenterID = types.StringValue(*resp.Config.ZoneVcenterConfig.DatacenterID)
-			} else {
-				r.Config.ZoneVcenterConfig.DatacenterID = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.DatacenterName != nil {
-				r.Config.ZoneVcenterConfig.DatacenterName = types.StringValue(*resp.Config.ZoneVcenterConfig.DatacenterName)
-			} else {
-				r.Config.ZoneVcenterConfig.DatacenterName = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.DiskStorageType != nil {
-				r.Config.ZoneVcenterConfig.DiskStorageType = types.StringValue(*resp.Config.ZoneVcenterConfig.DiskStorageType)
-			} else {
-				r.Config.ZoneVcenterConfig.DiskStorageType = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.DistributedWorkerID != nil {
-				r.Config.ZoneVcenterConfig.DistributedWorkerID = types.StringValue(*resp.Config.ZoneVcenterConfig.DistributedWorkerID)
-			} else {
-				r.Config.ZoneVcenterConfig.DistributedWorkerID = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.DNSIntegrationID != nil {
-				r.Config.ZoneVcenterConfig.DNSIntegrationID = types.StringValue(*resp.Config.ZoneVcenterConfig.DNSIntegrationID)
-			} else {
-				r.Config.ZoneVcenterConfig.DNSIntegrationID = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.EnableDiskTypeSelection != nil {
-				r.Config.ZoneVcenterConfig.EnableDiskTypeSelection = types.StringValue(*resp.Config.ZoneVcenterConfig.EnableDiskTypeSelection)
-			} else {
-				r.Config.ZoneVcenterConfig.EnableDiskTypeSelection = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.EnableVnc != nil {
-				r.Config.ZoneVcenterConfig.EnableVnc = types.StringValue(*resp.Config.ZoneVcenterConfig.EnableVnc)
-			} else {
-				r.Config.ZoneVcenterConfig.EnableVnc = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.HideHostSelection != nil {
-				r.Config.ZoneVcenterConfig.HideHostSelection = types.StringValue(*resp.Config.ZoneVcenterConfig.HideHostSelection)
-			} else {
-				r.Config.ZoneVcenterConfig.HideHostSelection = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.ImportExisting != nil {
-				r.Config.ZoneVcenterConfig.ImportExisting = types.StringValue(*resp.Config.ZoneVcenterConfig.ImportExisting)
-			} else {
-				r.Config.ZoneVcenterConfig.ImportExisting = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.KubeURL != nil {
-				r.Config.ZoneVcenterConfig.KubeURL = types.StringValue(*resp.Config.ZoneVcenterConfig.KubeURL)
-			} else {
-				r.Config.ZoneVcenterConfig.KubeURL = types.StringNull()
-			}
-			if r.Config.ZoneVcenterConfig.NetworkServer == nil {
-				r.Config.ZoneVcenterConfig.NetworkServer = &ZoneAwsConfigNetworkServer{}
-			}
-			if resp.Config.ZoneVcenterConfig.NetworkServer == nil {
-				r.Config.ZoneVcenterConfig.NetworkServer = nil
-			} else {
-				r.Config.ZoneVcenterConfig.NetworkServer = &ZoneAwsConfigNetworkServer{}
-				if resp.Config.ZoneVcenterConfig.NetworkServer.ID != nil {
-					r.Config.ZoneVcenterConfig.NetworkServer.ID = types.StringValue(*resp.Config.ZoneVcenterConfig.NetworkServer.ID)
-				} else {
-					r.Config.ZoneVcenterConfig.NetworkServer.ID = types.StringNull()
-				}
-			}
-			if resp.Config.ZoneVcenterConfig.NetworkServerID != nil {
-				r.Config.ZoneVcenterConfig.NetworkServerID = types.StringValue(*resp.Config.ZoneVcenterConfig.NetworkServerID)
-			} else {
-				r.Config.ZoneVcenterConfig.NetworkServerID = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.Password != nil {
-				r.Config.ZoneVcenterConfig.Password = types.StringValue(*resp.Config.ZoneVcenterConfig.Password)
-			} else {
-				r.Config.ZoneVcenterConfig.Password = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.PasswordHash != nil {
-				r.Config.ZoneVcenterConfig.PasswordHash = types.StringValue(*resp.Config.ZoneVcenterConfig.PasswordHash)
-			} else {
-				r.Config.ZoneVcenterConfig.PasswordHash = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.ReplicationMode != nil {
-				r.Config.ZoneVcenterConfig.ReplicationMode = types.StringValue(*resp.Config.ZoneVcenterConfig.ReplicationMode)
-			} else {
-				r.Config.ZoneVcenterConfig.ReplicationMode = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.ResourcePool != nil {
-				r.Config.ZoneVcenterConfig.ResourcePool = types.StringValue(*resp.Config.ZoneVcenterConfig.ResourcePool)
-			} else {
-				r.Config.ZoneVcenterConfig.ResourcePool = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.ResourcePoolID != nil {
-				r.Config.ZoneVcenterConfig.ResourcePoolID = types.StringValue(*resp.Config.ZoneVcenterConfig.ResourcePoolID)
-			} else {
-				r.Config.ZoneVcenterConfig.ResourcePoolID = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.RPCMode != nil {
-				r.Config.ZoneVcenterConfig.RPCMode = types.StringValue(*resp.Config.ZoneVcenterConfig.RPCMode)
-			} else {
-				r.Config.ZoneVcenterConfig.RPCMode = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.SecurityMode != nil {
-				r.Config.ZoneVcenterConfig.SecurityMode = types.StringValue(*resp.Config.ZoneVcenterConfig.SecurityMode)
-			} else {
-				r.Config.ZoneVcenterConfig.SecurityMode = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.SecurityServer != nil {
-				r.Config.ZoneVcenterConfig.SecurityServer = types.StringValue(*resp.Config.ZoneVcenterConfig.SecurityServer)
-			} else {
-				r.Config.ZoneVcenterConfig.SecurityServer = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.ServiceRegistryID != nil {
-				r.Config.ZoneVcenterConfig.ServiceRegistryID = types.StringValue(*resp.Config.ZoneVcenterConfig.ServiceRegistryID)
-			} else {
-				r.Config.ZoneVcenterConfig.ServiceRegistryID = types.StringNull()
-			}
-			if resp.Config.ZoneVcenterConfig.Username != nil {
-				r.Config.ZoneVcenterConfig.Username = types.StringValue(*resp.Config.ZoneVcenterConfig.Username)
-			} else {
-				r.Config.ZoneVcenterConfig.Username = types.StringNull()
-			}
+		if resp.Config.PasswordHash != nil {
+			r.Config.PasswordHash = types.StringValue(*resp.Config.PasswordHash)
+		} else {
+			r.Config.PasswordHash = types.StringNull()
+		}
+		if resp.Config.ReplicationMode != nil {
+			r.Config.ReplicationMode = types.StringValue(*resp.Config.ReplicationMode)
+		} else {
+			r.Config.ReplicationMode = types.StringNull()
+		}
+		if resp.Config.ResourcePool != nil {
+			r.Config.ResourcePool = types.StringValue(*resp.Config.ResourcePool)
+		} else {
+			r.Config.ResourcePool = types.StringNull()
+		}
+		if resp.Config.ResourcePoolID != nil {
+			r.Config.ResourcePoolID = types.StringValue(*resp.Config.ResourcePoolID)
+		} else {
+			r.Config.ResourcePoolID = types.StringNull()
+		}
+		if resp.Config.RPCMode != nil {
+			r.Config.RPCMode = types.StringValue(*resp.Config.RPCMode)
+		} else {
+			r.Config.RPCMode = types.StringNull()
+		}
+		if resp.Config.SecurityMode != nil {
+			r.Config.SecurityMode = types.StringValue(*resp.Config.SecurityMode)
+		} else {
+			r.Config.SecurityMode = types.StringNull()
+		}
+		if resp.Config.SecurityServer != nil {
+			r.Config.SecurityServer = types.StringValue(*resp.Config.SecurityServer)
+		} else {
+			r.Config.SecurityServer = types.StringNull()
+		}
+		if resp.Config.ServiceRegistryID != nil {
+			r.Config.ServiceRegistryID = types.StringValue(*resp.Config.ServiceRegistryID)
+		} else {
+			r.Config.ServiceRegistryID = types.StringNull()
+		}
+		if resp.Config.Username != nil {
+			r.Config.Username = types.StringValue(*resp.Config.Username)
+		} else {
+			r.Config.Username = types.StringNull()
 		}
 	}
 	if resp.ConsoleKeymap != nil {

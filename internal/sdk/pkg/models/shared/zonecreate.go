@@ -3,127 +3,9 @@
 package shared
 
 import (
-	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
 )
-
-type ZoneCreateConfigType string
-
-const (
-	ZoneCreateConfigTypeZoneVcenterConfig ZoneCreateConfigType = "zoneVcenterConfig"
-	ZoneCreateConfigTypeZoneAwsConfig     ZoneCreateConfigType = "zoneAwsConfig"
-	ZoneCreateConfigTypeZoneAzureConfig   ZoneCreateConfigType = "zoneAzureConfig"
-	ZoneCreateConfigTypeZoneGcpConfig     ZoneCreateConfigType = "zoneGcpConfig"
-)
-
-type ZoneCreateConfig struct {
-	ZoneVcenterConfig *ZoneVcenterConfig
-	ZoneAwsConfig     *ZoneAwsConfig
-	ZoneAzureConfig   *ZoneAzureConfig
-	ZoneGcpConfig     *ZoneGcpConfig
-
-	Type ZoneCreateConfigType
-}
-
-func CreateZoneCreateConfigZoneVcenterConfig(zoneVcenterConfig ZoneVcenterConfig) ZoneCreateConfig {
-	typ := ZoneCreateConfigTypeZoneVcenterConfig
-
-	return ZoneCreateConfig{
-		ZoneVcenterConfig: &zoneVcenterConfig,
-		Type:              typ,
-	}
-}
-
-func CreateZoneCreateConfigZoneAwsConfig(zoneAwsConfig ZoneAwsConfig) ZoneCreateConfig {
-	typ := ZoneCreateConfigTypeZoneAwsConfig
-
-	return ZoneCreateConfig{
-		ZoneAwsConfig: &zoneAwsConfig,
-		Type:          typ,
-	}
-}
-
-func CreateZoneCreateConfigZoneAzureConfig(zoneAzureConfig ZoneAzureConfig) ZoneCreateConfig {
-	typ := ZoneCreateConfigTypeZoneAzureConfig
-
-	return ZoneCreateConfig{
-		ZoneAzureConfig: &zoneAzureConfig,
-		Type:            typ,
-	}
-}
-
-func CreateZoneCreateConfigZoneGcpConfig(zoneGcpConfig ZoneGcpConfig) ZoneCreateConfig {
-	typ := ZoneCreateConfigTypeZoneGcpConfig
-
-	return ZoneCreateConfig{
-		ZoneGcpConfig: &zoneGcpConfig,
-		Type:          typ,
-	}
-}
-
-func (u *ZoneCreateConfig) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
-
-	zoneVcenterConfig := new(ZoneVcenterConfig)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&zoneVcenterConfig); err == nil {
-		u.ZoneVcenterConfig = zoneVcenterConfig
-		u.Type = ZoneCreateConfigTypeZoneVcenterConfig
-		return nil
-	}
-
-	zoneAwsConfig := new(ZoneAwsConfig)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&zoneAwsConfig); err == nil {
-		u.ZoneAwsConfig = zoneAwsConfig
-		u.Type = ZoneCreateConfigTypeZoneAwsConfig
-		return nil
-	}
-
-	zoneAzureConfig := new(ZoneAzureConfig)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&zoneAzureConfig); err == nil {
-		u.ZoneAzureConfig = zoneAzureConfig
-		u.Type = ZoneCreateConfigTypeZoneAzureConfig
-		return nil
-	}
-
-	zoneGcpConfig := new(ZoneGcpConfig)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&zoneGcpConfig); err == nil {
-		u.ZoneGcpConfig = zoneGcpConfig
-		u.Type = ZoneCreateConfigTypeZoneGcpConfig
-		return nil
-	}
-
-	return errors.New("could not unmarshal into supported union types")
-}
-
-func (u ZoneCreateConfig) MarshalJSON() ([]byte, error) {
-	if u.ZoneVcenterConfig != nil {
-		return json.Marshal(u.ZoneVcenterConfig)
-	}
-
-	if u.ZoneAwsConfig != nil {
-		return json.Marshal(u.ZoneAwsConfig)
-	}
-
-	if u.ZoneAzureConfig != nil {
-		return json.Marshal(u.ZoneAzureConfig)
-	}
-
-	if u.ZoneGcpConfig != nil {
-		return json.Marshal(u.ZoneGcpConfig)
-	}
-
-	return nil, nil
-}
 
 // ZoneCreateCredential - Map containing Credential ID. Setting `type` to `local` means use the values set in the local cloud config instead of associating a credential.
 type ZoneCreateCredential struct {
@@ -169,8 +51,8 @@ type ZoneCreate struct {
 	// Automatically Power on VMs
 	AutoRecoverPowerState *bool `json:"autoRecoverPowerState,omitempty"`
 	// Optional code for use with policies
-	Code   *string           `json:"code,omitempty"`
-	Config *ZoneCreateConfig `json:"config,omitempty"`
+	Code   *string            `json:"code,omitempty"`
+	Config *ZoneVcenterConfig `json:"config,omitempty"`
 	// Map containing Credential ID. Setting `type` to `local` means use the values set in the local cloud config instead of associating a credential.
 	Credential *ZoneCreateCredential `json:"credential,omitempty"`
 	// Optional description field if you want to put more info there
