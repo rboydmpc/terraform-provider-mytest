@@ -19,8 +19,7 @@ type UpdateCloudsRequest struct {
 
 // UpdateClouds200ApplicationJSON - Successful Request
 type UpdateClouds200ApplicationJSON struct {
-	Success *bool        `json:"success,omitempty"`
-	Zone    *shared.Zone `json:"zone,omitempty"`
+	Zone *shared.Zone `json:"zone,omitempty"`
 }
 
 type UpdateCloudsResponse struct {

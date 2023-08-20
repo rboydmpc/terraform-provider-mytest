@@ -2,18 +2,7 @@
 
 package shared
 
-import (
-	"time"
-)
-
-type ZoneAccount struct {
-	ID   *int64  `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-}
-
 type ZoneCredential struct {
-	ID   *int64  `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
 	Type *string `json:"type,omitempty"`
 }
 
@@ -23,101 +12,22 @@ type ZoneGroups struct {
 	Name      *string `json:"name,omitempty"`
 }
 
-type ZoneNetworkDomain struct {
-	ID   *int64  `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-}
-
-type ZoneNetworkServer struct {
-	ID   *int64  `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-}
-
-type ZoneOwner struct {
-	ID   *int64  `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-}
-
-type ZoneSecurityServer struct {
-	ID   *int64  `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-}
-
-type ZoneStatsServerCounts struct {
-	All           *int64 `json:"all,omitempty"`
-	Baremetal     *int64 `json:"baremetal,omitempty"`
-	ContainerHost *int64 `json:"containerHost,omitempty"`
-	Host          *int64 `json:"host,omitempty"`
-	Hypervisor    *int64 `json:"hypervisor,omitempty"`
-	Unmanaged     *int64 `json:"unmanaged,omitempty"`
-	VM            *int64 `json:"vm,omitempty"`
-}
-
-type ZoneStats struct {
-	ServerCounts *ZoneStatsServerCounts `json:"serverCounts,omitempty"`
-}
-
 type ZoneZoneType struct {
-	Code *string `json:"code,omitempty"`
-	ID   *int64  `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 }
 
 type Zone struct {
-	Account               *ZoneAccount       `json:"account,omitempty"`
-	AccountID             *int64             `json:"accountId,omitempty"`
-	AgentMode             *string            `json:"agentMode,omitempty"`
-	APIProxy              *string            `json:"apiProxy,omitempty"`
-	AutoRecoverPowerState *bool              `json:"autoRecoverPowerState,omitempty"`
-	Code                  *string            `json:"code,omitempty"`
-	Config                *ZoneVcenterConfig `json:"config,omitempty"`
-	ConsoleKeymap         *string            `json:"consoleKeymap,omitempty"`
-	ContainerMode         *string            `json:"containerMode,omitempty"`
-	CostLastSync          *time.Time         `json:"costLastSync,omitempty"`
-	CostLastSyncDuration  *int64             `json:"costLastSyncDuration,omitempty"`
-	CostStatus            *string            `json:"costStatus,omitempty"`
-	CostStatusDate        *time.Time         `json:"costStatusDate,omitempty"`
-	CostStatusMessage     *string            `json:"costStatusMessage,omitempty"`
-	CostingMode           *string            `json:"costingMode,omitempty"`
-	Credential            *ZoneCredential    `json:"credential,omitempty"`
-	// Dark logo image URL
-	DarkImagePath *string      `json:"darkImagePath,omitempty"`
-	DateCreated   *time.Time   `json:"dateCreated,omitempty"`
-	DomainName    *string      `json:"domainName,omitempty"`
-	Enabled       *bool        `json:"enabled,omitempty"`
-	ExternalID    *string      `json:"externalId,omitempty"`
-	Groups        []ZoneGroups `json:"groups,omitempty"`
-	GuidanceMode  *string      `json:"guidanceMode,omitempty"`
-	ID            *int64       `json:"id,omitempty"`
-	// Logo image URL
-	ImagePath         *string             `json:"imagePath,omitempty"`
-	InventoryLevel    *string             `json:"inventoryLevel,omitempty"`
-	LastSync          *time.Time          `json:"lastSync,omitempty"`
-	LastSyncDuration  *int64              `json:"lastSyncDuration,omitempty"`
-	LastUpdated       *time.Time          `json:"lastUpdated,omitempty"`
-	Location          *string             `json:"location,omitempty"`
-	Name              *string             `json:"name,omitempty"`
-	NetworkDomain     *ZoneNetworkDomain  `json:"networkDomain,omitempty"`
-	NetworkServer     *ZoneNetworkServer  `json:"networkServer,omitempty"`
-	NextRunDate       *time.Time          `json:"nextRunDate,omitempty"`
-	Owner             *ZoneOwner          `json:"owner,omitempty"`
-	ProvisioningProxy *string             `json:"provisioningProxy,omitempty"`
-	RegionCode        *string             `json:"regionCode,omitempty"`
-	ScalePriority     *int64              `json:"scalePriority,omitempty"`
-	SecurityMode      *string             `json:"securityMode,omitempty"`
-	SecurityServer    *ZoneSecurityServer `json:"securityServer,omitempty"`
-	ServerCount       *int64              `json:"serverCount,omitempty"`
-	ServiceVersion    *string             `json:"serviceVersion,omitempty"`
-	Stats             *ZoneStats          `json:"stats,omitempty"`
-	Status            *string             `json:"status,omitempty"`
-	StatusDate        *time.Time          `json:"statusDate,omitempty"`
-	StatusMessage     *string             `json:"statusMessage,omitempty"`
-	StorageMode       *string             `json:"storageMode,omitempty"`
-	Timezone          *string             `json:"timezone,omitempty"`
-	UserDataLinux     *string             `json:"userDataLinux,omitempty"`
-	UserDataWindows   *string             `json:"userDataWindows,omitempty"`
-	UUID              *string             `json:"uuid,omitempty"`
-	Visibility        *string             `json:"visibility,omitempty"`
-	ZoneType          *ZoneZoneType       `json:"zoneType,omitempty"`
-	ZoneTypeID        *int64              `json:"zoneTypeId,omitempty"`
+	AccountID  *int64             `json:"accountId,omitempty"`
+	Code       *string            `json:"code,omitempty"`
+	Config     *ZoneVcenterConfig `json:"config,omitempty"`
+	Credential *ZoneCredential    `json:"credential,omitempty"`
+	// Optional description field if you want to put more info there
+	Description   *string       `json:"description,omitempty"`
+	Enabled       *bool         `json:"enabled,omitempty"`
+	Groups        []ZoneGroups  `json:"groups,omitempty"`
+	ID            *int64        `json:"id,omitempty"`
+	Name          *string       `json:"name,omitempty"`
+	ScalePriority *int64        `json:"scalePriority,omitempty"`
+	Visibility    *string       `json:"visibility,omitempty"`
+	ZoneType      *ZoneZoneType `json:"zoneType,omitempty"`
 }

@@ -65,8 +65,6 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // This document describes the Morpheus API protocol and the available endpoints. Sections are organized in the same manner as they appear in the Morpheus UI.
 // https://docs.morpheusdata.com
 type MyTest struct {
-	// ApplianceSettings - Manage Appliance Settings
-	ApplianceSettings *applianceSettings
 	// Clouds - Manage Clouds
 	Clouds *clouds
 
@@ -137,7 +135,7 @@ func New(opts ...SDKOption) *MyTest {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "terraform",
 			OpenAPIDocVersion: "6.1.1",
-			SDKVersion:        "0.1.0",
+			SDKVersion:        "0.1.2",
 			GenVersion:        "2.86.6",
 			ServerDefaults: []map[string]string{
 				{
@@ -161,8 +159,6 @@ func New(opts ...SDKOption) *MyTest {
 			sdk.sdkConfiguration.SecurityClient = sdk.sdkConfiguration.DefaultClient
 		}
 	}
-
-	sdk.ApplianceSettings = newApplianceSettings(sdk.sdkConfiguration)
 
 	sdk.Clouds = newClouds(sdk.sdkConfiguration)
 

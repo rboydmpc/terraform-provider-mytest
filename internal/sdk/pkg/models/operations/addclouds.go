@@ -13,8 +13,7 @@ type AddCloudsRequestBody struct {
 
 // AddClouds200ApplicationJSON - Successful Request
 type AddClouds200ApplicationJSON struct {
-	Success *bool        `json:"success,omitempty"`
-	Zone    *shared.Zone `json:"zone,omitempty"`
+	Zone *shared.Zone `json:"zone,omitempty"`
 }
 
 type AddCloudsResponse struct {

@@ -8,10 +8,8 @@ import (
 	"context"
 	"fmt"
 
-	"MyTest/internal/validators"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 )
@@ -31,63 +29,19 @@ type ZoneDataSource struct {
 
 // ZoneDataSourceModel describes the data model.
 type ZoneDataSourceModel struct {
-	Account               *ZoneAccount       `tfsdk:"account"`
-	AccountID             types.Int64        `tfsdk:"account_id"`
-	AgentMode             types.String       `tfsdk:"agent_mode"`
-	APIProxy              types.String       `tfsdk:"api_proxy"`
-	AutoRecoverPowerState types.Bool         `tfsdk:"auto_recover_power_state"`
-	Code                  types.String       `tfsdk:"code"`
-	Config                *ZoneVcenterConfig `tfsdk:"config"`
-	ConsoleKeymap         types.String       `tfsdk:"console_keymap"`
-	ContainerMode         types.String       `tfsdk:"container_mode"`
-	CostingMode           types.String       `tfsdk:"costing_mode"`
-	CostLastSync          types.String       `tfsdk:"cost_last_sync"`
-	CostLastSyncDuration  types.Int64        `tfsdk:"cost_last_sync_duration"`
-	CostStatus            types.String       `tfsdk:"cost_status"`
-	CostStatusDate        types.String       `tfsdk:"cost_status_date"`
-	CostStatusMessage     types.String       `tfsdk:"cost_status_message"`
-	Credential            *ZoneCredential    `tfsdk:"credential"`
-	DarkImagePath         types.String       `tfsdk:"dark_image_path"`
-	DateCreated           types.String       `tfsdk:"date_created"`
-	Description           types.String       `tfsdk:"description"`
-	DomainName            types.String       `tfsdk:"domain_name"`
-	Enabled               types.Bool         `tfsdk:"enabled"`
-	ExternalID            types.String       `tfsdk:"external_id"`
-	GroupID               types.Int64        `tfsdk:"group_id"`
-	Groups                []ZoneGroups       `tfsdk:"groups"`
-	GuidanceMode          types.String       `tfsdk:"guidance_mode"`
-	ID                    types.Int64        `tfsdk:"id"`
-	ImagePath             types.String       `tfsdk:"image_path"`
-	InventoryLevel        types.String       `tfsdk:"inventory_level"`
-	LastSync              types.String       `tfsdk:"last_sync"`
-	LastSyncDuration      types.Int64        `tfsdk:"last_sync_duration"`
-	LastUpdated           types.String       `tfsdk:"last_updated"`
-	LinkedAccountID       types.Int64        `tfsdk:"linked_account_id"`
-	Location              types.String       `tfsdk:"location"`
-	Name                  types.String       `tfsdk:"name"`
-	NetworkDomain         *ZoneAccount       `tfsdk:"network_domain"`
-	NetworkServer         *ZoneAccount       `tfsdk:"network_server"`
-	NextRunDate           types.String       `tfsdk:"next_run_date"`
-	Owner                 *ZoneAccount       `tfsdk:"owner"`
-	ProvisioningProxy     types.String       `tfsdk:"provisioning_proxy"`
-	RegionCode            types.String       `tfsdk:"region_code"`
-	ScalePriority         types.Int64        `tfsdk:"scale_priority"`
-	SecurityMode          types.String       `tfsdk:"security_mode"`
-	SecurityServer        *ZoneAccount       `tfsdk:"security_server"`
-	ServerCount           types.Int64        `tfsdk:"server_count"`
-	ServiceVersion        types.String       `tfsdk:"service_version"`
-	Stats                 *ZoneStats         `tfsdk:"stats"`
-	Status                types.String       `tfsdk:"status"`
-	StatusDate            types.String       `tfsdk:"status_date"`
-	StatusMessage         types.String       `tfsdk:"status_message"`
-	StorageMode           types.String       `tfsdk:"storage_mode"`
-	Timezone              types.String       `tfsdk:"timezone"`
-	UserDataLinux         types.String       `tfsdk:"user_data_linux"`
-	UserDataWindows       types.String       `tfsdk:"user_data_windows"`
-	UUID                  types.String       `tfsdk:"uuid"`
-	Visibility            types.String       `tfsdk:"visibility"`
-	ZoneType              *ZoneZoneType      `tfsdk:"zone_type"`
-	ZoneTypeID            types.Int64        `tfsdk:"zone_type_id"`
+	AccountID     types.Int64        `tfsdk:"account_id"`
+	Code          types.String       `tfsdk:"code"`
+	Config        *ZoneVcenterConfig `tfsdk:"config"`
+	Credential    *ZoneCredential    `tfsdk:"credential"`
+	Description   types.String       `tfsdk:"description"`
+	Enabled       types.Bool         `tfsdk:"enabled"`
+	GroupID       types.Int64        `tfsdk:"group_id"`
+	Groups        []ZoneGroups       `tfsdk:"groups"`
+	ID            types.Int64        `tfsdk:"id"`
+	Name          types.String       `tfsdk:"name"`
+	ScalePriority types.Int64        `tfsdk:"scale_priority"`
+	Visibility    types.String       `tfsdk:"visibility"`
+	ZoneType      *ZoneZoneType      `tfsdk:"zone_type"`
 }
 
 // Metadata returns the data source type name.
@@ -101,27 +55,7 @@ func (r *ZoneDataSource) Schema(ctx context.Context, req datasource.SchemaReques
 		MarkdownDescription: "Zone DataSource",
 
 		Attributes: map[string]schema.Attribute{
-			"account": schema.SingleNestedAttribute{
-				Computed: true,
-				Attributes: map[string]schema.Attribute{
-					"id": schema.Int64Attribute{
-						Computed: true,
-					},
-					"name": schema.StringAttribute{
-						Computed: true,
-					},
-				},
-			},
 			"account_id": schema.Int64Attribute{
-				Computed: true,
-			},
-			"agent_mode": schema.StringAttribute{
-				Computed: true,
-			},
-			"api_proxy": schema.StringAttribute{
-				Computed: true,
-			},
-			"auto_recover_power_state": schema.BoolAttribute{
 				Computed: true,
 			},
 			"code": schema.StringAttribute{
@@ -130,108 +64,16 @@ func (r *ZoneDataSource) Schema(ctx context.Context, req datasource.SchemaReques
 			"config": schema.SingleNestedAttribute{
 				Computed: true,
 				Attributes: map[string]schema.Attribute{
-					"enable_network_type_selection": schema.StringAttribute{
-						Computed: true,
-					},
 					"api_url": schema.StringAttribute{
-						Computed: true,
-					},
-					"api_version": schema.StringAttribute{
 						Computed: true,
 					},
 					"appliance_url": schema.StringAttribute{
 						Computed: true,
 					},
-					"backup_mode": schema.StringAttribute{
-						Computed: true,
-					},
-					"certificate_provider": schema.StringAttribute{
-						Computed: true,
-					},
-					"cluster": schema.StringAttribute{
-						Computed: true,
-					},
-					"config_cmdb_discovery": schema.BoolAttribute{
-						Computed: true,
-					},
-					"config_cmdb_id": schema.StringAttribute{
-						Computed: true,
-					},
-					"config_cm_id": schema.StringAttribute{
-						Computed: true,
-					},
-					"config_management_id": schema.StringAttribute{
-						Computed: true,
-					},
 					"datacenter": schema.StringAttribute{
 						Computed: true,
 					},
-					"datacenter_id": schema.StringAttribute{
-						Computed: true,
-					},
-					"datacenter_name": schema.StringAttribute{
-						Computed: true,
-					},
-					"disk_storage_type": schema.StringAttribute{
-						Computed: true,
-					},
-					"distributed_worker_id": schema.StringAttribute{
-						Computed: true,
-					},
-					"dns_integration_id": schema.StringAttribute{
-						Computed: true,
-					},
-					"enable_disk_type_selection": schema.StringAttribute{
-						Computed: true,
-					},
-					"enable_vnc": schema.StringAttribute{
-						Computed: true,
-					},
-					"hide_host_selection": schema.StringAttribute{
-						Computed: true,
-					},
-					"import_existing": schema.StringAttribute{
-						Computed: true,
-					},
-					"kube_url": schema.StringAttribute{
-						Computed: true,
-					},
-					"network_server": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"id": schema.StringAttribute{
-								Computed: true,
-							},
-						},
-					},
-					"network_server_id": schema.StringAttribute{
-						Computed: true,
-					},
 					"password": schema.StringAttribute{
-						Computed: true,
-					},
-					"password_hash": schema.StringAttribute{
-						Computed: true,
-					},
-					"replication_mode": schema.StringAttribute{
-						Computed: true,
-					},
-					"resource_pool": schema.StringAttribute{
-						Computed: true,
-					},
-					"resource_pool_id": schema.StringAttribute{
-						Computed: true,
-					},
-					"rpc_mode": schema.StringAttribute{
-						Computed: true,
-					},
-					"security_mode": schema.StringAttribute{
-						Computed: true,
-					},
-					"security_server": schema.StringAttribute{
-						Computed: true,
-					},
-					"service_registry_id": schema.StringAttribute{
 						Computed: true,
 					},
 					"username": schema.StringAttribute{
@@ -239,72 +81,20 @@ func (r *ZoneDataSource) Schema(ctx context.Context, req datasource.SchemaReques
 					},
 				},
 			},
-			"console_keymap": schema.StringAttribute{
-				Computed: true,
-			},
-			"container_mode": schema.StringAttribute{
-				Computed: true,
-			},
-			"costing_mode": schema.StringAttribute{
-				Computed: true,
-			},
-			"cost_last_sync": schema.StringAttribute{
-				Computed: true,
-				Validators: []validator.String{
-					validators.IsRFC3339(),
-				},
-			},
-			"cost_last_sync_duration": schema.Int64Attribute{
-				Computed: true,
-			},
-			"cost_status": schema.StringAttribute{
-				Computed: true,
-			},
-			"cost_status_date": schema.StringAttribute{
-				Computed: true,
-				Validators: []validator.String{
-					validators.IsRFC3339(),
-				},
-			},
-			"cost_status_message": schema.StringAttribute{
-				Computed: true,
-			},
 			"credential": schema.SingleNestedAttribute{
 				Computed: true,
 				Attributes: map[string]schema.Attribute{
-					"id": schema.Int64Attribute{
-						Computed: true,
-					},
-					"name": schema.StringAttribute{
-						Computed: true,
-					},
 					"type": schema.StringAttribute{
 						Computed: true,
 					},
 				},
 				Description: `Map containing Credential ID. Setting ` + "`" + `type` + "`" + ` to ` + "`" + `local` + "`" + ` means use the values set in the local cloud config instead of associating a credential.`,
 			},
-			"dark_image_path": schema.StringAttribute{
-				Computed:    true,
-				Description: `Dark logo image URL`,
-			},
-			"date_created": schema.StringAttribute{
-				Computed: true,
-				Validators: []validator.String{
-					validators.IsRFC3339(),
-				},
-			},
 			"description": schema.StringAttribute{
-				Optional:    true,
+				Computed:    true,
 				Description: `Optional description field if you want to put more info there`,
 			},
-			"domain_name": schema.StringAttribute{
-				Computed: true,
-			},
 			"enabled": schema.BoolAttribute{
-				Computed: true,
-			},
-			"external_id": schema.StringAttribute{
 				Computed: true,
 			},
 			"group_id": schema.Int64Attribute{
@@ -327,169 +117,14 @@ func (r *ZoneDataSource) Schema(ctx context.Context, req datasource.SchemaReques
 					},
 				},
 			},
-			"guidance_mode": schema.StringAttribute{
-				Computed: true,
-			},
 			"id": schema.Int64Attribute{
 				Optional:    true,
 				Description: `Morpheus ID of the Object being referenced`,
 			},
-			"image_path": schema.StringAttribute{
-				Computed:    true,
-				Description: `Logo image URL`,
-			},
-			"inventory_level": schema.StringAttribute{
-				Computed: true,
-			},
-			"last_sync": schema.StringAttribute{
-				Computed: true,
-				Validators: []validator.String{
-					validators.IsRFC3339(),
-				},
-			},
-			"last_sync_duration": schema.Int64Attribute{
-				Computed: true,
-			},
-			"last_updated": schema.StringAttribute{
-				Computed: true,
-				Validators: []validator.String{
-					validators.IsRFC3339(),
-				},
-			},
-			"linked_account_id": schema.Int64Attribute{
-				Optional:    true,
-				Description: `Linked Account ID (enter commercial ID to get costing for AWS Govcloud)`,
-			},
-			"location": schema.StringAttribute{
-				Computed: true,
-			},
 			"name": schema.StringAttribute{
 				Computed: true,
 			},
-			"network_domain": schema.SingleNestedAttribute{
-				Computed: true,
-				Attributes: map[string]schema.Attribute{
-					"id": schema.Int64Attribute{
-						Computed: true,
-					},
-					"name": schema.StringAttribute{
-						Computed: true,
-					},
-				},
-			},
-			"network_server": schema.SingleNestedAttribute{
-				Computed: true,
-				Attributes: map[string]schema.Attribute{
-					"id": schema.Int64Attribute{
-						Computed: true,
-					},
-					"name": schema.StringAttribute{
-						Computed: true,
-					},
-				},
-			},
-			"next_run_date": schema.StringAttribute{
-				Computed: true,
-				Validators: []validator.String{
-					validators.IsRFC3339(),
-				},
-			},
-			"owner": schema.SingleNestedAttribute{
-				Computed: true,
-				Attributes: map[string]schema.Attribute{
-					"id": schema.Int64Attribute{
-						Computed: true,
-					},
-					"name": schema.StringAttribute{
-						Computed: true,
-					},
-				},
-			},
-			"provisioning_proxy": schema.StringAttribute{
-				Computed: true,
-			},
-			"region_code": schema.StringAttribute{
-				Computed: true,
-			},
 			"scale_priority": schema.Int64Attribute{
-				Computed: true,
-			},
-			"security_mode": schema.StringAttribute{
-				Computed: true,
-			},
-			"security_server": schema.SingleNestedAttribute{
-				Computed: true,
-				Attributes: map[string]schema.Attribute{
-					"id": schema.Int64Attribute{
-						Computed: true,
-					},
-					"name": schema.StringAttribute{
-						Computed: true,
-					},
-				},
-			},
-			"server_count": schema.Int64Attribute{
-				Computed: true,
-			},
-			"service_version": schema.StringAttribute{
-				Computed: true,
-			},
-			"stats": schema.SingleNestedAttribute{
-				Computed: true,
-				Attributes: map[string]schema.Attribute{
-					"server_counts": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"all": schema.Int64Attribute{
-								Computed: true,
-							},
-							"baremetal": schema.Int64Attribute{
-								Computed: true,
-							},
-							"container_host": schema.Int64Attribute{
-								Computed: true,
-							},
-							"host": schema.Int64Attribute{
-								Computed: true,
-							},
-							"hypervisor": schema.Int64Attribute{
-								Computed: true,
-							},
-							"unmanaged": schema.Int64Attribute{
-								Computed: true,
-							},
-							"vm": schema.Int64Attribute{
-								Computed: true,
-							},
-						},
-					},
-				},
-			},
-			"status": schema.StringAttribute{
-				Computed: true,
-			},
-			"status_date": schema.StringAttribute{
-				Computed: true,
-				Validators: []validator.String{
-					validators.IsRFC3339(),
-				},
-			},
-			"status_message": schema.StringAttribute{
-				Computed: true,
-			},
-			"storage_mode": schema.StringAttribute{
-				Computed: true,
-			},
-			"timezone": schema.StringAttribute{
-				Computed: true,
-			},
-			"user_data_linux": schema.StringAttribute{
-				Computed: true,
-			},
-			"user_data_windows": schema.StringAttribute{
-				Computed: true,
-			},
-			"uuid": schema.StringAttribute{
 				Computed: true,
 			},
 			"visibility": schema.StringAttribute{
@@ -501,17 +136,11 @@ func (r *ZoneDataSource) Schema(ctx context.Context, req datasource.SchemaReques
 					"code": schema.StringAttribute{
 						Computed: true,
 					},
-					"id": schema.Int64Attribute{
-						Computed: true,
-					},
 					"name": schema.StringAttribute{
 						Computed: true,
 					},
 				},
 				Description: `Map containing the Cloud (zone) code name. See the zone-types API to fetch a list of all available Cloud (zone) types and their codes.`,
-			},
-			"zone_type_id": schema.Int64Attribute{
-				Computed: true,
 			},
 		},
 	}

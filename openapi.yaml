@@ -217,30 +217,6 @@ tags:
 externalDocs:
   url: https://docs.morpheusdata.com
 paths:
-  /api/appliance-settings/maintenance:
-    post:
-      summary: Toggle Maintenance Mode
-      description: This endpoint allows toggling the appliance maintenance mode.
-      operationId: setApplianceSettingsMaintenanceMode
-      tags:
-      - Appliance Settings
-      parameters:
-      - $ref: '#/components/parameters/enableMaintenance'
-      responses:
-        '200':
-          description: Successful Response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/200-success'
-              examples:
-                Successful Response:
-                  value:
-                    success: true
-        4XX:
-          $ref: '#/components/responses/4xx'
-        5XX:
-          $ref: '#/components/responses/5xx'
   /api/zones:
     post:
       summary: Creates a Cloud
@@ -271,7 +247,6 @@ paths:
                   properties:
                     zone:
                       $ref: '#/components/schemas/zone'
-                - $ref: '#/components/schemas/200-success'
         4XX:
           $ref: '#/components/responses/4xx'
         5XX:
@@ -332,7 +307,6 @@ paths:
                   properties:
                     zone:
                       $ref: '#/components/schemas/zone'
-                - $ref: '#/components/schemas/200-success'
         4XX:
           $ref: '#/components/responses/4xx'
         5XX:
@@ -521,308 +495,9 @@ components:
           nullable: true
         datacenter:
           type: string
-        cluster:
-          type: string
-        resourcePoolId:
-          type: string
-        resourcePool:
-          type: string
-        rpcMode:
-          type: string
-        hideHostSelection:
-          type: string
-        importExisting:
-          type: string
-        enableVnc:
-          type: string
-        _enableNetworkTypeSelection:
-          type: string
-        diskStorageType:
-          type: string
-          nullable: true
         applianceUrl:
           type: string
           nullable: true
-        datacenterName:
-          type: string
-          nullable: true
-        networkServer.id:
-          type: string
-        networkServer:
-          type: object
-          properties:
-            id:
-              type: string
-        securityMode:
-          type: string
-        certificateProvider:
-          type: string
-          nullable: true
-        backupMode:
-          type: string
-          nullable: true
-        replicationMode:
-          type: string
-          nullable: true
-        dnsIntegrationId:
-          type: string
-          nullable: true
-        configCmdbId:
-          type: string
-          nullable: true
-        configManagementId:
-          type: string
-          nullable: true
-        configCmId:
-          type: string
-          nullable: true
-        securityServer:
-          type: string
-          nullable: true
-        serviceRegistryId:
-          type: string
-          nullable: true
-        enableDiskTypeSelection:
-          type: string
-          nullable: true
-        kubeUrl:
-          type: string
-          nullable: true
-        apiVersion:
-          type: string
-          nullable: true
-        datacenterId:
-          type: string
-          nullable: true
-        configCmdbDiscovery:
-          type: boolean
-        distributedWorkerId:
-          type: string
-          nullable: true
-        passwordHash:
-          type: string
-          nullable: true
-    zoneAwsConfig:
-      type: object
-      properties:
-        endpoint:
-          type: string
-        accessKey:
-          type: string
-        secretKey:
-          type: string
-        _useHostCredentials:
-          type: string
-        stsAssumeRole:
-          type: string
-        isVpc:
-          type: string
-        vpc:
-          type: string
-        imageStoreId:
-          type: string
-        ebsEncryption:
-          type: string
-        costingReport:
-          type: string
-        costingFolder:
-          type: string
-        costingBucket:
-          type: string
-        costingBucketName:
-          type: string
-        costingRegion:
-          type: string
-        costingAccessKey:
-          type: string
-        costingSecretKey:
-          type: string
-          nullable: true
-        costingReportName:
-          type: string
-        applianceUrl:
-          type: string
-        datacenterName:
-          type: string
-        networkServer.id:
-          type: string
-        networkServer:
-          type: object
-          properties:
-            id:
-              type: string
-        securityServer:
-          type: string
-          nullable: true
-        certificateProvider:
-          type: string
-        backupMode:
-          type: string
-        replicationMode:
-          type: string
-        dnsIntegrationId:
-          type: string
-        serviceRegistryId:
-          type: string
-        configManagementId:
-          type: string
-        configCmdbDiscovery:
-          type: boolean
-        secretKeyHash:
-          type: string
-        costingSecretKeyHash:
-          type: string
-          nullable: true
-    zoneAzureConfig:
-      type: object
-      properties:
-        subscriberId:
-          type: string
-        tenantId:
-          type: string
-        clientId:
-          type: string
-        clientSecret:
-          type: string
-        resourceGroup:
-          type: string
-        importExisting:
-          type: string
-        inventoryLevel:
-          type: string
-        applianceUrl:
-          type: string
-        datacenterName:
-          type: string
-        networkServer.id:
-          type: string
-        networkServer:
-          type: object
-          properties:
-            id:
-              type: string
-        securityMode:
-          type: string
-        certificateProvider:
-          type: string
-        backupMode:
-          type: string
-        replicationMode:
-          type: string
-        dnsIntegrationId:
-          type: string
-        configManagementId:
-          type: string
-        configCmdbId:
-          type: string
-        securityServer:
-          type: string
-          nullable: true
-        accountType:
-          type: string
-        serviceRegistryId:
-          type: string
-        cloudType:
-          type: string
-        rpcMode:
-          type: string
-        diskEncryption:
-          type: string
-        encryptionSet:
-          type: string
-        cspTenantId:
-          type: string
-        cspClientId:
-          type: string
-        cspClientSecret:
-          type: string
-          nullable: true
-        cspCustomer:
-          type: string
-          nullable: true
-        configCmdbDiscovery:
-          type: boolean
-        azureCostingMode:
-          type: string
-        clientSecretHash:
-          type: string
-        cspClientSecretHash:
-          type: string
-          nullable: true
-    zoneGcpConfig:
-      type: object
-      properties:
-        privateKey:
-          type: string
-        clientEmail:
-          type: string
-        projectId:
-          type: string
-        googleRegionId:
-          type: string
-        importExisting:
-          type: string
-        applianceUrl:
-          type: string
-        datacenterName:
-          type: string
-        networkServer.id:
-          type: string
-        networkServer:
-          type: object
-          properties:
-            id:
-              type: string
-        securityServer:
-          type: string
-          nullable: true
-        certificateProvider:
-          type: string
-          nullable: true
-        backupMode:
-          type: string
-          nullable: true
-        replicationMode:
-          type: string
-          nullable: true
-        dnsIntegrationId:
-          type: string
-          nullable: true
-        serviceRegistryId:
-          type: string
-          nullable: true
-        configManagementId:
-          type: string
-          nullable: true
-        privateKeyHash:
-          type: string
-          nullable: true
-    meta:
-      type: object
-      properties:
-        meta:
-          type: object
-          properties:
-            offset:
-              type: integer
-              format: int64
-              description: Offset records, the number of records to skip, can be used to paginate over results.
-              default: 0
-            max:
-              type: integer
-              format: int64
-              description: Max size, the maximum number of records to include in the response.
-              default: 25
-            size:
-              type: integer
-              format: int64
-              description: Number of records returned in the response
-              default: 0
-            total:
-              type: integer
-              format: int64
-              description: Total number of records found
-              default: 0
     zoneCreate:
       x-speakeasy-entity: zone
       type: object
@@ -842,11 +517,6 @@ components:
           type: string
           description: Optional code for use with policies
           example: mycloud
-        location:
-          type: string
-          description: Optional location for your cloud
-          example: US East
-          nullable: true
         visibility:
           type: string
           description: private or public
@@ -875,25 +545,13 @@ components:
           type: boolean
           description: Can be used to disable the cloud
           default: true
-        autoRecoverPowerState:
-          type: boolean
-          description: Automatically Power on VMs
-          default: false
         scalePriority:
           type: integer
           format: int64
           description: Scale Priority
           default: 1
-        linkedAccountId:
-          type: integer
-          format: int64
-          description: Linked Account ID (enter commercial ID to get costing for AWS Govcloud)
         config:
           $ref: '#/components/schemas/zoneVcenterConfig'
-        securityMode:
-          type: string
-          description: host firewall. `off` or `internal`. a.k.a. "local firewall"
-          default: 'off'
         credential:
           type: object
           description: Map containing Credential ID. Setting `type` to `local` means use the values set in the local cloud config instead of associating a credential.
@@ -908,134 +566,25 @@ components:
         id:
           type: integer
           format: int64
-        uuid:
-          type: string
-        externalId:
-          type: string
-          nullable: true
         name:
           type: string
         code:
           type: string
-        location:
+        description:
           type: string
-          nullable: true
-        owner:
-          type: object
-          properties:
-            id:
-              type: integer
-              format: int64
-            name:
-              type: string
+          description: Optional description field if you want to put more info there
         accountId:
           type: integer
           format: int64
-        account:
-          type: object
-          properties:
-            id:
-              type: integer
-              format: int64
-            name:
-              type: string
         visibility:
           type: string
         enabled:
           type: boolean
-        status:
-          type: string
-        statusMessage:
-          type: string
-          nullable: true
-        statusDate:
-          type: string
-          format: date-time
-          nullable: true
-        costStatus:
-          type: string
-          nullable: true
-        costStatusMessage:
-          type: string
-          nullable: true
-        costStatusDate:
-          type: string
-          format: date-time
-          nullable: true
-        costLastSyncDuration:
-          type: integer
-          format: int64
-          nullable: true
-        costLastSync:
-          type: string
-          format: date-time
-          nullable: true
         zoneType:
           type: object
           properties:
-            id:
-              type: integer
-              format: int64
-            code:
-              type: string
             name:
               type: string
-        zoneTypeId:
-          type: integer
-          format: int64
-        guidanceMode:
-          type: string
-          nullable: true
-        storageMode:
-          type: string
-        agentMode:
-          type: string
-        userDataLinux:
-          type: string
-          nullable: true
-        userDataWindows:
-          type: string
-          nullable: true
-        consoleKeymap:
-          type: string
-          nullable: true
-        containerMode:
-          type: string
-        costingMode:
-          type: string
-          nullable: true
-        serviceVersion:
-          type: string
-          nullable: true
-        securityMode:
-          type: string
-        inventoryLevel:
-          type: string
-        timezone:
-          type: string
-          nullable: true
-        apiProxy:
-          type: string
-          nullable: true
-        provisioningProxy:
-          type: string
-          nullable: true
-        networkDomain:
-          type: object
-          nullable: true
-          properties:
-            id:
-              type: integer
-              format: int64
-            name:
-              type: string
-        domainName:
-          type: string
-        regionCode:
-          type: string
-          nullable: true
-        autoRecoverPowerState:
-          type: boolean
         scalePriority:
           type: integer
           format: int64
@@ -1047,41 +596,6 @@ components:
             properties:
               type:
                 type: string
-          - type: object
-            properties:
-              id:
-                type: integer
-                format: int64
-              name:
-                type: string
-              type:
-                type: string
-        imagePath:
-          type: string
-          nullable: true
-          description: Logo image URL
-        darkImagePath:
-          type: string
-          nullable: true
-          description: Dark logo image URL
-        dateCreated:
-          type: string
-          format: date-time
-        lastUpdated:
-          type: string
-          format: date-time
-        lastSync:
-          type: string
-          format: date-time
-          nullable: true
-        lastSyncDuration:
-          type: integer
-          format: int64
-          nullable: true
-        nextRunDate:
-          type: string
-          format: date-time
-          nullable: true
         groups:
           type: array
           items:
@@ -1095,54 +609,6 @@ components:
               accountId:
                 type: integer
                 format: int64
-        securityServer:
-          type: object
-          properties:
-            id:
-              type: integer
-              format: int64
-            name:
-              type: string
-          nullable: true
-        networkServer:
-          type: object
-          properties:
-            id:
-              type: integer
-              format: int64
-            name:
-              type: string
-          nullable: true
-        stats:
-          type: object
-          properties:
-            serverCounts:
-              type: object
-              properties:
-                all:
-                  type: integer
-                  format: int64
-                host:
-                  type: integer
-                  format: int64
-                hypervisor:
-                  type: integer
-                  format: int64
-                containerHost:
-                  type: integer
-                  format: int64
-                vm:
-                  type: integer
-                  format: int64
-                baremetal:
-                  type: integer
-                  format: int64
-                unmanaged:
-                  type: integer
-                  format: int64
-        serverCount:
-          type: integer
-          format: int64
   responses:
     4xx:
       description: Error Codes

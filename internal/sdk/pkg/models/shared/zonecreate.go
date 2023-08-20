@@ -48,8 +48,6 @@ type ZoneCreateZoneType struct {
 type ZoneCreate struct {
 	// Specifies which Tenant this cloud should be assigned to
 	AccountID *int64 `json:"accountId,omitempty"`
-	// Automatically Power on VMs
-	AutoRecoverPowerState *bool `json:"autoRecoverPowerState,omitempty"`
 	// Optional code for use with policies
 	Code   *string            `json:"code,omitempty"`
 	Config *ZoneVcenterConfig `json:"config,omitempty"`
@@ -61,16 +59,10 @@ type ZoneCreate struct {
 	Enabled *bool `json:"enabled,omitempty"`
 	// Specifies which Server group this cloud should be assigned to
 	GroupID int64 `json:"groupId"`
-	// Linked Account ID (enter commercial ID to get costing for AWS Govcloud)
-	LinkedAccountID *int64 `json:"linkedAccountId,omitempty"`
-	// Optional location for your cloud
-	Location *string `json:"location,omitempty"`
 	// A unique name scoped to your account for the cloud
 	Name string `json:"name"`
 	// Scale Priority
 	ScalePriority *int64 `json:"scalePriority,omitempty"`
-	// host firewall. `off` or `internal`. a.k.a. "local firewall"
-	SecurityMode *string `json:"securityMode,omitempty"`
 	// private or public
 	Visibility *ZoneCreateVisibility `json:"visibility,omitempty"`
 	// Map containing the Cloud (zone) code name. See the zone-types API to fetch a list of all available Cloud (zone) types and their codes.
