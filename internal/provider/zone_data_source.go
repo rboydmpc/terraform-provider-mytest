@@ -9,29 +9,28 @@ import (
 	"fmt"
 
 	"MyTest/internal/validators"
-	"github.com/hashicorp/terraform-plugin-framework/path"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
-var _ resource.Resource = &ZoneResource{}
-var _ resource.ResourceWithImportState = &ZoneResource{}
+var _ datasource.DataSource = &ZoneDataSource{}
+var _ datasource.DataSourceWithConfigure = &ZoneDataSource{}
 
-func NewZoneResource() resource.Resource {
-	return &ZoneResource{}
+func NewZoneDataSource() datasource.DataSource {
+	return &ZoneDataSource{}
 }
 
-// ZoneResource defines the resource implementation.
-type ZoneResource struct {
+// ZoneDataSource is the data source implementation.
+type ZoneDataSource struct {
 	client *sdk.MyTest
 }
 
-// ZoneResourceModel describes the resource data model.
-type ZoneResourceModel struct {
+// ZoneDataSourceModel describes the data model.
+type ZoneDataSourceModel struct {
 	Account               *ZoneAccount    `tfsdk:"account"`
 	AccountID             types.Int64     `tfsdk:"account_id"`
 	AgentMode             types.String    `tfsdk:"agent_mode"`
@@ -82,7 +81,6 @@ type ZoneResourceModel struct {
 	StatusDate            types.String    `tfsdk:"status_date"`
 	StatusMessage         types.String    `tfsdk:"status_message"`
 	StorageMode           types.String    `tfsdk:"storage_mode"`
-	Success               types.Bool      `tfsdk:"success"`
 	Timezone              types.String    `tfsdk:"timezone"`
 	UserDataLinux         types.String    `tfsdk:"user_data_linux"`
 	UserDataWindows       types.String    `tfsdk:"user_data_windows"`
@@ -92,13 +90,15 @@ type ZoneResourceModel struct {
 	ZoneTypeID            types.Int64     `tfsdk:"zone_type_id"`
 }
 
-func (r *ZoneResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+// Metadata returns the data source type name.
+func (r *ZoneDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_zone"
 }
 
-func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+// Schema defines the schema for the data source.
+func (r *ZoneDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		MarkdownDescription: "Zone Resource",
+		MarkdownDescription: "Zone DataSource",
 
 		Attributes: map[string]schema.Attribute{
 			"account": schema.SingleNestedAttribute{
@@ -114,7 +114,6 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 			},
 			"account_id": schema.Int64Attribute{
 				Computed: true,
-				Optional: true,
 			},
 			"agent_mode": schema.StringAttribute{
 				Computed: true,
@@ -124,521 +123,395 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 			},
 			"auto_recover_power_state": schema.BoolAttribute{
 				Computed: true,
-				Optional: true,
 			},
 			"code": schema.StringAttribute{
 				Computed: true,
-				Optional: true,
 			},
 			"config": schema.SingleNestedAttribute{
 				Computed: true,
-				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"zone_aws_config": schema.SingleNestedAttribute{
 						Computed: true,
-						Optional: true,
 						Attributes: map[string]schema.Attribute{
 							"use_host_credentials": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"access_key": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"appliance_url": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"backup_mode": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"certificate_provider": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"config_cmdb_discovery": schema.BoolAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"config_management_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"costing_access_key": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"costing_bucket": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"costing_bucket_name": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"costing_folder": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"costing_region": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"costing_report": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"costing_report_name": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"costing_secret_key": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"costing_secret_key_hash": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"datacenter_name": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"dns_integration_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"ebs_encryption": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"endpoint": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"image_store_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"is_vpc": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"network_server": schema.SingleNestedAttribute{
 								Computed: true,
-								Optional: true,
 								Attributes: map[string]schema.Attribute{
 									"id": schema.StringAttribute{
 										Computed: true,
-										Optional: true,
 									},
 								},
 							},
 							"network_server_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"replication_mode": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"secret_key": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"secret_key_hash": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"security_server": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"service_registry_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"sts_assume_role": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"vpc": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 						},
 					},
 					"zone_azure_config": schema.SingleNestedAttribute{
 						Computed: true,
-						Optional: true,
 						Attributes: map[string]schema.Attribute{
 							"account_type": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"appliance_url": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"azure_costing_mode": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"backup_mode": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"certificate_provider": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"client_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"client_secret": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"client_secret_hash": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"cloud_type": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"config_cmdb_discovery": schema.BoolAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"config_cmdb_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"config_management_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"csp_client_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"csp_client_secret": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"csp_client_secret_hash": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"csp_customer": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"csp_tenant_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"datacenter_name": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"disk_encryption": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"dns_integration_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"encryption_set": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"import_existing": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"inventory_level": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"network_server": schema.SingleNestedAttribute{
 								Computed: true,
-								Optional: true,
 								Attributes: map[string]schema.Attribute{
 									"id": schema.StringAttribute{
 										Computed: true,
-										Optional: true,
 									},
 								},
 							},
 							"network_server_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"replication_mode": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"resource_group": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"rpc_mode": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"security_mode": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"security_server": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"service_registry_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"subscriber_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"tenant_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 						},
 					},
 					"zone_gcp_config": schema.SingleNestedAttribute{
 						Computed: true,
-						Optional: true,
 						Attributes: map[string]schema.Attribute{
 							"appliance_url": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"backup_mode": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"certificate_provider": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"client_email": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"config_management_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"datacenter_name": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"dns_integration_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"google_region_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"import_existing": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"network_server": schema.SingleNestedAttribute{
 								Computed: true,
-								Optional: true,
 								Attributes: map[string]schema.Attribute{
 									"id": schema.StringAttribute{
 										Computed: true,
-										Optional: true,
 									},
 								},
 							},
 							"network_server_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"private_key": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"private_key_hash": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"project_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"replication_mode": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"security_server": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"service_registry_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 						},
 					},
 					"zone_vcenter_config": schema.SingleNestedAttribute{
 						Computed: true,
-						Optional: true,
 						Attributes: map[string]schema.Attribute{
 							"enable_network_type_selection": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"api_url": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"api_version": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"appliance_url": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"backup_mode": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"certificate_provider": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"cluster": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"config_cmdb_discovery": schema.BoolAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"config_cmdb_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"config_cm_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"config_management_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"datacenter": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"datacenter_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"datacenter_name": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"disk_storage_type": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"distributed_worker_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"dns_integration_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"enable_disk_type_selection": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"enable_vnc": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"hide_host_selection": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"import_existing": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"kube_url": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"network_server": schema.SingleNestedAttribute{
 								Computed: true,
-								Optional: true,
 								Attributes: map[string]schema.Attribute{
 									"id": schema.StringAttribute{
 										Computed: true,
-										Optional: true,
 									},
 								},
 							},
 							"network_server_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"password": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"password_hash": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"replication_mode": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"resource_pool": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"resource_pool_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"rpc_mode": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"security_mode": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"security_server": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"service_registry_id": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 							"username": schema.StringAttribute{
 								Computed: true,
-								Optional: true,
 							},
 						},
 					},
@@ -679,7 +552,6 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 			},
 			"credential": schema.SingleNestedAttribute{
 				Computed: true,
-				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"id": schema.Int64Attribute{
 						Computed: true,
@@ -689,7 +561,6 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 					},
 					"type": schema.StringAttribute{
 						Computed: true,
-						Optional: true,
 					},
 				},
 				Description: `Map containing Credential ID. Setting ` + "`" + `type` + "`" + ` to ` + "`" + `local` + "`" + ` means use the values set in the local cloud config instead of associating a credential.`,
@@ -713,7 +584,6 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 			},
 			"enabled": schema.BoolAttribute{
 				Computed: true,
-				Optional: true,
 			},
 			"external_id": schema.StringAttribute{
 				Computed: true,
@@ -742,7 +612,8 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				Computed: true,
 			},
 			"id": schema.Int64Attribute{
-				Computed: true,
+				Optional:    true,
+				Description: `Morpheus ID of the Object being referenced`,
 			},
 			"image_path": schema.StringAttribute{
 				Computed:    true,
@@ -772,11 +643,9 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 			},
 			"location": schema.StringAttribute{
 				Computed: true,
-				Optional: true,
 			},
 			"name": schema.StringAttribute{
 				Computed: true,
-				Optional: true,
 			},
 			"network_domain": schema.SingleNestedAttribute{
 				Computed: true,
@@ -825,11 +694,9 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 			},
 			"scale_priority": schema.Int64Attribute{
 				Computed: true,
-				Optional: true,
 			},
 			"security_mode": schema.StringAttribute{
 				Computed: true,
-				Optional: true,
 			},
 			"security_server": schema.SingleNestedAttribute{
 				Computed: true,
@@ -894,9 +761,6 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 			"storage_mode": schema.StringAttribute{
 				Computed: true,
 			},
-			"success": schema.BoolAttribute{
-				Computed: true,
-			},
 			"timezone": schema.StringAttribute{
 				Computed: true,
 			},
@@ -911,15 +775,12 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 			},
 			"visibility": schema.StringAttribute{
 				Computed: true,
-				Optional: true,
 			},
 			"zone_type": schema.SingleNestedAttribute{
 				Computed: true,
-				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"code": schema.StringAttribute{
 						Computed: true,
-						Optional: true,
 					},
 					"id": schema.Int64Attribute{
 						Computed: true,
@@ -937,7 +798,7 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 	}
 }
 
-func (r *ZoneResource) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+func (r *ZoneDataSource) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	// Prevent panic if the provider has not been configured.
 	if req.ProviderData == nil {
 		return
@@ -947,7 +808,7 @@ func (r *ZoneResource) Configure(ctx context.Context, req resource.ConfigureRequ
 
 	if !ok {
 		resp.Diagnostics.AddError(
-			"Unexpected Resource Configure Type",
+			"Unexpected DataSource Configure Type",
 			fmt.Sprintf("Expected *sdk.MyTest, got: %T. Please report this issue to the provider developers.", req.ProviderData),
 		)
 
@@ -957,59 +818,11 @@ func (r *ZoneResource) Configure(ctx context.Context, req resource.ConfigureRequ
 	r.client = client
 }
 
-func (r *ZoneResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	var data *ZoneResourceModel
+func (r *ZoneDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	var data *ZoneDataSourceModel
 	var item types.Object
 
-	resp.Diagnostics.Append(req.Plan.Get(ctx, &item)...)
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
-	resp.Diagnostics.Append(item.As(ctx, &data, basetypes.ObjectAsOptions{
-		UnhandledNullAsEmpty:    true,
-		UnhandledUnknownAsEmpty: true,
-	})...)
-
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
-	zone := *data.ToCreateSDKType()
-	request := operations.AddCloudsRequestBody{
-		Zone: zone,
-	}
-	res, err := r.client.Clouds.AddClouds(ctx, request)
-	if err != nil {
-		resp.Diagnostics.AddError("failure to invoke API", err.Error())
-		if res != nil && res.RawResponse != nil {
-			resp.Diagnostics.AddError("unexpected http request/response", debugResponse(res.RawResponse))
-		}
-		return
-	}
-	if res == nil {
-		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
-		return
-	}
-	if res.StatusCode != 200 {
-		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
-		return
-	}
-	if res.AddClouds200ApplicationJSONObject == nil || res.AddClouds200ApplicationJSONObject.Zone == nil {
-		resp.Diagnostics.AddError("unexpected response from API. No response body", debugResponse(res.RawResponse))
-		return
-	}
-	data.RefreshFromCreateResponse(res.AddClouds200ApplicationJSONObject.Zone)
-
-	// Save updated data into Terraform state
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
-}
-
-func (r *ZoneResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	var data *ZoneResourceModel
-	var item types.Object
-
-	resp.Diagnostics.Append(req.State.Get(ctx, &item)...)
+	resp.Diagnostics.Append(req.Config.Get(ctx, &item)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -1051,92 +864,4 @@ func (r *ZoneResource) Read(ctx context.Context, req resource.ReadRequest, resp 
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
-}
-
-func (r *ZoneResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	var data *ZoneResourceModel
-	merge(ctx, req, resp, &data)
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
-	var requestBody *operations.UpdateCloudsRequestBody
-	zone := *data.ToUpdateSDKType()
-	requestBody = &operations.UpdateCloudsRequestBody{
-		Zone: zone,
-	}
-	id := data.ID.ValueInt64()
-	request := operations.UpdateCloudsRequest{
-		RequestBody: requestBody,
-		ID:          id,
-	}
-	res, err := r.client.Clouds.UpdateClouds(ctx, request)
-	if err != nil {
-		resp.Diagnostics.AddError("failure to invoke API", err.Error())
-		if res != nil && res.RawResponse != nil {
-			resp.Diagnostics.AddError("unexpected http request/response", debugResponse(res.RawResponse))
-		}
-		return
-	}
-	if res == nil {
-		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
-		return
-	}
-	if res.StatusCode != 200 {
-		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
-		return
-	}
-	if res.UpdateClouds200ApplicationJSONObject == nil || res.UpdateClouds200ApplicationJSONObject.Zone == nil {
-		resp.Diagnostics.AddError("unexpected response from API. No response body", debugResponse(res.RawResponse))
-		return
-	}
-	data.RefreshFromUpdateResponse(res.UpdateClouds200ApplicationJSONObject.Zone)
-
-	// Save updated data into Terraform state
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
-}
-
-func (r *ZoneResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-	var data *ZoneResourceModel
-	var item types.Object
-
-	resp.Diagnostics.Append(req.State.Get(ctx, &item)...)
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
-	resp.Diagnostics.Append(item.As(ctx, &data, basetypes.ObjectAsOptions{
-		UnhandledNullAsEmpty:    true,
-		UnhandledUnknownAsEmpty: true,
-	})...)
-
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
-	id := data.ID.ValueInt64()
-	request := operations.RemoveCloudsRequest{
-		ID: id,
-	}
-	res, err := r.client.Clouds.RemoveClouds(ctx, request)
-	if err != nil {
-		resp.Diagnostics.AddError("failure to invoke API", err.Error())
-		if res != nil && res.RawResponse != nil {
-			resp.Diagnostics.AddError("unexpected http request/response", debugResponse(res.RawResponse))
-		}
-		return
-	}
-	if res == nil {
-		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
-		return
-	}
-	if res.StatusCode != 200 {
-		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
-		return
-	}
-
-}
-
-func (r *ZoneResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	resource.ImportStatePassthroughID(ctx, path.Root("id"), req, resp)
 }

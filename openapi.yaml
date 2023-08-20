@@ -276,6 +276,88 @@ paths:
           $ref: '#/components/responses/4xx'
         5XX:
           $ref: '#/components/responses/5xx'
+  /api/zones/{id}:
+    get:
+      summary: Retrieves a Specific Cloud
+      x-speakeasy-entity-operation: zone#get
+      description: |
+        Retrieves a specific cloud.
+      operationId: getClouds
+      tags:
+      - Clouds
+      parameters:
+      - $ref: '#/components/parameters/id-path'
+      responses:
+        '200':
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  zone:
+                    $ref: '#/components/schemas/zone'
+        4XX:
+          $ref: '#/components/responses/4xx'
+        5XX:
+          $ref: '#/components/responses/5xx'
+    put:
+      summary: Updates a Cloud
+      x-speakeasy-entity-operation: zone#update
+      description: |
+        Updates a cloud.
+      operationId: updateClouds
+      tags:
+      - Clouds
+      parameters:
+      - $ref: '#/components/parameters/id-path'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - zone
+              properties:
+                zone:
+                  $ref: '#/components/schemas/zone'
+      responses:
+        '200':
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    zone:
+                      $ref: '#/components/schemas/zone'
+                - $ref: '#/components/schemas/200-success'
+        4XX:
+          $ref: '#/components/responses/4xx'
+        5XX:
+          $ref: '#/components/responses/5xx'
+    delete:
+      summary: Deletes a Cloud
+      x-speakeasy-entity-operation: zone#delete
+      description: |
+        Deletes a specified Cloud.
+      operationId: removeClouds
+      tags:
+      - Clouds
+      parameters:
+      - $ref: '#/components/parameters/id-path'
+      responses:
+        '200':
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/200-success'
+        4XX:
+          $ref: '#/components/responses/4xx'
+        5XX:
+          $ref: '#/components/responses/5xx'
 components:
   securitySchemes:
     bearerAuth:
@@ -304,6 +386,15 @@ components:
       description: Pass true to turn on maintenance mode, or false to turn it off. If no value is given then it will be toggled from off to on or vice versa.
       schema:
         type: boolean
+    id-path:
+      name: id
+      in: path
+      description: Morpheus ID of the Object being referenced
+      required: true
+      schema:
+        type: integer
+        format: int64
+      example: 1
     lastUpdated:
       name: lastUpdated
       in: query
@@ -816,6 +907,7 @@ components:
               default: local
     zone:
       type: object
+      x-speakeasy-entity: zone
       properties:
         id:
           type: integer

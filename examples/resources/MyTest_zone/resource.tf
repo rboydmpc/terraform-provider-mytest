@@ -1,7 +1,7 @@
 resource "MyTest_zone" "my_zone" {
-    account_id = 1
+    account_id = 6
             auto_recover_power_state = false
-            code = "mycloud"
+            code = "...my_code..."
             config = {
         zone_aws_config =     {
                 use_host_credentials = "...my_use_host_credentials..."
@@ -40,18 +40,22 @@ resource "MyTest_zone" "my_zone" {
             }
     }
             credential = {
+        id = 9
+        name = "Cedric Connelly"
         type = "...my_type..."
     }
             description = "...my_description..."
-            enabled = true
+            enabled = false
             group_id = 3
             linked_account_id = 8
-            location = "US East"
-            name = "My Cloud"
-            scale_priority = 8
+            location = "...my_location..."
+            name = "Erik Lebsack"
+            scale_priority = 1
             security_mode = "...my_security_mode..."
-            visibility = "public"
+            visibility = "...my_visibility..."
             zone_type = {
-        code = "vmware"
+        code = "...my_code..."
+        id = 7
+        name = "Seth Conroy"
     }
         }
