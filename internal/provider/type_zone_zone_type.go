@@ -4,6 +4,6 @@ package provider
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type ZoneCreateZoneType struct {
+type ZoneZoneType struct {
 	Code types.String `tfsdk:"code"`
 }

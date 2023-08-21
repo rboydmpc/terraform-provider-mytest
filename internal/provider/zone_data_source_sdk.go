@@ -40,6 +40,11 @@ func (r *ZoneDataSourceModel) RefreshFromGetResponse(resp *shared.Zone) {
 		} else {
 			r.Config.Datacenter = types.StringNull()
 		}
+		if resp.Config.Password != nil {
+			r.Config.Password = types.StringValue(*resp.Config.Password)
+		} else {
+			r.Config.Password = types.StringNull()
+		}
 		if resp.Config.Username != nil {
 			r.Config.Username = types.StringValue(*resp.Config.Username)
 		} else {
@@ -103,5 +108,18 @@ func (r *ZoneDataSourceModel) RefreshFromGetResponse(resp *shared.Zone) {
 		r.Visibility = types.StringValue(*resp.Visibility)
 	} else {
 		r.Visibility = types.StringNull()
+	}
+	if r.ZoneType == nil {
+		r.ZoneType = &ZoneZoneType{}
+	}
+	if resp.ZoneType == nil {
+		r.ZoneType = nil
+	} else {
+		r.ZoneType = &ZoneZoneType{}
+		if resp.ZoneType.Code != nil {
+			r.ZoneType.Code = types.StringValue(*resp.ZoneType.Code)
+		} else {
+			r.ZoneType.Code = types.StringNull()
+		}
 	}
 }

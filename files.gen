@@ -3,7 +3,7 @@ internal/sdk/sdk.go
 internal/provider/type_zone_vcenter_config.go
 internal/provider/type_zone_credential.go
 internal/provider/type_zone_groups.go
-internal/provider/type_zone_create_zone_type.go
+internal/provider/type_zone_zone_type.go
 examples/README.md
 go.mod
 go.sum

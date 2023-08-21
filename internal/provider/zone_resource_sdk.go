@@ -40,6 +40,12 @@ func (r *ZoneResourceModel) ToCreateSDKType() *shared.ZoneCreate {
 		} else {
 			datacenter = nil
 		}
+		password := new(string)
+		if !r.Config.Password.IsUnknown() && !r.Config.Password.IsNull() {
+			*password = r.Config.Password.ValueString()
+		} else {
+			password = nil
+		}
 		username := new(string)
 		if !r.Config.Username.IsUnknown() && !r.Config.Username.IsNull() {
 			*username = r.Config.Username.ValueString()
@@ -50,6 +56,7 @@ func (r *ZoneResourceModel) ToCreateSDKType() *shared.ZoneCreate {
 			APIURL:       apiURL,
 			ApplianceURL: applianceURL,
 			Datacenter:   datacenter,
+			Password:     password,
 			Username:     username,
 		}
 	}
@@ -154,6 +161,12 @@ func (r *ZoneResourceModel) ToUpdateSDKType() *shared.Zone {
 		} else {
 			datacenter = nil
 		}
+		password := new(string)
+		if !r.Config.Password.IsUnknown() && !r.Config.Password.IsNull() {
+			*password = r.Config.Password.ValueString()
+		} else {
+			password = nil
+		}
 		username := new(string)
 		if !r.Config.Username.IsUnknown() && !r.Config.Username.IsNull() {
 			*username = r.Config.Username.ValueString()
@@ -164,6 +177,7 @@ func (r *ZoneResourceModel) ToUpdateSDKType() *shared.Zone {
 			APIURL:       apiURL,
 			ApplianceURL: applianceURL,
 			Datacenter:   datacenter,
+			Password:     password,
 			Username:     username,
 		}
 	}
@@ -235,6 +249,18 @@ func (r *ZoneResourceModel) ToUpdateSDKType() *shared.Zone {
 	} else {
 		visibility = nil
 	}
+	var zoneType *shared.ZoneZoneType
+	if r.ZoneType != nil {
+		code1 := new(string)
+		if !r.ZoneType.Code.IsUnknown() && !r.ZoneType.Code.IsNull() {
+			*code1 = r.ZoneType.Code.ValueString()
+		} else {
+			code1 = nil
+		}
+		zoneType = &shared.ZoneZoneType{
+			Code: code1,
+		}
+	}
 	out := shared.Zone{
 		AccountID:     accountID,
 		Code:          code,
@@ -246,6 +272,7 @@ func (r *ZoneResourceModel) ToUpdateSDKType() *shared.Zone {
 		Name:          name1,
 		ScalePriority: scalePriority,
 		Visibility:    visibility,
+		ZoneType:      zoneType,
 	}
 	return &out
 }
@@ -287,6 +314,11 @@ func (r *ZoneResourceModel) RefreshFromGetResponse(resp *shared.Zone) {
 			r.Config.Datacenter = types.StringValue(*resp.Config.Datacenter)
 		} else {
 			r.Config.Datacenter = types.StringNull()
+		}
+		if resp.Config.Password != nil {
+			r.Config.Password = types.StringValue(*resp.Config.Password)
+		} else {
+			r.Config.Password = types.StringNull()
 		}
 		if resp.Config.Username != nil {
 			r.Config.Username = types.StringValue(*resp.Config.Username)
@@ -351,6 +383,19 @@ func (r *ZoneResourceModel) RefreshFromGetResponse(resp *shared.Zone) {
 		r.Visibility = types.StringValue(*resp.Visibility)
 	} else {
 		r.Visibility = types.StringNull()
+	}
+	if r.ZoneType == nil {
+		r.ZoneType = &ZoneZoneType{}
+	}
+	if resp.ZoneType == nil {
+		r.ZoneType = nil
+	} else {
+		r.ZoneType = &ZoneZoneType{}
+		if resp.ZoneType.Code != nil {
+			r.ZoneType.Code = types.StringValue(*resp.ZoneType.Code)
+		} else {
+			r.ZoneType.Code = types.StringNull()
+		}
 	}
 }
 

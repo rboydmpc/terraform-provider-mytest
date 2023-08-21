@@ -41,7 +41,7 @@ type ZoneDataSourceModel struct {
 	Name          types.String       `tfsdk:"name"`
 	ScalePriority types.Int64        `tfsdk:"scale_priority"`
 	Visibility    types.String       `tfsdk:"visibility"`
-	ZoneType      ZoneCreateZoneType `tfsdk:"zone_type"`
+	ZoneType      *ZoneZoneType      `tfsdk:"zone_type"`
 }
 
 // Metadata returns the data source type name.
@@ -72,6 +72,10 @@ func (r *ZoneDataSource) Schema(ctx context.Context, req datasource.SchemaReques
 					},
 					"datacenter": schema.StringAttribute{
 						Computed: true,
+					},
+					"password": schema.StringAttribute{
+						Computed:  true,
+						Sensitive: true,
 					},
 					"username": schema.StringAttribute{
 						Computed: true,
@@ -128,10 +132,10 @@ func (r *ZoneDataSource) Schema(ctx context.Context, req datasource.SchemaReques
 				Computed: true,
 			},
 			"zone_type": schema.SingleNestedAttribute{
-				Required: true,
+				Computed: true,
 				Attributes: map[string]schema.Attribute{
 					"code": schema.StringAttribute{
-						Optional: true,
+						Computed: true,
 					},
 				},
 				Description: `Map containing the Cloud (zone) code name. See the zone-types API to fetch a list of all available Cloud (zone) types and their codes.`,

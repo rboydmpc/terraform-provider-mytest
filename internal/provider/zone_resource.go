@@ -42,7 +42,7 @@ type ZoneResourceModel struct {
 	Name          types.String       `tfsdk:"name"`
 	ScalePriority types.Int64        `tfsdk:"scale_priority"`
 	Visibility    types.String       `tfsdk:"visibility"`
-	ZoneType      ZoneCreateZoneType `tfsdk:"zone_type"`
+	ZoneType      *ZoneZoneType      `tfsdk:"zone_type"`
 }
 
 func (r *ZoneResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
@@ -77,6 +77,11 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 					"datacenter": schema.StringAttribute{
 						Computed: true,
 						Optional: true,
+					},
+					"password": schema.StringAttribute{
+						Computed:  true,
+						Optional:  true,
+						Sensitive: true,
 					},
 					"username": schema.StringAttribute{
 						Computed: true,
@@ -139,9 +144,11 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				Optional: true,
 			},
 			"zone_type": schema.SingleNestedAttribute{
-				Required: true,
+				Computed: true,
+				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"code": schema.StringAttribute{
+						Computed: true,
 						Optional: true,
 					},
 				},

@@ -492,7 +492,6 @@ components:
           type: string
         password:
           type: string
-          x-speakeasy-terraform-ignore: true
           x-speakeasy-param-sensitive: true
           nullable: true
         datacenter:
@@ -579,6 +578,13 @@ components:
           type: string
         enabled:
           type: boolean
+        zoneType:
+          type: object
+          description: Map containing the Cloud (zone) code name. See the zone-types API to fetch a list of all available Cloud (zone) types and their codes.
+          properties:
+            code:
+              type: string
+              example: vmware
         scalePriority:
           type: integer
           format: int64
