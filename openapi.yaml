@@ -499,6 +499,18 @@ components:
         applianceUrl:
           type: string
           nullable: true
+    zoneVcenterConfig2:
+      type: object
+      properties:
+        apiUrl:
+          type: string
+        username:
+          type: string
+        datacenter:
+          type: string
+        applianceUrl:
+          type: string
+          nullable: true
     zoneCreate:
       x-speakeasy-entity: zone
       type: object
@@ -589,7 +601,7 @@ components:
           type: integer
           format: int64
         config:
-          $ref: '#/components/schemas/zoneVcenterConfig'
+          $ref: '#/components/schemas/zoneVcenterConfig2'
         credential:
           allOf:
           - type: object
