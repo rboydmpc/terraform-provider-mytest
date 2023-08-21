@@ -88,7 +88,11 @@ func (r *ZoneDataSource) Schema(ctx context.Context, req datasource.SchemaReques
 				Description: `Map containing Credential ID. Setting ` + "`" + `type` + "`" + ` to ` + "`" + `local` + "`" + ` means use the values set in the local cloud config instead of associating a credential.`,
 			},
 			"description": schema.StringAttribute{
+<<<<<<< HEAD
 				Optional:    true,
+=======
+				Computed:    false,
+>>>>>>> d46aa1c8c18f76998c638aecced9801abef37a54
 				Description: `Optional description field if you want to put more info there`,
 			},
 			"enabled": schema.BoolAttribute{
@@ -131,7 +135,14 @@ func (r *ZoneDataSource) Schema(ctx context.Context, req datasource.SchemaReques
 				Required: true,
 				Attributes: map[string]schema.Attribute{
 					"code": schema.StringAttribute{
+<<<<<<< HEAD
 						Optional: true,
+=======
+						Computed: false,
+					},
+					"name": schema.StringAttribute{
+						Computed: true,
+>>>>>>> d46aa1c8c18f76998c638aecced9801abef37a54
 					},
 				},
 				Description: `Map containing the Cloud (zone) code name. See the zone-types API to fetch a list of all available Cloud (zone) types and their codes.`,
