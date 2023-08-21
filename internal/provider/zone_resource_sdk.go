@@ -40,12 +40,6 @@ func (r *ZoneResourceModel) ToCreateSDKType() *shared.ZoneCreate {
 		} else {
 			datacenter = nil
 		}
-		password := new(string)
-		if !r.Config.Password.IsUnknown() && !r.Config.Password.IsNull() {
-			*password = r.Config.Password.ValueString()
-		} else {
-			password = nil
-		}
 		username := new(string)
 		if !r.Config.Username.IsUnknown() && !r.Config.Username.IsNull() {
 			*username = r.Config.Username.ValueString()
@@ -56,7 +50,6 @@ func (r *ZoneResourceModel) ToCreateSDKType() *shared.ZoneCreate {
 			APIURL:       apiURL,
 			ApplianceURL: applianceURL,
 			Datacenter:   datacenter,
-			Password:     password,
 			Username:     username,
 		}
 	}

@@ -506,6 +506,10 @@ components:
           type: string
         username:
           type: string
+        password:
+          type: string
+          x-speakeasy-terraform-ignore: true
+          nullable: true
         datacenter:
           type: string
         applianceUrl:
