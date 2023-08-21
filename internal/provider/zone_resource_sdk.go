@@ -40,12 +40,6 @@ func (r *ZoneResourceModel) ToCreateSDKType() *shared.ZoneCreate {
 		} else {
 			datacenter = nil
 		}
-		password := new(string)
-		if !r.Config.Password.IsUnknown() && !r.Config.Password.IsNull() {
-			*password = r.Config.Password.ValueString()
-		} else {
-			password = nil
-		}
 		username := new(string)
 		if !r.Config.Username.IsUnknown() && !r.Config.Username.IsNull() {
 			*username = r.Config.Username.ValueString()
@@ -56,7 +50,6 @@ func (r *ZoneResourceModel) ToCreateSDKType() *shared.ZoneCreate {
 			APIURL:       apiURL,
 			ApplianceURL: applianceURL,
 			Datacenter:   datacenter,
-			Password:     password,
 			Username:     username,
 		}
 	}
@@ -161,12 +154,6 @@ func (r *ZoneResourceModel) ToUpdateSDKType() *shared.Zone {
 		} else {
 			datacenter = nil
 		}
-		password := new(string)
-		if !r.Config.Password.IsUnknown() && !r.Config.Password.IsNull() {
-			*password = r.Config.Password.ValueString()
-		} else {
-			password = nil
-		}
 		username := new(string)
 		if !r.Config.Username.IsUnknown() && !r.Config.Username.IsNull() {
 			*username = r.Config.Username.ValueString()
@@ -177,7 +164,6 @@ func (r *ZoneResourceModel) ToUpdateSDKType() *shared.Zone {
 			APIURL:       apiURL,
 			ApplianceURL: applianceURL,
 			Datacenter:   datacenter,
-			Password:     password,
 			Username:     username,
 		}
 	}
@@ -192,12 +178,6 @@ func (r *ZoneResourceModel) ToUpdateSDKType() *shared.Zone {
 		credential = &shared.ZoneCredential{
 			Type: typeVar,
 		}
-	}
-	description := new(string)
-	if !r.Description.IsUnknown() && !r.Description.IsNull() {
-		*description = r.Description.ValueString()
-	} else {
-		description = nil
 	}
 	enabled := new(bool)
 	if !r.Enabled.IsUnknown() && !r.Enabled.IsNull() {
@@ -255,31 +235,17 @@ func (r *ZoneResourceModel) ToUpdateSDKType() *shared.Zone {
 	} else {
 		visibility = nil
 	}
-	var zoneType *shared.ZoneZoneType
-	if r.ZoneType != nil {
-		name2 := new(string)
-		if !r.ZoneType.Name.IsUnknown() && !r.ZoneType.Name.IsNull() {
-			*name2 = r.ZoneType.Name.ValueString()
-		} else {
-			name2 = nil
-		}
-		zoneType = &shared.ZoneZoneType{
-			Name: name2,
-		}
-	}
 	out := shared.Zone{
 		AccountID:     accountID,
 		Code:          code,
 		Config:        config,
 		Credential:    credential,
-		Description:   description,
 		Enabled:       enabled,
 		Groups:        groups,
 		ID:            id1,
 		Name:          name1,
 		ScalePriority: scalePriority,
 		Visibility:    visibility,
-		ZoneType:      zoneType,
 	}
 	return &out
 }
@@ -322,11 +288,6 @@ func (r *ZoneResourceModel) RefreshFromGetResponse(resp *shared.Zone) {
 		} else {
 			r.Config.Datacenter = types.StringNull()
 		}
-		if resp.Config.Password != nil {
-			r.Config.Password = types.StringValue(*resp.Config.Password)
-		} else {
-			r.Config.Password = types.StringNull()
-		}
 		if resp.Config.Username != nil {
 			r.Config.Username = types.StringValue(*resp.Config.Username)
 		} else {
@@ -345,11 +306,6 @@ func (r *ZoneResourceModel) RefreshFromGetResponse(resp *shared.Zone) {
 		} else {
 			r.Credential.Type = types.StringNull()
 		}
-	}
-	if resp.Description != nil {
-		r.Description = types.StringValue(*resp.Description)
-	} else {
-		r.Description = types.StringNull()
 	}
 	if resp.Enabled != nil {
 		r.Enabled = types.BoolValue(*resp.Enabled)
@@ -395,19 +351,6 @@ func (r *ZoneResourceModel) RefreshFromGetResponse(resp *shared.Zone) {
 		r.Visibility = types.StringValue(*resp.Visibility)
 	} else {
 		r.Visibility = types.StringNull()
-	}
-	if r.ZoneType == nil {
-		r.ZoneType = &ZoneZoneType{}
-	}
-	if resp.ZoneType == nil {
-		r.ZoneType = nil
-	} else {
-		r.ZoneType = &ZoneZoneType{}
-		if resp.ZoneType.Name != nil {
-			r.ZoneType.Name = types.StringValue(*resp.ZoneType.Name)
-		} else {
-			r.ZoneType.Name = types.StringNull()
-		}
 	}
 }
 

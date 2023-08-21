@@ -42,7 +42,7 @@ type ZoneResourceModel struct {
 	Name          types.String       `tfsdk:"name"`
 	ScalePriority types.Int64        `tfsdk:"scale_priority"`
 	Visibility    types.String       `tfsdk:"visibility"`
-	ZoneType      *ZoneZoneType      `tfsdk:"zone_type"`
+	ZoneType      ZoneCreateZoneType `tfsdk:"zone_type"`
 }
 
 func (r *ZoneResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
@@ -78,10 +78,6 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 						Computed: true,
 						Optional: true,
 					},
-					"password": schema.StringAttribute{
-						Computed: true,
-						Optional: true,
-					},
 					"username": schema.StringAttribute{
 						Computed: true,
 						Optional: true,
@@ -100,7 +96,6 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				Description: `Map containing Credential ID. Setting ` + "`" + `type` + "`" + ` to ` + "`" + `local` + "`" + ` means use the values set in the local cloud config instead of associating a credential.`,
 			},
 			"description": schema.StringAttribute{
-				Computed:    true,
 				Optional:    true,
 				Description: `Optional description field if you want to put more info there`,
 			},
@@ -144,14 +139,10 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				Optional: true,
 			},
 			"zone_type": schema.SingleNestedAttribute{
-				Computed: true,
-				Optional: true,
+				Required: true,
 				Attributes: map[string]schema.Attribute{
 					"code": schema.StringAttribute{
 						Optional: true,
-					},
-					"name": schema.StringAttribute{
-						Computed: true,
 					},
 				},
 				Description: `Map containing the Cloud (zone) code name. See the zone-types API to fetch a list of all available Cloud (zone) types and their codes.`,

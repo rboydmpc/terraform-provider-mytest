@@ -12,22 +12,15 @@ type ZoneGroups struct {
 	Name      *string `json:"name,omitempty"`
 }
 
-type ZoneZoneType struct {
-	Name *string `json:"name,omitempty"`
-}
-
 type Zone struct {
-	AccountID  *int64             `json:"accountId,omitempty"`
-	Code       *string            `json:"code,omitempty"`
-	Config     *ZoneVcenterConfig `json:"config,omitempty"`
-	Credential *ZoneCredential    `json:"credential,omitempty"`
-	// Optional description field if you want to put more info there
-	Description   *string       `json:"description,omitempty"`
-	Enabled       *bool         `json:"enabled,omitempty"`
-	Groups        []ZoneGroups  `json:"groups,omitempty"`
-	ID            *int64        `json:"id,omitempty"`
-	Name          *string       `json:"name,omitempty"`
-	ScalePriority *int64        `json:"scalePriority,omitempty"`
-	Visibility    *string       `json:"visibility,omitempty"`
-	ZoneType      *ZoneZoneType `json:"zoneType,omitempty"`
+	AccountID     *int64             `json:"accountId,omitempty"`
+	Code          *string            `json:"code,omitempty"`
+	Config        *ZoneVcenterConfig `json:"config,omitempty"`
+	Credential    *ZoneCredential    `json:"credential,omitempty"`
+	Enabled       *bool              `json:"enabled,omitempty"`
+	Groups        []ZoneGroups       `json:"groups,omitempty"`
+	ID            *int64             `json:"id,omitempty"`
+	Name          *string            `json:"name,omitempty"`
+	ScalePriority *int64             `json:"scalePriority,omitempty"`
+	Visibility    *string            `json:"visibility,omitempty"`
 }

@@ -492,6 +492,8 @@ components:
           type: string
         password:
           type: string
+          x-speakeasy-terraform-ignore: true
+          x-speakeasy-param-sensitive: true
           nullable: true
         datacenter:
           type: string
@@ -570,9 +572,6 @@ components:
           type: string
         code:
           type: string
-        description:
-          type: string
-          description: Optional description field if you want to put more info there
         accountId:
           type: integer
           format: int64
@@ -580,11 +579,6 @@ components:
           type: string
         enabled:
           type: boolean
-        zoneType:
-          type: object
-          properties:
-            name:
-              type: string
         scalePriority:
           type: integer
           format: int64
