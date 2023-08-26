@@ -3,7 +3,7 @@
 package shared
 
 type ZoneCredential struct {
-	Type *string `json:"type,omitempty"`
+	ID *int64 `json:"id,omitempty"`
 }
 
 type ZoneGroups struct {

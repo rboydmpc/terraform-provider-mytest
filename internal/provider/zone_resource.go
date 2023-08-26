@@ -88,7 +88,7 @@ func (r *ZoneResource) Schema(ctx context.Context, req resource.SchemaRequest, r
 				Computed: true,
 				Optional: true,
 				Attributes: map[string]schema.Attribute{
-					"type": schema.StringAttribute{
+					"id": schema.Int64Attribute{
 						Computed: true,
 						Optional: true,
 					},

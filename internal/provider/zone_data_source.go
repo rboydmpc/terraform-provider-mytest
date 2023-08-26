@@ -81,7 +81,7 @@ func (r *ZoneDataSource) Schema(ctx context.Context, req datasource.SchemaReques
 			"credential": schema.SingleNestedAttribute{
 				Computed: true,
 				Attributes: map[string]schema.Attribute{
-					"type": schema.StringAttribute{
+					"id": schema.Int64Attribute{
 						Computed: true,
 					},
 				},

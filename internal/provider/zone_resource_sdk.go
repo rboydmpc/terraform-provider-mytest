@@ -55,14 +55,14 @@ func (r *ZoneResourceModel) ToCreateSDKType() *shared.ZoneCreate {
 	}
 	var credential *shared.ZoneCreateCredential
 	if r.Credential != nil {
-		typeVar := new(string)
-		if !r.Credential.Type.IsUnknown() && !r.Credential.Type.IsNull() {
-			*typeVar = r.Credential.Type.ValueString()
+		id := new(int64)
+		if !r.Credential.ID.IsUnknown() && !r.Credential.ID.IsNull() {
+			*id = r.Credential.ID.ValueInt64()
 		} else {
-			typeVar = nil
+			id = nil
 		}
 		credential = &shared.ZoneCreateCredential{
-			Type: typeVar,
+			ID: id,
 		}
 	}
 	description := new(string)
@@ -169,14 +169,14 @@ func (r *ZoneResourceModel) ToUpdateSDKType() *shared.Zone {
 	}
 	var credential *shared.ZoneCredential
 	if r.Credential != nil {
-		typeVar := new(string)
-		if !r.Credential.Type.IsUnknown() && !r.Credential.Type.IsNull() {
-			*typeVar = r.Credential.Type.ValueString()
+		id := new(int64)
+		if !r.Credential.ID.IsUnknown() && !r.Credential.ID.IsNull() {
+			*id = r.Credential.ID.ValueInt64()
 		} else {
-			typeVar = nil
+			id = nil
 		}
 		credential = &shared.ZoneCredential{
-			Type: typeVar,
+			ID: id,
 		}
 	}
 	enabled := new(bool)
@@ -193,11 +193,11 @@ func (r *ZoneResourceModel) ToUpdateSDKType() *shared.Zone {
 		} else {
 			accountId1 = nil
 		}
-		id := new(int64)
+		id1 := new(int64)
 		if !groupsItem.ID.IsUnknown() && !groupsItem.ID.IsNull() {
-			*id = groupsItem.ID.ValueInt64()
+			*id1 = groupsItem.ID.ValueInt64()
 		} else {
-			id = nil
+			id1 = nil
 		}
 		name := new(string)
 		if !groupsItem.Name.IsUnknown() && !groupsItem.Name.IsNull() {
@@ -207,15 +207,15 @@ func (r *ZoneResourceModel) ToUpdateSDKType() *shared.Zone {
 		}
 		groups = append(groups, shared.ZoneGroups{
 			AccountID: accountId1,
-			ID:        id,
+			ID:        id1,
 			Name:      name,
 		})
 	}
-	id1 := new(int64)
+	id2 := new(int64)
 	if !r.ID.IsUnknown() && !r.ID.IsNull() {
-		*id1 = r.ID.ValueInt64()
+		*id2 = r.ID.ValueInt64()
 	} else {
-		id1 = nil
+		id2 = nil
 	}
 	name1 := new(string)
 	if !r.Name.IsUnknown() && !r.Name.IsNull() {
@@ -254,7 +254,7 @@ func (r *ZoneResourceModel) ToUpdateSDKType() *shared.Zone {
 		Credential:    credential,
 		Enabled:       enabled,
 		Groups:        groups,
-		ID:            id1,
+		ID:            id2,
 		Name:          name1,
 		ScalePriority: scalePriority,
 		Visibility:    visibility,
@@ -314,10 +314,10 @@ func (r *ZoneResourceModel) RefreshFromGetResponse(resp *shared.Zone) {
 		r.Credential = nil
 	} else {
 		r.Credential = &ZoneCredential{}
-		if resp.Credential.Type != nil {
-			r.Credential.Type = types.StringValue(*resp.Credential.Type)
+		if resp.Credential.ID != nil {
+			r.Credential.ID = types.Int64Value(*resp.Credential.ID)
 		} else {
-			r.Credential.Type = types.StringNull()
+			r.Credential.ID = types.Int64Null()
 		}
 	}
 	if resp.Enabled != nil {
